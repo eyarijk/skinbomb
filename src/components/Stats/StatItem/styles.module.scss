@@ -1,0 +1,23 @@
+.root {
+  .avatarWrapper {
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .avatar {
+      height: 45px;
+      width: 45px;
+      background-size: cover;
+      background-position: center;
+    }
+  }
+
+  .winGunWrapper {
+    background-image: url(/shine.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}

@@ -1,0 +1,92 @@
+.root {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  border: 0;
+
+  .head {
+    td {
+      font-size: 14px;
+      line-height: 20px;
+      letter-spacing: 0.44px;
+      color: #B8B8B8;
+
+      &:first-child {
+        padding-left: 24px;
+      }
+
+      &:last-child {
+        padding-right: 24px;
+      }
+    }
+  }
+
+  .leader {
+    border-radius: 10px;
+    height: 65px;
+    
+    > td {
+      background-color: #141415;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 20px;
+      letter-spacing: 0.44px;
+      color: #F5F5F5;
+
+      &.user {
+        border-radius: 10px 0 0 10px;
+        padding-left: 12px;
+        .wrapper {
+          display: flex;
+          align-items: center;
+
+          .avatar {
+            display: flex;
+            background-color: #080808;
+            height: 44px;
+            width: 80px;
+            border-radius: 30px;
+            margin-right: 16px;
+
+            > div {
+              width: 33px;
+              height: 44px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              font-weight: 600;
+              font-size: 14px;
+              line-height: 20px;
+              letter-spacing: 0.44px;
+              color: #F5F5F5;
+            }
+
+            > img {
+              height: 45px;
+              width: 45px;
+              border-radius: 50%;
+              margin-right: -2px;
+            }
+          }
+
+          .name {
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 20px;
+            letter-spacing: 0.44px;
+            color: #E9E9E9;
+          }
+
+        }
+      }
+
+      &.prize {
+        border-radius: 0 10px 10px 0;
+      }
+    }
+  }
+
+  .empty {
+    height: 8px;
+  }
+}

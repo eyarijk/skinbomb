@@ -1,0 +1,41 @@
+.rightContainer {
+  overflow: hidden auto;
+
+  @media screen and (max-width: 959px) {
+    overflow: hidden;
+    position: absolute;
+    z-index: 999;
+    right: 0;
+    top: 0;
+  }
+
+  &::-webkit-scrollbar {
+    width: 0;
+  }
+}
+
+.txt {
+  color: #DF8401;
+  cursor: pointer;
+  &:hover {
+    color: #ff9a00;
+  }
+}
+
+.search {
+  position: relative;
+}
+
+.icon {
+  position: absolute;
+  right: 10%;
+  bottom: 30%;
+  z-index: 99;
+}
+
+.resultsContainer {
+  overflow: hidden auto;
+  &::-webkit-scrollbar {
+    width: 0;
+  }
+}

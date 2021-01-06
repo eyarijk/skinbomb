@@ -1,0 +1,62 @@
+.root {
+  position: relative;
+  display: flex;
+  justify-content: center;
+
+  .countdownWrapper {
+    position: absolute;
+    width: 147px;
+    height: 66px;
+    border-radius: 10px;
+    top: 189px;
+    margin-left: 44px;
+
+    .indicator{
+      font-size: 16px;
+      color: #000;
+      background-color: rgba(0,0,0,.5);
+      line-height: 20px;
+      font-weight: 600;
+      padding: 2px 5px;
+      border-radius: 1px;
+      &.active{
+        background-color: rgba(0,0,0,.9);
+      }
+    }
+
+    .countdown {
+      font-family: Calc;
+      font-size: 40px;
+      line-height: 65px;
+      text-align: right;
+      width: 80%;
+    }
+  }
+
+  .bombLeft {
+    position: absolute;
+    width: 90px;
+    top: 164px;
+    margin-left: -360px;
+    z-index: 1;
+  }
+  .bombRight {
+    position: absolute;
+    width: 90px;
+    top: 182px;
+    margin-right: -424px;
+  }
+  .glass {
+    position: absolute;
+    width: 155px;
+    top: 159px;
+    margin-right: -37px;
+  }
+  .purpleFire {
+    position: absolute;
+    width: 135px;
+    top: 166px;
+    z-index: 0;
+    margin-left: -404px;
+  }  
+}

@@ -1,0 +1,27 @@
+.root {
+  overflow: hidden auto;
+  max-height: 100%;
+  padding-bottom: 72px;
+
+  @media screen and (max-width: 1459px) {
+    width: calc(100vw - 300px);
+  }
+  @media screen and (max-width: 600px) {
+    padding-bottom: 0;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: linear-gradient(139.23deg, #58AD3A 13.34%, #0FD53A 86.08%);
+    border-radius: 12px;
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar {
+    background: transparent;
+    width: 6px;
+
+    @media screen and (max-width: 600px) {
+      width: 0;
+    }
+  }
+}

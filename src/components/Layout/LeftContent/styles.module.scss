@@ -1,0 +1,100 @@
+.root {
+  width: 430px;
+  height: calc(100vh - 79px);
+
+  @media screen and (max-width: 959px) {
+    display: none;
+  }
+  @media screen and (max-width: 1459px) {
+    width: 300px;
+  }
+
+  .content {
+    border-top-right-radius: 10px;
+
+    .tabsWrapper {
+      .tabItem {
+        background: transparent;
+        color: #ADB1CE;
+        cursor: pointer;
+        &.chat {
+          border-top-right-radius: 10px;
+          position: relative;
+
+          &.active {
+            background-color: rgb(20, 20, 21)!important;
+            color: #fff;
+            
+            &::before {
+              content: "";
+              position: absolute;
+              width: 24px;
+              height: 51px;
+              right: -15px;
+              top: -2px;
+              background-color: #141415;
+              transform: rotate(129deg);
+              border-bottom-left-radius: 10px;
+            }
+            &::after {
+              content: "";
+              position: absolute;
+              width: 45px;
+              height: 15px;
+              right: -39px;
+              bottom: 10px;
+              z-index: 1;
+              background-color: #070707;
+              transform: rotate(55deg);
+              border-bottom-right-radius: 53px;
+            }
+          }
+        }
+
+        &.inventory {
+          border-top-left-radius: 10px;
+          border-top-right-radius: 10px;
+          position: relative;
+
+          &.active {
+            background-color: rgb(20, 20, 21)!important;
+            color: #fff;
+            
+            &::before {
+              content: "";
+              position: absolute;
+              width: 24px;
+              height: 51px;
+              left: -15px;
+              top: -2px;
+              background-color: #141415;
+              transform: rotate(-129deg);
+              border-bottom-right-radius: 10px;
+            }
+            &::after {
+              content: "";
+              position: absolute;
+              width: 45px;
+              height: 15px;
+              left: -39px;
+              bottom: 10px;
+              z-index: 1;
+              background-color: #070707;
+              transform: rotate(-55deg);
+              border-bottom-left-radius: 53px;
+            }
+          }
+        }
+      }
+    }
+
+    .contentWrapper {
+      height: calc(100% - 34px);
+
+      &.rounded {
+        border-top-right-radius: 10px;
+      }
+    }
+
+  }
+}

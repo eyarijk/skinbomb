@@ -1,0 +1,67 @@
+.textareaWrapper {
+  position: relative;
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  .textarea {
+    width: 100%;
+    resize: none;
+    padding: 8px;
+    background-color: #070707;
+    border-radius: 10px;
+    outline: 0;
+    color: #a3a3a3;
+    border: 0;
+  }
+}
+
+.overflow {
+  overflow: hidden auto;
+  padding-right: 12px;
+
+  &::-webkit-scrollbar-thumb {
+    background: linear-gradient(139.23deg, #58AD3A 13.34%, #0FD53A 86.08%);
+    border-radius: 12px;
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar {
+    background: transparent;
+    width: 6px;
+  }
+}
+
+.unauthed {
+  .loginButton {
+    padding: 0;
+  }
+  .privacy {
+    color: #F89D00;
+    cursor: pointer;
+  }
+}
+
+.table-root {
+  width: 100%;
+  border: 1px solid #434343;
+  border-collapse: collapse;
+}
+
+.head {
+  height: 54px;
+}
+
+.head-element {
+  background-color: #494949;
+  text-align: left;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-size: 16px;
+  font-weight: 400;
+  color: #e5e5e5;
+}
+
+.empty {
+  width: 40px;
+}

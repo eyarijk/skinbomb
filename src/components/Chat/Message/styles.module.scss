@@ -1,0 +1,59 @@
+.root {
+  padding: 12px 0!important;
+  border-bottom: 2px solid #252525;
+  align-items: flex-start!important;
+
+  &:first-child {
+    border-bottom: 0;
+  }
+
+  .avatarWrapper {
+    height: 67px;
+    width: 67px;
+    padding: 5px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 12px;
+
+    &.isAdmin {
+      border: 1px solid #7445EC;
+    }
+
+    .container, .image {
+      height: 57px;
+      width: 57px;
+    }
+
+    .image {
+      background-size: cover;
+      background-position: center;
+    }
+  }
+
+  .name {
+    color: #818181;
+
+    &.isAdmin {
+      color: #7445EC;
+    }
+  }
+
+  .message {
+    color: #DEDEDE;
+
+    &.isAdmin {
+      color: #FB9414;
+    }
+  }
+
+  .userData {
+    display: flex;
+    justify-content: space-between;
+
+    .time {
+      color: #818181;
+    }
+  }
+}

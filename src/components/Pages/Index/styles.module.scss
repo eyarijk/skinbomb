@@ -1,0 +1,80 @@
+.eggWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: url('/weapon-card-bg.svg') no-repeat center top / cover;
+
+  .sphere {
+    width: 240px;
+    //width: 270px;
+    position: absolute;
+    bottom: 0;
+
+    //@media screen and (max-width: 959px) {
+    //  width: 98px;
+    //  bottom: 0;
+    //}
+    //@media screen and (min-width: 959px) and (max-width: 1129px) {
+    //  width: 170px;
+    //  bottom: 15%;
+    //}
+  }
+
+
+  .winWeapon {
+    width: 145px;
+
+    //@media screen and (max-width: 959px) {
+    //  width: 70px;
+    //}
+    //@media screen and (min-width: 959px) and (max-width: 1129px) {
+    //  width: 110px;
+    //}
+    // margin-top: 25px;
+  }
+}
+
+
+.ellipsis {
+  //width: 100%;
+  //text-overflow: ellipsis;
+  //white-space: nowrap;
+  //overflow: hidden;
+
+}
+
+
+.star {
+  height: 9px;
+  width: 9px;
+  margin-right: 2px;
+  margin-top: -2px;
+}
+
+.button {
+  width: 200px;
+  height: 30px;
+  color: #fff;
+  background: linear-gradient(139.23deg, #02C880 13.34%, #01AB6E 86.08%);
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: Open Sans, sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 24px;
+  margin-top: 10px;
+
+  &.shop {
+    background: #6361C8;
+  }
+
+  @media screen and (max-width: 1279px) {
+    width: 190px;
+    font-size: 12px;
+  }
+  @media screen and (max-width: 1023px) {
+    width: 80px;
+  }
+}

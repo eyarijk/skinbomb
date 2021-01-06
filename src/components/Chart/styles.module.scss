@@ -1,0 +1,39 @@
+.wrapper {
+  height: min-content;
+  background: repeating-linear-gradient(
+    0deg,
+    #0C0C0C,
+    #0C0C0C 20px,
+    #181818 20px,
+    #181818 40px,
+  );
+  min-height: 80px;
+  min-width: 180px;
+  position: relative;
+  padding-left: 20px;
+
+  @media screen and (max-width: 959px) {
+    min-width: 150px;
+  }
+
+  .yAxis {
+    position: absolute;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-between;
+    height: 100%;
+    left: 0;
+
+    .yAxisItem {
+      display: flex;
+      // width: 20px;
+      height: 20px;
+      align-items: center;
+      justify-content: flex-start;
+      color: #fff;
+      font-weight: bold;
+      font-size: 8px;
+      color: #545454;
+    }
+  }
+}

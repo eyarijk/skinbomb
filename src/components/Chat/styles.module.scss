@@ -1,0 +1,78 @@
+.root {
+  .dot {
+    height: 4px;
+    width: 4px;
+    border-radius: 50%;
+    background-color: #27AE60;
+    margin-right: 4px;
+  }
+
+  .textareaWrapper {
+    position: relative;  
+    .textarea {
+      width: 100%;
+      resize: none;
+      padding: 8px;
+      background-color: #070707;
+      border: 1px solid #000;
+      border-radius: 10px;
+      outline: 0;
+      color: #a3a3a3;
+      font-family: Open Sans, sans-serif;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+
+      &::-webkit-input-placeholder {
+        padding-top: 45px;
+        padding-left: 35px;
+      } 
+    }
+  }
+
+  .emoji{
+    cursor: pointer;
+    position: absolute;
+    bottom: 15px;
+    left: 10px;
+  }
+  
+  .send {
+    height: 60px;
+    width: 60px;
+    background-repeat: 50%;
+  }
+
+  .listWrapper {
+    position: relative;
+    max-height: 100%;
+    .list {
+      max-height: 100%;
+      width: 100%;
+      position: absolute;
+      bottom: 0;
+      display: flex;
+      flex-direction: column-reverse;
+      align-items: flex-end;
+      overflow-y: auto;
+
+      &::-webkit-scrollbar {
+        width: 0;
+      }
+    }
+  }
+  
+  .chatRulesButton {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .chatRules {
+    overflow: hidden auto;
+
+    &::-webkit-scrollbar {
+      width: 0;
+    }
+  }
+}

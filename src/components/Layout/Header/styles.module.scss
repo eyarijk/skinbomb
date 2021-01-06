@@ -1,0 +1,123 @@
+.root {
+  .logo {
+    height: 53px;
+    cursor: pointer;
+
+    @media screen and (max-width: 600px) {
+      height: 40px;
+    }
+
+    @media screen and (max-width: 1279px) {
+      height: 45px;
+    }
+  }
+
+  .wallet {
+    height: 20px;
+    width: 20px;
+  }
+
+  .button {
+    width: 100px;
+    height: 30px;
+    color: #fff;
+    background: linear-gradient(139.23deg, #02C880 13.34%, #01AB6E 86.08%);
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: Open Sans, sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 24px;
+
+    &.shop {
+      background: #6361C8;
+      margin-left: 10px;
+    }
+
+    @media screen and (max-width: 1279px) {
+      width: 90px;
+      font-size: 12px;
+    }
+    @media screen and (max-width: 1023px) {
+      width: 80px;
+    }
+  }
+
+  .navLink {
+    padding: 0 8px;
+    color: #828282;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .flag {
+    width: 19px;
+    height: 19px;
+  }
+
+  .option {
+    font-size: 10px;
+    font-weight: 400;
+    height: 20px;
+    border-bottom: 1px solid #696969;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    color: #7A7A7A;
+    cursor: pointer;
+  }
+
+  .option:last-child {
+    border-bottom: 0;
+  }
+}
+
+.loginButton img {
+  @media screen and (max-width: 1279px) {
+    height: 28px;
+  }
+}
+
+
+.rootMobile {
+  .clickable {
+    cursor: pointer;
+  }
+
+  .logo {
+    height: 40px;
+  }
+}
+
+.sideBar {
+  .button {
+    width: 190px;
+    height: 30px;
+    color: #fff;
+    background: linear-gradient(139.23deg, #02C880 13.34%, #01AB6E 86.08%);
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: Open Sans, sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 24px;
+
+    &.shop {
+      background: linear-gradient(139.23deg, #7D20FF 13.34%, #6101E9 86.08%);
+    }
+  }
+
+  .navLink {
+    margin-bottom: 20px;
+
+    &:hover {
+      color: #F89D00;
+      cursor: pointer;
+    }
+  }
+}
