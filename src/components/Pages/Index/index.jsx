@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
-import Link from 'next/link';
 import { Box } from '@material-ui/core';
 import { useTheme } from '@material-ui/core/styles';
-import cn from 'classnames';
 
 import Chart from '../../Chart';
 import Bomb from '../../Bomb';
@@ -16,9 +14,9 @@ import Button from '../../UiKit/Button';
 import { useAuth } from '../../../lib/api/auth';
 import { useRound } from '../../../lib/api/rounds';
 
-import s from './styles.module.scss';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useSkins } from '../../../lib/api/skins';
+import ExchangeSkin from './ExchangeSkin';
 
 function Index() {
   const theme = useTheme();
@@ -145,148 +143,7 @@ function Index() {
               <BetHistory history={lastBets} small />
             </Box>
           </Box>
-          <Box
-            height={
-              // (isMobileOrTablet && 170) || (isXsDesktop && 259) ||
-              (isMobileOrTablet && 300) || 328
-            }
-            width={(isMobileOrTablet && 299) || (isXsDesktop && 250) || 299}
-            bgcolor={theme.background.primary}
-            borderRadius={!isMobileOrTablet && 10}
-            padding="40px 40px 20px 40px"
-            display="flex"
-            justifyContent="center"
-            flexDirection="column"
-            alignItems="center"
-          >
-            {/* <Box display="flex" justifyContent="space-between">
-              <Box
-                display="flex"
-                fontSize={14}
-                fontWeight={400}
-                color="#626262"
-              >
-                <img
-                  src="/star.svg"
-                  alt="star"
-                  style={{
-                    width: 14,
-                    height: 14,
-                    marginRight: 8,
-                  }}
-                />
-                Sport Gloves
-              </Box>
-              <Box fontSize={18} fontWeight={600} color="#626262">
-                3,852 $
-              </Box>
-            </Box>
-            <Box fontSize={19} fontWeight={400} color="#fff">
-              Vice
-            </Box> */}
-            <Box
-              display="flex"
-              justifyContent="center"
-              alignItems="center"
-              width={1}
-              height={
-                // isMobileOrTablet ? 100 :
-                240
-              }
-              className={s.eggWrapper}
-            >
-              {!!animatingSkin && (
-                <img
-                  src={`https://api.skinbomb.gg${animatingSkin.icon}`}
-                  alt="gloves"
-                  className={s.winWeapon}
-                />
-              )}
-              <img
-                src={animatingSkin ? '/sphere.gif' : '/sphere.png'}
-                alt="sphere"
-                className={s.sphere}
-              />
-            </Box>
-            <Link href="/store?type=exchange">
-              <Box
-                className={cn(s.button, s.shop)}
-                display="flex"
-                alignItems="center"
-                justifyContent="center"
-              >
-                Выбрать скин в магазине
-              </Box>
-            </Link>
-            {animatingSkin && (
-              <Box>
-                <Box display="flex" alignItems="center">
-                  {!animatingSkin?.is_star === 1 && (
-                    <img className={s.star} src="/star.svg" alt="star" />
-                  )}
-                  <Box
-                    color="#626262"
-                    fontSize={9}
-                    lineHeight="20px"
-                    letterSpacing="0.44px"
-                    fontWeight={600}
-                    className={s.ellipsis}
-                  >
-                    {animatingSkin.name_of_weapon}
-                  </Box>
-                  {!!animatingSkin.wear_level && (
-                    <Box
-                      bgcolor="#fff"
-                      fontSize={7}
-                      fontWeight={600}
-                      borderRadius={2}
-                      width={14}
-                      height={10}
-                      display="flex"
-                      alignItems="center"
-                      justifyContent="center"
-                      mx={0.5}
-                    >
-                      {animatingSkin.wear_level}
-                    </Box>
-                  )}
-                  {(!!animatingSkin.is_souvenir ||
-                    !!animatingSkin.is_statTrack) && (
-                    <Box
-                      bgcolor={
-                        animatingSkin.is_souvenir ? '#FADB35' : '#8842A8'
-                      }
-                      fontSize={7}
-                      fontWeight={600}
-                      borderRadius={2}
-                      height={10}
-                      width={70}
-                      color={'#fff'}
-                      px={1}
-                      display="flex"
-                      alignItems="center"
-                      justifyContent="center"
-                      mx={0.5}
-                    >
-                      {!animatingSkin.is_souvenir && 'Souvenir'}
-                      {!!animatingSkin.is_statTrack && 'StatTrack'}
-                    </Box>
-                  )}
-                  <Box color="#fff" fontSize={13} fontWeight={500} ml="auto">
-                    {animatingSkin.price.toFixed(2)} $
-                  </Box>
-                </Box>
-                <Box
-                  color="#f2f2f2"
-                  fontSize={11}
-                  fontWeight={400}
-                  className={s.ellipsis}
-                >
-                  {animatingSkin.name}
-                </Box>
-              </Box>
-            )}
-          </Box>
+          <ExchangeSkin exchangeSkin={animatingSkin} />
         </Box>
         <Box
           width="-webkit-fill-available"
