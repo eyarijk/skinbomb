@@ -31,7 +31,7 @@ function SkinsProvider({ children }) {
   };
 
   const disableExchangeProcess = () => {
-    setExchangeProcess(false);
+    setSelectedSkins({});
   };
 
   const getSkins = async () => {

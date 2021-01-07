@@ -29,9 +29,7 @@ export default function Inventory() {
   function onLoginClick() {
     auth.steamAuth();
   }
-  console.log('skinsskinsskinsskinsskins', skins);
   useEffect(() => {
-    console.log('Here');
     getSkins();
   }, []);
 

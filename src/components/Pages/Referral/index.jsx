@@ -376,7 +376,7 @@ function Referral() {
                 color="#F5F5F5"
               >
                 <Input
-                  label="Ваш код:"
+                  label="Придумайте ваш уникальный код:"
                   value={newCode}
                   name="referralTitle"
                   onChange={val => setNewCode(val)}
