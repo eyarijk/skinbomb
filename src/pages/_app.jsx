@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
 import { ThemeProvider } from '@material-ui/core/styles';
@@ -11,15 +11,33 @@ import { ChatProvider } from '../lib/api/chat';
 import { RoundsProvider } from '../lib/api/rounds';
 import { ReferralsProvider } from '../lib/api/referrals';
 import '../styles/globals.scss';
+import Router from 'next/router';
+import Loading from '../components/Loading';
 
 function MyApp({ Component, pageProps }) {
+  const [loader, setLoader] = useState(true);
+
   useEffect(() => {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector('#jss-server-side');
     if (jssStyles) {
       jssStyles.parentElement.removeChild(jssStyles);
     }
+
+    setLoader(false);
   }, []);
+
+  Router.onRouteChangeStart = () => {
+    setLoader(true);
+  };
+
+  Router.onRouteChangeComplete = () => {
+    setLoader(false);
+  };
+
+  Router.onRouteChangeError = () => {
+    setLoader(false);
+  };
 
   return (
     <>
@@ -38,7 +56,7 @@ function MyApp({ Component, pageProps }) {
               <RoundsProvider>
                 <ReferralsProvider>
                   <CssBaseline />
-                  <Component {...pageProps} />
+                  {loader ? <Loading /> : <Component {...pageProps} />}
                 </ReferralsProvider>
               </RoundsProvider>
             </ChatProvider>

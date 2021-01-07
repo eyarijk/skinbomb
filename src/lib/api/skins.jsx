@@ -37,8 +37,6 @@ function SkinsProvider({ children }) {
   const getSkins = async () => {
     try {
       const payload = await fetch('/skins/get');
-
-      console.log('payloadpayload ======> ', payload);
       setSkins(payload.skin_history);
       setSelectedSkins({});
       setIsSkinsLoaded(true);

@@ -5,6 +5,7 @@ import fetch from '../fetch';
 
 import { useAuth } from './auth';
 import swal from 'sweetalert2';
+import { useRouter } from 'next/router';
 
 const StoreContext = createContext({});
 
@@ -19,6 +20,9 @@ const initialSearchOptions = {
 };
 
 function StoreProvider({ children }) {
+  const router = useRouter();
+  const { type: typeExchange } = router.query;
+
   const { token } = useAuth();
   const [cards, setCards] = useState([]);
   const [rarityDataOptions, setRarityDataOptions] = useState([]);
@@ -33,7 +37,6 @@ function StoreProvider({ children }) {
   const [lastSearchOptions, setLastSearchOptions] = useState(
     initialSearchOptions,
   );
-
   useEffect(() => {
     let sum = 0;
     Object.values(buyingSkins).map(a => {
@@ -46,6 +49,8 @@ function StoreProvider({ children }) {
     if (buyingSkins[id]) {
       delete buyingSkins[id];
       setBuyingSkins({ ...buyingSkins });
+    } else if (typeExchange === 'exchange') {
+      setBuyingSkins({ [id]: skin });
     } else {
       setBuyingSkins({ ...buyingSkins, [id]: skin });
     }
@@ -189,6 +194,8 @@ function StoreProvider({ children }) {
         selectBuyingSkin,
         isStoreLoaded,
         buyingSkinsPrice,
+        typeExchange,
+        router,
       }}
     >
       {children}

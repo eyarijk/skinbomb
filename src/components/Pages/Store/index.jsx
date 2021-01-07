@@ -49,6 +49,8 @@ function Store() {
     selectBuyingSkin,
     maxFilterPrice,
     buyingSkinsPrice,
+    typeExchange,
+    router,
   } = useStore();
 
   const { getSkins } = useSkins();
@@ -88,6 +90,54 @@ function Store() {
   if (buyingProcess) {
     return <Loading />;
   }
+
+  const renderFilterButton = () => {
+    if (Object.keys(buyingSkins).length > 0) {
+      const handleSubmit = async () => {
+        if (typeExchange === 'exchange') {
+          const [skin] = Object.values(buyingSkins);
+          localStorage.setItem('currentExchange', JSON.stringify(skin));
+          router.push('/');
+          return;
+        }
+
+        await handleBuy();
+        await getSkins();
+        await fetchUser();
+      };
+      return (
+        <Button
+          value={`${
+            typeExchange === 'exchange' ? 'Обменять' : 'Купить'
+          } ${buyingSkinsPrice} $`}
+          onClick={handleSubmit}
+          w="100%"
+          h="35px"
+          borderSize="0"
+          m="20px 0"
+          bgcolor="linear-gradient(139.23deg, #02C880 13.34%, #01AB6E 86.08%)"
+          fontFamily="Open Sans, sans-serif"
+          fontSize="14px"
+          fontWeight="700"
+        />
+      );
+    }
+
+    return (
+      <Button
+        value="Подтвердить поиск"
+        onClick={() => fetchItems()}
+        w="100%"
+        h="35px"
+        borderSize="0"
+        m="20px 0"
+        bgcolor="linear-gradient(139.23deg, #02C880 13.34%, #01AB6E 86.08%)"
+        fontFamily="Open Sans, sans-serif"
+        fontSize="14px"
+        fontWeight="700"
+      />
+    );
+  };
 
   return (
     <Box
@@ -293,39 +343,7 @@ function Store() {
               withPlaceholderOption
             />
           </Box>
-          <Box width={1}>
-            {Object.keys(buyingSkins).length > 0 ? (
-              <Button
-                value={`Купить ${buyingSkinsPrice} $`}
-                onClick={async () => {
-                  await handleBuy();
-                  await getSkins();
-                  await fetchUser();
-                }}
-                w="100%"
-                h="35px"
-                borderSize="0"
-                m="20px 0"
-                bgcolor="linear-gradient(139.23deg, #02C880 13.34%, #01AB6E 86.08%)"
-                fontFamily="Open Sans, sans-serif"
-                fontSize="14px"
-                fontWeight="700"
-              />
-            ) : (
-              <Button
-                value="Подтвердить поиск"
-                onClick={() => fetchItems()}
-                w="100%"
-                h="35px"
-                borderSize="0"
-                m="20px 0"
-                bgcolor="linear-gradient(139.23deg, #02C880 13.34%, #01AB6E 86.08%)"
-                fontFamily="Open Sans, sans-serif"
-                fontSize="14px"
-                fontWeight="700"
-              />
-            )}
-          </Box>
+          <Box width={1}>{renderFilterButton()}</Box>
         </Box>
       )}
     </Box>

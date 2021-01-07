@@ -30,7 +30,7 @@ function Index() {
 
   const router = useRouter();
   const { fetchUser, saveToken } = useAuth();
-  const { selectedSkinsPrice, selectedSkins } = useSkins();
+  const { selectedSkinsPrice } = useSkins();
   const {
     currentRate,
     isCountDown,
@@ -42,7 +42,6 @@ function Index() {
   const { token } = router.query;
   const [rate, setRate] = useState(1.25);
   const [animatingSkin, setAnimatingSkin] = useState(null);
-  const [timeOutArray, setTmOutArray] = useState([]);
 
   useEffect(() => {
     if (token) {
@@ -56,30 +55,24 @@ function Index() {
   }, [token]);
 
   useEffect(() => {
-    animate();
-  }, [selectedSkins]);
+    if (animatingSkin && selectedSkinsPrice > 0) {
+      handleChangeRate((animatingSkin.price / selectedSkinsPrice).toFixed(2));
+    } else {
+      handleChangeRate(1.5);
+    }
+  }, [animatingSkin, selectedSkinsPrice]);
+
+  useEffect(() => {
+    const currentExchange = localStorage.getItem('currentExchange');
+
+    if (currentExchange) {
+      setAnimatingSkin(JSON.parse(currentExchange));
+    }
+  }, []);
 
   const handleChangeRate = rate => {
-    if (rate > 1) setRate(rate);
-    else setRate(1);
-  };
-
-  const animate = (index = 0) => {
-    if (index > Object.keys(selectedSkins).length - 1) {
-      index = 0;
-    }
-
-    if (index === 0) {
-      timeOutArray.forEach(tmOut => {
-        clearTimeout(tmOut);
-      });
-      setTmOutArray([]);
-    }
-
-    const id = Object.keys(selectedSkins)[index];
-    setAnimatingSkin(selectedSkins[id]);
-    const tmOut = setTimeout(() => animate(index + 1), 5000);
-    setTmOutArray([...timeOutArray, tmOut]);
+    if (rate > 1.01) setRate(rate);
+    else setRate(1.01);
   };
 
   return (
@@ -215,7 +208,7 @@ function Index() {
                 className={s.sphere}
               />
             </Box>
-            <Link href="/store">
+            <Link href="/store?type=exchange">
               <Box
                 className={cn(s.button, s.shop)}
                 display="flex"

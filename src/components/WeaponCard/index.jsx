@@ -7,7 +7,6 @@ import { Box } from '@material-ui/core';
 import s from './styles.module.scss';
 
 function WeaponCard({ card, small, selectCard, selectedCards, percent = 0 }) {
-  console.log('cardcardcardcard', card);
   return (
     <Box
       className={cn(s.root, { [s.small]: small })}
