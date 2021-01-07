@@ -1,9 +1,12 @@
+@import '../../styles/variables.scss';
+
+
 .root {
   .loginButton {
     padding: 0;
   }
   .privacy {
-    color: #6361C8;
+    color: $orange;
     cursor: pointer;
   }
 }

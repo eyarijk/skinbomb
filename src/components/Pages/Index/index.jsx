@@ -7,7 +7,6 @@ import { useTheme } from '@material-ui/core/styles';
 import Chart from '../../Chart';
 import Bomb from '../../Bomb';
 import BetHistory from '../../BetHistory';
-import Stats from '../../Stats';
 import Input from '../../UiKit/Input';
 import Button from '../../UiKit/Button';
 
@@ -39,7 +38,6 @@ function Index() {
   } = useRound();
   const { token } = router.query;
   const [rate, setRate] = useState(1.25);
-  const [animatingSkin, setAnimatingSkin] = useState(null);
 
   useEffect(() => {
     if (token) {
@@ -51,22 +49,6 @@ function Index() {
       fetchUser();
     }
   }, [token]);
-
-  useEffect(() => {
-    if (animatingSkin && selectedSkinsPrice > 0) {
-      handleChangeRate((animatingSkin.price / selectedSkinsPrice).toFixed(2));
-    } else {
-      handleChangeRate(1.5);
-    }
-  }, [animatingSkin, selectedSkinsPrice]);
-
-  useEffect(() => {
-    const currentExchange = localStorage.getItem('currentExchange');
-
-    if (currentExchange) {
-      setAnimatingSkin(JSON.parse(currentExchange));
-    }
-  }, []);
 
   const handleChangeRate = rate => {
     if (rate > 1.01) setRate(rate);
@@ -143,7 +125,7 @@ function Index() {
               <BetHistory history={lastBets} small />
             </Box>
           </Box>
-          <ExchangeSkin exchangeSkin={animatingSkin} />
+          <ExchangeSkin handleChangeRate={handleChangeRate} />
         </Box>
         <Box
           width="-webkit-fill-available"

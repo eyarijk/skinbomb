@@ -53,7 +53,7 @@ function Bomb() {
             {isCountDown
               ? timeToStart >= 0
                 ? timeToStart.toFixed(2)
-                : 0.0
+                : '0.00'
               : currentRate.toFixed(2)}
           </Box>
           <Box

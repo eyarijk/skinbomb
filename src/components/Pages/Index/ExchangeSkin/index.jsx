@@ -2,15 +2,34 @@ import { Box } from '@material-ui/core';
 import s from '../styles.module.scss';
 import Link from 'next/link';
 import cn from 'classnames';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
-import PropTypes from 'prop-types';
+import { useSkins } from '../../../../lib/api/skins';
+import PropTypes from 'react';
 
-function ExchangeSkin({ exchangeSkin }) {
+function ExchangeSkin({ handleChangeRate }) {
   const theme = useTheme();
   const isMobileOrTablet = useMediaQuery('(max-width: 959px)');
   const isXsDesktop = useMediaQuery('(max-width: 1129px)');
+  const [exchangeSkin, setExchangeSkin] = useState(null);
+  const { selectedSkinsPrice } = useSkins();
+
+  useEffect(() => {
+    if (exchangeSkin && selectedSkinsPrice > 0) {
+      handleChangeRate((exchangeSkin.price / selectedSkinsPrice).toFixed(2));
+    } else {
+      handleChangeRate(1.5);
+    }
+  }, [exchangeSkin, selectedSkinsPrice]);
+
+  useEffect(() => {
+    const currentExchange = localStorage.getItem('currentExchange');
+
+    if (currentExchange) {
+      setExchangeSkin(JSON.parse(currentExchange));
+    }
+  }, []);
 
   const renderSkin = () => {
     if (!exchangeSkin) {
@@ -137,7 +156,7 @@ function ExchangeSkin({ exchangeSkin }) {
 }
 
 ExchangeSkin.propTypes = {
-  exchangeSkin: PropTypes.object,
+  handleChangeRate: PropTypes.func,
 };
 
 export default ExchangeSkin;

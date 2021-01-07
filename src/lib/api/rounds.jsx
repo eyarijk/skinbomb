@@ -50,12 +50,9 @@ function RoundsProvider({ children }) {
   };
 
   const handleBet = async bet => {
-    console.log('betbetbetbet, bet', bet);
-    console.log('betRequest', betRequest);
     if (!betRequest) {
       setBetProcess(true);
       setBetRequest(true);
-      console.log('selectedSkinsselectedSkins', selectedSkins);
       try {
         if (Object.keys(selectedSkins).length > 0) {
           const formData = new FormData();
@@ -74,7 +71,6 @@ function RoundsProvider({ children }) {
         await swal.fire('Failed', error.response.data.message, 'error');
         getSkins();
         setBetRequest(false);
-        return;
       }
     }
   };
