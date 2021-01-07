@@ -18,18 +18,29 @@ function StatisticDaily() {
     getRounds(date);
   }, []);
 
-  return (
-    <Box width={1} height={1} display="flex" flexDirection="column">
-      <Box
-        component="h1"
-        fontWeight={700}
-        fontSize={24}
-        lineHeight="36px"
-        color="#fff"
-        px={2}
-      >
-        {date}
-      </Box>
+  const renderRounds = () => {
+    if (rounds.length === 0) {
+      return (
+        <Box
+          width={1}
+          bgcolor={theme.background.primary}
+          borderRadius={10}
+          p={1}
+          flexGrow={1}
+          height="1px"
+          display="flex"
+          flexWrap="wrap"
+          padding="22px 20px"
+          color="#fff"
+          alignItems="center"
+          justifyContent="center"
+        >
+          Здесь еще нет раундов
+        </Box>
+      );
+    }
+
+    return (
       <Box
         width={1}
         bgcolor={theme.background.primary}
@@ -46,6 +57,22 @@ function StatisticDaily() {
           <Round key={round.id} round={round} />
         ))}
       </Box>
+    );
+  };
+
+  return (
+    <Box width={1} height={1} display="flex" flexDirection="column">
+      <Box
+        component="h1"
+        fontWeight={700}
+        fontSize={24}
+        lineHeight="36px"
+        color="#fff"
+        px={2}
+      >
+        {date}
+      </Box>
+      {renderRounds()}
     </Box>
   );
 }

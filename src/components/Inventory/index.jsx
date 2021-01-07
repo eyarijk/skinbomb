@@ -35,7 +35,9 @@ export default function Inventory() {
 
   useEffect(() => {
     setCards(skins);
-    skins && skins.length && skins.map(el => (allCardsID[el.id] = el));
+    skins &&
+      skins.length &&
+      skins.map(el => (allCardsID[el.id] = { ...el.skin, id: el.id }));
   }, [skins]);
 
   if (!auth.user) {

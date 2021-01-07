@@ -88,7 +88,7 @@ function LeftContent() {
             width={1}
             height="calc(100% -34px)"
             bgcolor={theme.background.primary}
-            p={4}
+            p={3}
           >
             {activeTab === 'chat' ? <Chat /> : <Inventory />}
           </Box>

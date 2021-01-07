@@ -10,7 +10,7 @@ function Round({ round }) {
   const [entered, setEntered] = useState(false);
 
   return (
-    <Link href={`/round/${round.id}`}>
+    <Link href={`/round?id=${round.id}`}>
       <Box
         borderRadius={10}
         border={`2px solid ${color}`}
