@@ -97,7 +97,7 @@ function ExchangeSkin({ exchangeSkin }) {
 
   return (
     <Box
-      height={(isMobileOrTablet && 300) || 328}
+      height={(isMobileOrTablet && 300) || '100%'}
       width={(isMobileOrTablet && 299) || (isXsDesktop && 250) || 299}
       bgcolor={theme.background.primary}
       borderRadius={!isMobileOrTablet && 10}

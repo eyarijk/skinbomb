@@ -35,14 +35,17 @@ function RoundsProvider({ children }) {
       setCurrentRate(payload.round.coefficient || 1);
       setLastBets(payload.last_bets);
       setStatistics(payload.statistics);
-      setGlobalStatistics(payload.global_statistics);
+
+      if (!Array.isArray(payload.global_statistics)) {
+        setGlobalStatistics(payload.global_statistics);
+      }
+
       setIsRoundsLoaded(true);
       setTimestamp(payload.round.start);
       setIsCountDown(Math.abs(payload.round.seconds) !== 0);
       return payload.data;
     } catch (err) {
       console.error('>>> API Error: ', err);
-      return;
     }
   };
 
@@ -60,7 +63,7 @@ function RoundsProvider({ children }) {
           Object.keys(selectedSkins).forEach(skinId => {
             formData.append('skins[]', skinId);
           });
-          const response = await fetch('/rounds/store', {
+          await fetch('/rounds/store', {
             method: 'POST',
             data: formData,
           });

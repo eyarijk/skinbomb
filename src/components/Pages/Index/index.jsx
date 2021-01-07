@@ -17,6 +17,7 @@ import { useRound } from '../../../lib/api/rounds';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useSkins } from '../../../lib/api/skins';
 import ExchangeSkin from './ExchangeSkin';
+import Statistic from './Statistic';
 
 function Index() {
   const theme = useTheme();
@@ -35,7 +36,6 @@ function Index() {
     lastBets,
     handleBet,
     betRequest,
-    globalStatistics,
   } = useRound();
   const { token } = router.query;
   const [rate, setRate] = useState(1.25);
@@ -152,6 +152,7 @@ function Index() {
           flexDirection="column"
           alignItems="center"
           position="relative"
+          style={{ paddingBottom: 10 }}
         >
           <Bomb />
           {!isMobileOrTablet && (
@@ -355,58 +356,7 @@ function Index() {
           </Box>
         </Box>
       )}
-      <Box
-        xs={12}
-        bgcolor={theme.background.primary}
-        style={{ borderTopLeftRadius: 10 }}
-        px={3}
-        flexGrow={1}
-        height="1px"
-        display="flex"
-        flexDirection="column"
-      >
-        <Box width={1} display="flex" justifyContent="space-between" px={4}>
-          <Box
-            display="flex"
-            alignItems="flex-end"
-            fontWeight={400}
-            fontSize={20}
-            lineHeight="32px"
-            letterSpacing="0.44"
-            color="#888"
-            height={43}
-          >
-            Статистика
-          </Box>
-          <Box
-            display="flex"
-            alignItems="flex-end"
-            fontWeight={600}
-            fontSize={12}
-            lineHeight="32px"
-            letterSpacing="0.44"
-            color="#686868"
-          >
-            <Box component="span" display="flex" alignItems="center">
-              <img src="atm.svg" alt="atm" style={{ marginRight: 4 }} />
-              {`${globalStatistics.amount} $`}
-            </Box>
-            <Box component="span" display="flex" alignItems="center" mx={2}>
-              <img src="people.svg" alt="people" style={{ marginRight: 4 }} />
-              {globalStatistics.users_count}
-            </Box>
-            <Box component="span" display="flex" alignItems="center">
-              <img
-                src="collections.svg"
-                alt="collections"
-                style={{ marginRight: 4 }}
-              />
-              {globalStatistics.rounds_count_current_day}
-            </Box>
-          </Box>
-        </Box>
-        <Stats />
-      </Box>
+      <Statistic />
     </Box>
   );
 }
