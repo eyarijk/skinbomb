@@ -180,7 +180,7 @@ function Store() {
             {isMobileOrTablet && (
               <Box className={s.icon}>
                 <div>
-                  <img src="search.svg" aly="search" />
+                  <img src="/search.svg" aly="search" />
                 </div>
               </Box>
             )}

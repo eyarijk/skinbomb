@@ -48,11 +48,11 @@ function Statistic() {
           color="#686868"
         >
           <Box component="span" display="flex" alignItems="center">
-            <img src="atm.svg" alt="atm" style={{ marginRight: 4 }} />
+            <img src="/atm.svg" alt="atm" style={{ marginRight: 4 }} />
             {`${globalStatistics.amount} $`}
           </Box>
           <Box component="span" display="flex" alignItems="center" mx={2}>
-            <img src="people.svg" alt="people" style={{ marginRight: 4 }} />
+            <img src="/people.svg" alt="people" style={{ marginRight: 4 }} />
             {globalStatistics.users_count}
           </Box>
           <Box component="span" display="flex" alignItems="center">

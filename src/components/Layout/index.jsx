@@ -55,7 +55,7 @@ function Layout({ children, background }) {
               {inv ? "Инвентарь" : "Чат"}
             </Box>
             <Box pr={3}>
-              <img src="close.svg" alt="" onClick={openChat}/>
+              <img src="/close.svg" alt="" onClick={openChat}/>
             </Box>
           </Box>
           {inv ? <Inventory/> : <Chat/>}
@@ -65,7 +65,7 @@ function Layout({ children, background }) {
           {children.type.name !== 'ProvablyFairness' &&
           (!mobileOrTablet ? <LeftContent/> :
               <Box className={s.chatIcon}>
-                <img src="mainIcon.svg" onClick={openChat}/>
+                <img src="/mainIcon.svg" onClick={openChat}/>
               </Box>)}
           <RightContent>{children}</RightContent>
         </Box>}

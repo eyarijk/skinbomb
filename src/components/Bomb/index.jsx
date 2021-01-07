@@ -7,19 +7,7 @@ import { useRound } from '../../lib/api/rounds';
 
 import s from './styles.module.scss';
 import Box from '@material-ui/core/Box';
-
-function getColor(currentRate) {
-  if (currentRate <= 1.49) {
-    return `#70EB71`;
-  } else if (currentRate >= 1.5 && currentRate <= 1.99) {
-    return `#F14646`;
-  } else if (currentRate >= 2 && currentRate <= 2.99) {
-    return `#F1C647`;
-  } else if (currentRate >= 3 && currentRate <= 4.99) {
-    return `#458BE4`;
-  }
-  return `#B86CEE`;
-}
+import BetColor from '../../utils/BetColor';
 
 function Bomb() {
   const { currentRate, isCountDown, timestamp } = useRound();
@@ -42,7 +30,7 @@ function Bomb() {
   }, [timeToStart]);
 
   useEffect(() => {
-    setBombBg(getColor(currentRate));
+    setBombBg(BetColor(currentRate));
   }, [currentRate]);
 
   return (
@@ -82,10 +70,10 @@ function Bomb() {
           </Box>
         </Box>
       </div>
-      <img style={{ height: 350 }} src="bomb.svg" alt="timer" />
-      <img className={s.glass} src="glass.svg" alt="glass" />
-      <img className={s.bombLeft} src="bomb-left.svg" alt="sides" />
-      <img className={s.bombRight} src="bomb-right.svg" alt="sides" />
+      <img style={{ height: 350 }} src="/bomb.svg" alt="timer" />
+      <img className={s.glass} src="/glass.svg" alt="glass" />
+      <img className={s.bombLeft} src="/bomb-left.svg" alt="sides" />
+      <img className={s.bombRight} src="/bomb-right.svg" alt="sides" />
     </div>
   );
 }

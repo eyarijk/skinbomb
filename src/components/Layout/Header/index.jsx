@@ -60,7 +60,7 @@ const Header = props => {
           >
             {user && (
               <>
-                <img className={s.wallet} src="wallet.svg" alt="wallet" />
+                <img className={s.wallet} src="/wallet.svg" alt="wallet" />
                 <Box
                   ml={1}
                   mr={(isLgDes && user && 1) || 3.5}
@@ -253,7 +253,7 @@ const Header = props => {
             {user ? (
               <Box display="flex" flexDirection="column">
                 <Box display="flex" mb={2.5}>
-                  <img className={s.wallet} src="wallet.svg" alt="wallet" />
+                  <img className={s.wallet} src="/wallet.svg" alt="wallet" />
                   <Box
                     ml={1}
                     fontSize={16}

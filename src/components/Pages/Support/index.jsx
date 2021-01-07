@@ -220,7 +220,7 @@ function Support() {
                 alignItems="center"
                 style={{ cursor: 'pointer' }}
             >
-              <img src="privacy-policy.svg" alt="privacy-policy" />
+              <img src="/privacy-policy.svg" alt="privacy-policy" />
               <Box
                   ml={1}
                   color={theme.text.gray}

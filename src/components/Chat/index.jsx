@@ -183,7 +183,7 @@ function Chat() {
                     className={s.chatRulesButton}
                     onClick={() => setScreen('chatRules')}
                   >
-                    <img src="chat.svg" alt="chat-icon" />
+                    <img src="/chat.svg" alt="chat-icon" />
                     <Box
                       ml={1}
                       color={theme.text.gray}

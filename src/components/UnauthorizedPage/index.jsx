@@ -29,7 +29,7 @@ function UnauthorizedContainer({children}) {
           >
             <Box color="#C4C4C4">Войдите, чтобы увидеть эту страницу</Box>
             <MuiButton className={s.loginButton} onClick={steamAuth}>
-              <img src="login-steam.svg" alt="login" />
+              <img src="/login-steam.svg" alt="login" />
             </MuiButton>
             <Box
                 fontWeight="400"

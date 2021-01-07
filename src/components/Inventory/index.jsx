@@ -51,7 +51,7 @@ export default function Inventory() {
         >
           <Box color="#C4C4C4">Войдите, чтобы начать играть</Box>
           <Button className={s.loginButton} onClick={onLoginClick}>
-            <img src="login-steam.svg" alt="login" />
+            <img src="/login-steam.svg" alt="login" />
           </Button>
           <Box
             fontWeight="400"
@@ -161,7 +161,7 @@ export default function Inventory() {
           {cards.map(card => (
             <WeaponCard
               key={card.id}
-              card={card}
+              card={{ ...card.skin, id: card.id }}
               small
               selectCard={selectSkin}
               selectedCards={selectedSkins}

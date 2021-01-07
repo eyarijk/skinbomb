@@ -6,11 +6,11 @@ import { useTheme } from '@material-ui/core/styles';
 import StatItem from './StatItem';
 
 import s from './styles.module.scss';
-import {useRound} from "../../lib/api/rounds";
+import { useRound } from '../../lib/api/rounds';
 
 function Stats() {
   const theme = useTheme();
-  const {statistics} = useRound();
+  const { statistics } = useRound();
   return (
     <Box
       width={1}

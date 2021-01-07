@@ -1,15 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { Box } from '@material-ui/core';
 import { useTheme } from '@material-ui/core/styles';
-import { useGames } from '../../../lib/api/games';
-
 import s from './styles.module.scss';
-import GameItem from './GameItem';
+import { useStatisticDaily } from '../../../lib/api/statisticDaily';
+import { useRouter } from 'next/router';
+import Round from './Round';
 
-function Games() {
+function StatisticDaily() {
   const theme = useTheme();
-  const { games } = useGames();
+  const router = useRouter();
+  const { date } = router.query;
+
+  const { rounds, getRounds } = useStatisticDaily();
+
+  useEffect(() => {
+    getRounds(date);
+  }, []);
 
   return (
     <Box width={1} height={1} display="flex" flexDirection="column">
@@ -21,7 +28,7 @@ function Games() {
         color="#fff"
         px={2}
       >
-        Игры
+        {date}
       </Box>
       <Box
         width={1}
@@ -31,13 +38,16 @@ function Games() {
         flexGrow={1}
         height="1px"
         className={s.root}
+        display="flex"
+        flexWrap="wrap"
+        padding="22px 20px"
       >
-        {games.map(item => (
-          <GameItem key={item.id} item={item} />
+        {rounds.map(round => (
+          <Round key={round.id} round={round} />
         ))}
       </Box>
     </Box>
   );
 }
 
-export default Games;
+export default StatisticDaily;

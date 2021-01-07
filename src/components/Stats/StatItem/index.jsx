@@ -37,9 +37,9 @@ function StatItem({ item }) {
   function getStatusCircle() {
     switch (item.win) {
       case 'lose':
-        return <img src="red.gif" alt="lose" style={{ height: 65 }} />;
+        return <img src="/red.gif" alt="lose" style={{ height: 65 }} />;
       case 'in_round':
-        return <img src="violet.gif" alt="round" style={{ height: 65 }} />;
+        return <img src="/violet.gif" alt="round" style={{ height: 65 }} />;
       default:
         return;
     }
@@ -128,7 +128,7 @@ function StatItem({ item }) {
                   {`${item.skins_after_win.toFixed(2)} $`}
                 </Box>
                 <Box ml={2}>
-                  <img src="up.svg" alt="up" />
+                  <img src="/up.svg" alt="up" />
                 </Box>
               </>
             ))}

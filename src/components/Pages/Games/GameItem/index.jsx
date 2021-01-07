@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Box, Avatar } from '@material-ui/core';
+import { Box } from '@material-ui/core';
 
 import s from './styles.module.scss';
 
@@ -37,9 +37,9 @@ function GameItem({ item }) {
   function getStatusCircle() {
     switch (item.win) {
       case 'lose':
-        return <img src="red.gif" alt="lose" style={{ height: 65 }} />;
+        return <img src="/red.gif" alt="lose" style={{ height: 65 }} />;
       case 'in_round':
-        return <img src="violet.gif" alt="round" style={{ height: 65 }} />;
+        return <img src="/violet.gif" alt="round" style={{ height: 65 }} />;
       default:
         return;
     }
@@ -76,7 +76,12 @@ function GameItem({ item }) {
         </Box>
 
         {item.skins?.map(gun => (
-          <img key={Math.random()} src={`https://api.skinbomb.gg/${gun.skin.icon}`} alt="gun" style={{width: "90px"}}/>
+          <img
+            key={Math.random()}
+            src={`https://api.skinbomb.gg/${gun.skin.icon}`}
+            alt="gun"
+            style={{ width: '90px' }}
+          />
         ))}
       </Box>
       <Box
@@ -117,7 +122,7 @@ function GameItem({ item }) {
                   {`${item.skins_after_win.toFixed(2)} $`}
                 </Box>
                 <Box ml={2}>
-                  <img src="up.svg" alt="up" />
+                  <img src="/up.svg" alt="up" />
                 </Box>
               </>
             ))}
