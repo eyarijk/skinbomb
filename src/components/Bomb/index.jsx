@@ -8,8 +8,15 @@ import { useRound } from '../../lib/api/rounds';
 import s from './styles.module.scss';
 import Box from '@material-ui/core/Box';
 import BetColor from '../../utils/BetColor';
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 function Bomb() {
+  const isMobile = useMediaQuery('(max-width: 600px)');
+  const isMobileOrTablet = useMediaQuery('(max-width: 959px)');
+  const isXsDesktop = useMediaQuery('(max-width: 1129px)');
+  const isSmDesktop = useMediaQuery('(max-width: 1329px)');
+  const isMdDesktop = useMediaQuery('(max-width: 1459px)');
+
   const { currentRate, isCountDown, timestamp } = useRound();
   const [timeToStart, setTimeToStart] = useState(10);
   const [bombBg, setBombBg] = useState('rgb(33, 150, 83)');
@@ -70,8 +77,8 @@ function Bomb() {
           </Box>
         </Box>
       </div>
-      <img style={{ height: 350 }} src="/bomb.svg" alt="timer" />
-      <img className={s.glass} src="/glass.svg" alt="glass" />
+      <img style={{ height: 350, width: isMobileOrTablet ? '100%' : 'auto'} } src="/bomb.svg" alt="timer" />
+      <img className={s.glass} style={{width: isMobileOrTablet ? 70 : 90, marginLeft: isMobileOrTablet ? -211 : -37}} src="/glass.svg" alt="glass" />
       <img className={s.bombLeft} src="/bomb-left.svg" alt="sides" />
       <img className={s.bombRight} src="/bomb-right.svg" alt="sides" />
     </div>

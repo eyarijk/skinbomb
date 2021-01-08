@@ -73,7 +73,7 @@ function Index() {
         <Box
           display="flex"
           flexDirection={
-            (isMobile && 'column') || (isMobileOrTablet && 'row') || 'column'
+            (isMobile && 'row') || (isMobileOrTablet && 'row') || 'column'
           }
           width={isMobileOrTablet ? '100%' : 'min-content'}
           mr={1}
@@ -85,14 +85,14 @@ function Index() {
           <Box
             display="flex"
             flexDirection="column"
-            width={(isMobileOrTablet && 300) || (isXsDesktop && 250) || 300}
+            width={(isMobileOrTablet && 0.5) || (isXsDesktop && 250) || 300}
             bgcolor={theme.background.primary}
             borderRadius={!isMobileOrTablet && 10}
             mb={!isMobileOrTablet && 1}
             pt={isMobileOrTablet && 3}
           >
             <Box
-              width={1}
+                width={(isMobileOrTablet && 0.5) || (isXsDesktop && 1) || 1}
               pr={2}
               height={
                 (isMobileOrTablet && 'unset') || (isXsDesktop && 150) || 'unset'
