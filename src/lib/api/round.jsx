@@ -1,5 +1,6 @@
 import React, { createContext, useState, useContext } from 'react';
 import PropTypes from 'prop-types';
+import fetch from '../fetch';
 const RoundContext = createContext({});
 
 function RoundProvider({ children }) {
@@ -8,9 +9,10 @@ function RoundProvider({ children }) {
 
   const getRound = async id => {
     setIsLoadingRound(true);
-    console.log(id);
 
-    setRound({ id, stats: [], date: '2020-01-01' });
+    const response = await fetch(`/statistics/round/${id}`);
+
+    setRound(response.data);
 
     setIsLoadingRound(false);
   };

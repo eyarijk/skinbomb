@@ -58,7 +58,7 @@ function RoundsProvider({ children }) {
           const formData = new FormData();
           formData.append('bet', bet);
           Object.keys(selectedSkins).forEach(skinId => {
-            formData.append('skins[]', skinId);
+            formData.append('skins_history_id[]', skinId);
           });
           await fetch('/rounds/store', {
             method: 'POST',

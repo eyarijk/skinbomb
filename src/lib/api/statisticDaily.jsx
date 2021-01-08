@@ -1,28 +1,20 @@
 import React, { createContext, useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 const StatisticDailyContext = createContext({});
+import fetch from '../fetch';
 
 function StatisticDailyProvider({ children }) {
   const [rounds, setRounds] = useState([]);
-  const [isLoadedRounds, setIsLoadedRounds] = useState(false);
+  const [isLoadingRounds, setIsLoadingRounds] = useState(true);
 
   const getRounds = async date => {
-    setIsLoadedRounds(true);
+    setIsLoadingRounds(true);
 
-    const rounds = [];
+    const response = await fetch(`/statistics/${date}`);
 
-    for (let i = 1; i < 200; i++) {
-      rounds.push({
-        id: i,
-        bet: Math.random() * 10,
-      });
-    }
+    setRounds(response.data);
 
-    setRounds(rounds);
-
-    console.log(date);
-
-    setIsLoadedRounds(false);
+    setIsLoadingRounds(false);
   };
 
   return (
@@ -30,7 +22,7 @@ function StatisticDailyProvider({ children }) {
       value={{
         rounds,
         getRounds,
-        isLoadedRounds,
+        isLoadingRounds,
       }}
     >
       {children}

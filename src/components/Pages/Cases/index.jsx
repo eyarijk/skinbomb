@@ -49,7 +49,6 @@ function Cases() {
     }
   }, [levels]);
 
-  console.log('factoryCurrentLevelfactoryCurrentLevel', factoryCurrentLevel);
   return (
     <Box
       width={

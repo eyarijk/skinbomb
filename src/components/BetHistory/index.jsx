@@ -7,13 +7,13 @@ import BetHistoryItem from './BetHistoryItem';
 function BetHistory({ history, small, onClick, ...props }) {
   return (
     <Box display="flex" width="100%" {...props}>
-      {history.map(({ bet }) => {
+      {history.map(bet => {
         return (
           <BetHistoryItem
             key={Math.round(Math.random() * 100000)}
-            bet={bet}
+            bet={bet.bet}
             small={small}
-            onClick={onClick}
+            onClick={() => onClick(bet)}
           />
         );
       })}

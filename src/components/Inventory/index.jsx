@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-
 import { Box, Button } from '@material-ui/core';
-
 import UiButton from '../UiKit/Button';
 import WeaponCard from '../WeaponCard';
-
 import { useAuth } from '../../lib/api/auth';
 import { useSkins } from '../../lib/api/skins';
-
 import s from './styles.module.scss';
 
 export default function Inventory() {
@@ -20,12 +16,8 @@ export default function Inventory() {
     selectSkin,
     setSelectedSkins,
     selectedSkinsPrice,
-    exchangeProcess,
-    enableExchangeProcess,
-    disableExchangeProcess,
   } = useSkins();
   const [cards, setCards] = useState(skins);
-  const [allCardsID] = useState({});
   function onLoginClick() {
     auth.steamAuth();
   }
@@ -35,10 +27,90 @@ export default function Inventory() {
 
   useEffect(() => {
     setCards(skins);
-    skins &&
-      skins.length &&
-      skins.map(el => (allCardsID[el.id] = { ...el.skin, id: el.id }));
   }, [skins]);
+
+  const openCase = skinCase => {
+    console.log(skinCase);
+  };
+
+  const renderNav = () => {
+    const countSelectedSkins = Object.keys(selectedSkins).length;
+
+    if (countSelectedSkins === 0) {
+      return '';
+    }
+
+    const [skin] = Object.values(selectedSkins);
+
+    if (countSelectedSkins === 1 && skin) {
+      return (
+        <Box display="flex" justifyContent="center" mt={3}>
+          <UiButton
+            value="Открыть"
+            onClick={() => openCase(skin)}
+            w="150px"
+            h="40px"
+            bgcolor="linear-gradient(139.23deg, #6361C8 13.34%, #713AEB 86.08%)"
+            borderColor="linear-gradient(139.23deg, #6361C8 13.34%, #713AEB 86.08%)"
+          />
+        </Box>
+      );
+    }
+
+    return (
+      <Box display="flex" justifyContent="space-between" mt={3}>
+        <UiButton
+          value="Обмен"
+          onClick={() => {}}
+          w="90px"
+          h="40px"
+          bgcolor="linear-gradient(139.23deg, #6361C8 13.34%, #713AEB 86.08%)"
+          borderColor="linear-gradient(139.23deg, #6361C8 13.34%, #713AEB 86.08%)"
+        />
+        <UiButton
+          value="Вывести"
+          onClick={() => {}}
+          w="90px"
+          h="40px"
+          bgcolor="linear-gradient(139.23deg, #6361C8 13.34%, #713AEB 86.08%)"
+          borderColor="linear-gradient(139.23deg, #6361C8 13.34%, #713AEB 86.08%)"
+        />
+      </Box>
+    );
+  };
+
+  const renderAllBtn = () => {
+    const chooseAll = () => {
+      if (Object.keys(selectedSkins).length === skins.length) {
+        setSelectedSkins({});
+      } else {
+        const all = skins.reduce((items, card) => {
+          items[card.id] = { ...card.skin, id: card.id };
+
+          return items;
+        }, {});
+
+        setSelectedSkins(all);
+      }
+    };
+
+    return (
+      <UiButton
+        value="Все"
+        onClick={chooseAll}
+        variant={`${
+          Object.keys(selectedSkins).length === cards.length
+            ? 'contained'
+            : 'outlined'
+        }`}
+        borderSize="2px"
+        borderColor="#6361C8"
+        bgcolor="#6361C8"
+        w={44}
+        h={34}
+      />
+    );
+  };
 
   if (!auth.user) {
     return (
@@ -187,71 +259,12 @@ export default function Inventory() {
                 color="#fff"
                 lineHeight="20px"
               >
-                {selectedSkinsPrice} $
+                {selectedSkinsPrice.toFixed(2)} $
               </Box>
             </Box>
-            <UiButton
-              value="Все"
-              onClick={() => {
-                if (
-                  Object.keys(selectedSkins).length <
-                  Object.keys(allCardsID).length
-                )
-                  setSelectedSkins({ ...selectedSkins, ...allCardsID });
-                else setSelectedSkins({});
-              }}
-              variant={`${
-                Object.keys(selectedSkins).length ===
-                  Object.keys(allCardsID).length &&
-                Object.keys(selectedSkins).length !== 0
-                  ? 'contained'
-                  : 'outlined'
-              }`}
-              borderSize="2px"
-              borderColor="#6361C8"
-              bgcolor="#6361C8"
-              w={44}
-              h={34}
-            />
+            {renderAllBtn()}
           </Box>
-          {Object.keys(selectedSkins).length !== 0 && (
-            <>
-              {!exchangeProcess ? (
-                <>
-                  <Box color="#fff">Обмен</Box>
-                  <Box display="flex" justifyContent="space-between" mt={3}>
-                    <UiButton
-                      value="Отмена"
-                      onClick={disableExchangeProcess}
-                      w="150px"
-                      h="40px"
-                      bgcolor="linear-gradient(139.23deg, #6361C8 13.34%, #713AEB 86.08%)"
-                      borderColor="linear-gradient(139.23deg, #6361C8 13.34%, #713AEB 86.08%)"
-                    />
-                  </Box>
-                </>
-              ) : (
-                <Box display="flex" justifyContent="space-between" mt={3}>
-                  <UiButton
-                    value="Обмен"
-                    onClick={enableExchangeProcess}
-                    w="150px"
-                    h="40px"
-                    bgcolor="linear-gradient(139.23deg, #6361C8 13.34%, #713AEB 86.08%)"
-                    borderColor="linear-gradient(139.23deg, #6361C8 13.34%, #713AEB 86.08%)"
-                  />
-                  <UiButton
-                    value="Вывести"
-                    onClick={() => {}}
-                    w="150px"
-                    h="40px"
-                    bgcolor="linear-gradient(139.23deg, #6361C8 13.34%, #713AEB 86.08%)"
-                    borderColor="linear-gradient(139.23deg, #6361C8 13.34%, #713AEB 86.08%)"
-                  />
-                </Box>
-              )}
-            </>
-          )}
+          {renderNav()}
         </Box>
       </Box>
     </Box>

@@ -17,6 +17,10 @@ function RoundPage() {
   const { round, getRound, isLoadingRound } = useRound();
 
   useEffect(() => {
+    if (!id) {
+      return;
+    }
+
     getRound(id);
   }, [id]);
 
@@ -25,7 +29,7 @@ function RoundPage() {
   }
 
   const renderStats = () => {
-    if (round.stats.length === 0) {
+    if (round.statistics.length === 0) {
       return (
         <Box
           width={1}
@@ -59,7 +63,7 @@ function RoundPage() {
         flexWrap="wrap"
         padding="22px 20px"
       >
-        {round.stats.map(item => {
+        {round.statistics.map(item => {
           return <StatItem key={item.id} item={item} />;
         })}
       </Box>
@@ -82,7 +86,7 @@ function RoundPage() {
           color="#fff"
           px={2}
         >
-          Разрушен @ 9.04x
+          Разрушен @ {round.coefficient}x
         </Box>
         <Box
           component="span"

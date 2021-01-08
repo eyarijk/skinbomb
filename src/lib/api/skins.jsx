@@ -1,48 +1,36 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
-
 import fetch from '../fetch';
-
 import { useAuth } from './auth';
-import { useRouter } from 'next/router';
 
 const SkinsContext = createContext({});
 
 function SkinsProvider({ children }) {
   const { token } = useAuth();
-  const [skins, setSkins] = useState(null);
+  const [skins, setSkins] = useState([]);
+  const [skinsCases, setSkinsCases] = useState([]);
   const [isSkinsLoaded, setIsSkinsLoaded] = useState(false);
-  const [exchangeProcess, setExchangeProcess] = useState(false);
   const [selectedSkins, setSelectedSkins] = useState({});
-  const [selectedSkinsPrice, setSelectedSkinsPrice] = useState(0.0);
-  const router = useRouter();
+  const [selectedSkinsPrice, setSelectedSkinsPrice] = useState(0);
 
   useEffect(() => {
     let sum = 0;
     Object.values(selectedSkins).map(a => {
       if (a.price) sum += Number(a.price);
     });
-    setSelectedSkinsPrice(sum.toFixed(2));
+
+    setSelectedSkinsPrice(sum);
   }, [selectedSkins]);
-
-  const enableExchangeProcess = () => {
-    router.push('/store');
-    setExchangeProcess(true);
-  };
-
-  const disableExchangeProcess = () => {
-    setSelectedSkins({});
-  };
 
   const getSkins = async () => {
     try {
       const payload = await fetch('/skins/get');
       setSkins(payload.skin_history);
+      setSkinsCases(payload.inventory_cases);
       setSelectedSkins({});
       setIsSkinsLoaded(true);
     } catch (err) {
       console.error('>>> API Error: ', err);
-      return;
     }
   };
 
@@ -65,14 +53,12 @@ function SkinsProvider({ children }) {
     <SkinsContext.Provider
       value={{
         skins,
+        skinsCases,
         getSkins,
         selectedSkins,
         setSelectedSkins,
         selectedSkinsPrice,
         selectSkin,
-        exchangeProcess,
-        enableExchangeProcess,
-        disableExchangeProcess,
         isSkinsLoaded,
       }}
     >

@@ -26,7 +26,7 @@ function Round({ round }) {
         onMouseLeave={() => setEntered(false)}
         bgcolor={entered ? color : 'transparent'}
       >
-        <span className={s.bet}>{`${round.bet.toFixed(2)}x`}</span>
+        <span className={s.bet}>{`${round.coefficient.toFixed(2)}x`}</span>
         <span className={s.id}>#{round.id}</span>
       </Box>
     </Link>

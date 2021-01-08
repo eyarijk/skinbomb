@@ -122,7 +122,11 @@ function Index() {
               <Chart startAnimation={isCountDown} currentRate={currentRate} />
             </Box>
             <Box mt={2.5} mb={1.5} pl={2}>
-              <BetHistory history={lastBets} small />
+              <BetHistory
+                history={lastBets}
+                onClick={bet => router.push(`/round?id=${bet.round_id}`)}
+                small
+              />
             </Box>
           </Box>
           <ExchangeSkin handleChangeRate={handleChangeRate} />
@@ -154,7 +158,7 @@ function Index() {
                 justifyContent="center"
                 my={1.5}
                 width="auto"
-                onClick={val => setRate(val)}
+                onClick={bet => setRate(bet.bet)}
                 history={[
                   { id: 1, bet: 1.1 },
                   { id: 2, bet: 1.5 },
@@ -282,7 +286,7 @@ function Index() {
             justifyContent="space-between"
             my={1.5}
             width="100vw"
-            onClick={val => setRate(val)}
+            onClick={bet => setRate(bet.bet)}
             history={[
               { id: 1, bet: 1.1 },
               { id: 2, bet: 1.5 },

@@ -6,17 +6,26 @@ import s from './styles.module.scss';
 import { useStatisticDaily } from '../../../lib/api/statisticDaily';
 import { useRouter } from 'next/router';
 import Round from './Round';
+import Loading from '../../Loading';
 
 function StatisticDaily() {
   const theme = useTheme();
   const router = useRouter();
   const { date } = router.query;
 
-  const { rounds, getRounds } = useStatisticDaily();
+  const { rounds, getRounds, isLoadingRounds } = useStatisticDaily();
 
   useEffect(() => {
+    if (!date) {
+      return;
+    }
+
     getRounds(date);
-  }, []);
+  }, [date]);
+
+  if (isLoadingRounds) {
+    return <Loading />;
+  }
 
   const renderRounds = () => {
     if (rounds.length === 0) {
