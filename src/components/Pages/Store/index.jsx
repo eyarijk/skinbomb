@@ -46,6 +46,7 @@ function Store() {
     cards,
     buyingProcess,
     handleBuy,
+    handleExchange,
     buyingSkins,
     selectBuyingSkin,
     maxFilterPrice,
@@ -54,7 +55,7 @@ function Store() {
     router,
   } = useStore();
 
-  const { getSkins } = useSkins();
+  const { getSkins, selectedSkins } = useSkins();
   const { fetchUser } = useAuth();
 
   const [isOpen, setIsOpen] = useState(false);
@@ -85,6 +86,7 @@ function Store() {
       price_max: sliderValue[1],
       scrolling: scrolling,
     };
+
     handleSearch(options);
   }
 
@@ -93,25 +95,11 @@ function Store() {
   }
 
   const renderFilterButton = () => {
-    if (Object.keys(buyingSkins).length > 0) {
-      const handleSubmit = async () => {
-        if (typeExchange === 'exchange') {
-          const [skin] = Object.values(buyingSkins);
-          setCurrentExchange(skin);
-          router.push('/');
-          return;
-        }
-
-        await handleBuy();
-        await getSkins();
-        await fetchUser();
-      };
+    if (Object.keys(buyingSkins).length === 0) {
       return (
         <Button
-          value={`${
-            typeExchange === 'exchange' ? 'Обменять' : 'Купить'
-          } ${buyingSkinsPrice} $`}
-          onClick={handleSubmit}
+          value="Подтвердить поиск"
+          onClick={() => fetchItems()}
           w="100%"
           h="35px"
           borderSize="0"
@@ -124,10 +112,38 @@ function Store() {
       );
     }
 
+    const exchangeSkinsIds = Object.keys(selectedSkins);
+
+    const handleSubmit = async () => {
+      if (typeExchange === 'game') {
+        const [skin] = Object.values(buyingSkins);
+        setCurrentExchange(skin);
+        router.push('/');
+        return;
+      }
+
+      if (typeExchange === 'exchange' && exchangeSkinsIds.length > 0) {
+        await handleExchange(exchangeSkinsIds);
+      } else {
+        await handleBuy();
+      }
+
+      await getSkins();
+      await fetchUser();
+    };
+
+    let typeLabel = 'Купить';
+
+    if (typeExchange === 'exchange' && exchangeSkinsIds.length > 0) {
+      typeLabel = 'Обменять';
+    } else if (typeExchange === 'game') {
+      typeLabel = 'Выбрать';
+    }
+
     return (
       <Button
-        value="Подтвердить поиск"
-        onClick={() => fetchItems()}
+        value={`${typeLabel} ${buyingSkinsPrice} $`}
+        onClick={handleSubmit}
         w="100%"
         h="35px"
         borderSize="0"

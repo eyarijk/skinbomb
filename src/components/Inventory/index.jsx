@@ -8,9 +8,11 @@ import CaseOpen from '../CaseOpen';
 import { useAuth } from '../../lib/api/auth';
 import { useSkins } from '../../lib/api/skins';
 import s from './styles.module.scss';
+import { useRouter } from 'next/router';
 
 export default function Inventory() {
   const auth = useAuth();
+  const router = useRouter();
   const {
     skins,
     skinsCases,
@@ -54,6 +56,8 @@ export default function Inventory() {
     getSkins();
   };
 
+  const isStorePage = router.route === '/store';
+
   const renderNav = () => {
     const countSelectedSkins = Object.keys(selectedSkins).length;
     const countSelectedSkinCases = Object.keys(selectedSkinCases).length;
@@ -80,7 +84,9 @@ export default function Inventory() {
           <Box display="flex" justifyContent="space-between" mt={3}>
             <UiButton
               value="Обмен"
-              onClick={() => {}}
+              onClick={() => {
+                !isStorePage && router.push('/store?type=exchange');
+              }}
               w="90px"
               h="40px"
               bgcolor="linear-gradient(139.23deg, #6361C8 13.34%, #713AEB 86.08%)"
@@ -207,18 +213,20 @@ export default function Inventory() {
         >
           2. Вы можете обменять деньги на скины в магазине
         </Box>
-        <Box mb={3} display="flex" justifyContent="center">
-          <Link href="/store">
-            <UiButton
-              value="Магазин"
-              onClick={() => {}}
-              w="150px"
-              h="40px"
-              bgcolor="#7D20FF"
-              borderColor="#7D20FF"
-            />
-          </Link>
-        </Box>
+        {!isStorePage && (
+          <Box mb={3} display="flex" justifyContent="center">
+            <Link href="/store">
+              <UiButton
+                value="Магазин"
+                onClick={() => {}}
+                w="150px"
+                h="40px"
+                bgcolor="#7D20FF"
+                borderColor="#7D20FF"
+              />
+            </Link>
+          </Box>
+        )}
       </Box>
     );
   }
@@ -232,18 +240,20 @@ export default function Inventory() {
         />
       )}
       <Box display="flex" flexDirection="column" width={1} height={'90%'}>
-        <Box mb={3} display="flex" justifyContent="center">
-          <Link href="/store">
-            <UiButton
-              value="Магазин скинов"
-              onClick={() => {}}
-              w="150px"
-              h="40px"
-              bgcolor="#F89D00"
-              borderColor="#F89D00"
-            />
-          </Link>
-        </Box>
+        {!isStorePage && (
+          <Box mb={3} display="flex" justifyContent="center">
+            <Link href="/store">
+              <UiButton
+                value="Магазин скинов"
+                onClick={() => {}}
+                w="150px"
+                h="40px"
+                bgcolor="#F89D00"
+                borderColor="#F89D00"
+              />
+            </Link>
+          </Box>
+        )}
         <Box
           flexGrow={1}
           height={1}

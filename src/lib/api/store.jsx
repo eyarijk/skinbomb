@@ -49,7 +49,7 @@ function StoreProvider({ children }) {
     if (buyingSkins[id]) {
       delete buyingSkins[id];
       setBuyingSkins({ ...buyingSkins });
-    } else if (typeExchange === 'exchange') {
+    } else if (typeExchange === 'game') {
       setBuyingSkins({ [id]: skin });
     } else {
       setBuyingSkins({ ...buyingSkins, [id]: skin });
@@ -71,7 +71,6 @@ function StoreProvider({ children }) {
       }
     } catch (err) {
       console.error('>>> API Error: ', err);
-      return;
     }
   };
 
@@ -122,7 +121,6 @@ function StoreProvider({ children }) {
       setMaxFilterPrice(payload.data.max_price);
     } catch (err) {
       console.error('>>> API Error: ', err);
-      return;
     }
   };
 
@@ -139,7 +137,6 @@ function StoreProvider({ children }) {
           data: formData,
         });
 
-        console.log('responseresponseresponse', response);
         handleSearch(lastSearchOptions);
 
         if (
@@ -158,15 +155,35 @@ function StoreProvider({ children }) {
 
         setBuyingProcess(false);
       } catch (error) {
-        console.log('errorerrorerror', error);
         await swal.fire('Failed', error.response.data.message, 'error');
         setBuyingProcess(false);
-        return;
       }
     } else {
       swal.fire('Failed', 'You already have buying in process', 'error');
       setBuyingProcess(false);
-      return;
+    }
+  };
+
+  const handleExchange = async skinHistoryIds => {
+    try {
+      const formData = new FormData();
+
+      Object.keys(buyingSkins).forEach(id => {
+        formData.append('skin_ids[]', id);
+      });
+
+      skinHistoryIds.forEach(id => {
+        formData.append('exchange_skin_history_ids[]', id);
+      });
+
+      await fetch(`/store/exchange`, {
+        method: 'POST',
+        data: formData,
+      });
+
+      await swal.fire('Success', 'Success', 'success');
+    } catch (error) {
+      await swal.fire('Failed', error.response.data.message, 'error');
     }
   };
 
@@ -196,6 +213,7 @@ function StoreProvider({ children }) {
         buyingSkinsPrice,
         typeExchange,
         router,
+        handleExchange,
       }}
     >
       {children}
