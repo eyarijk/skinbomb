@@ -31,6 +31,11 @@ function ExchangeSkin({ handleChangeRate }) {
     }
   }, []);
 
+  const cancelSkin = () => {
+    localStorage.removeItem('currentExchange');
+    setExchangeSkin(null);
+  };
+
   const renderSkin = () => {
     if (!exchangeSkin) {
       return (
@@ -125,7 +130,11 @@ function ExchangeSkin({ handleChangeRate }) {
       justifyContent="center"
       flexDirection="column"
       alignItems="center"
+      position="relative"
     >
+      <button onClick={cancelSkin} className={s.cancelEgg}>
+        x
+      </button>
       <Box
         display="flex"
         justifyContent="center"

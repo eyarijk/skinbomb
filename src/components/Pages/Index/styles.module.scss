@@ -78,3 +78,22 @@
     width: 80px;
   }
 }
+
+.cancelEgg {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  background: none;
+  outline: none;
+  border: 2px solid #f24a4a;
+  color: #f24a4a;
+  font-size: 18px;
+  z-index: 10;
+  cursor: pointer;
+  border-radius: 5px;
+
+  &:hover {
+    color: #fff;
+    background: #f24a4a;
+  }
+}

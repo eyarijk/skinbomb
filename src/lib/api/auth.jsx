@@ -2,7 +2,7 @@ import React, { createContext, useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 
 import fetch from '../fetch';
-import swal from "sweetalert2";
+import swal from 'sweetalert2';
 
 const AuthContext = createContext({});
 
@@ -36,17 +36,20 @@ function AuthProvider({ children }) {
     return { status: 'success' };
   };
 
-  const updateTradeUrl = async (url) => {
-    if(url.trim !== ''){
+  const updateTradeUrl = async url => {
+    if (url.trim !== '') {
       const fd = new FormData();
       fd.append('tradeUrl', url);
-      try{
-        const response = await fetch('/settings/tradeUrl/store', {method: "POST", data: fd});
-        if(response.data.tradeUrl){
-          setUser({...user, tradeUrl: response.tradeUrl});
-          swal.fire('Done', 'Trade url successfully updated.', 'success')
+      try {
+        const response = await fetch('/settings/tradeUrl/store', {
+          method: 'POST',
+          data: fd,
+        });
+        if (response.data.tradeUrl) {
+          setUser({ ...user, tradeUrl: response.tradeUrl });
+          swal.fire('Done', 'Trade url successfully updated.', 'success');
         }
-      }catch (error){
+      } catch (error) {
         swal.fire('Failed', error.response.data.message, 'error');
 
         return;

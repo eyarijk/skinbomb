@@ -20,7 +20,6 @@ function GamesProvider({ children }) {
       setIsGamesLoaded(true);
     } catch (err) {
       console.error('>>> API Error: ', err);
-      return;
     }
   };
 

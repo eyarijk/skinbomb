@@ -93,11 +93,6 @@ function RoundsProvider({ children }) {
       if (event[0].status === 1) {
         setIsCountDown(false);
         setCurrentRate(event[0].coefficient);
-        if (betProcess) {
-          fetchUser();
-          getSkins();
-          setBetProcess(false);
-        }
       } else if (event[0].status === 0) {
         setTimestamp(event[0].start);
         setIsCountDown(true);
@@ -110,6 +105,11 @@ function RoundsProvider({ children }) {
         setLastBets(event.last_bets);
         setStatistics(event.statistics);
         setGlobalStatistics(event.global_statistics);
+
+        if (betProcess) {
+          fetchUser();
+          setBetProcess(false);
+        }
       });
   }, []);
 
