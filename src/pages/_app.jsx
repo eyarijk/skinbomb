@@ -11,6 +11,8 @@ import { ChatProvider } from '../lib/api/chat';
 import { RoundsProvider } from '../lib/api/rounds';
 import { ReferralsProvider } from '../lib/api/referrals';
 import '../styles/globals.scss';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import Router from 'next/router';
 import Loading from '../components/Loading';
 

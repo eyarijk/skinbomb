@@ -4,6 +4,7 @@ import { Box, Button } from '@material-ui/core';
 import UiButton from '../UiKit/Button';
 import WeaponCard from '../WeaponCard';
 import CaseCard from '../CaseCard';
+import CaseOpen from '../CaseOpen';
 import { useAuth } from '../../lib/api/auth';
 import { useSkins } from '../../lib/api/skins';
 import s from './styles.module.scss';
@@ -17,15 +18,21 @@ export default function Inventory() {
     selectedSkins,
     selectSkin,
     setSelectedSkins,
+    setSelectedSkinCases,
     selectSkinCase,
     selectedSkinCases,
     selectedSkinsPrice,
     skinToSteam,
+    openCaseStore,
   } = useSkins();
+
   const [cards, setCards] = useState(skins);
+  const [activeCase, setActiveCase] = useState(null);
+
   function onLoginClick() {
     auth.steamAuth();
   }
+
   useEffect(() => {
     getSkins();
   }, []);
@@ -37,7 +44,13 @@ export default function Inventory() {
   const openCase = () => {
     const [skinCase] = Object.values(selectedSkinCases);
 
-    console.log(skinCase);
+    setActiveCase(skinCase);
+  };
+
+  const onOpenedCase = () => {
+    getSkins();
+    setActiveCase(null);
+    setSelectedSkinCases({});
   };
 
   const renderNav = () => {
@@ -209,80 +222,89 @@ export default function Inventory() {
     );
   }
   return (
-    <Box display="flex" flexDirection="column" width={1} height={'90%'}>
-      <Box mb={3} display="flex" justifyContent="center">
-        <Link href="/store">
-          <UiButton
-            value="Магазин скинов"
-            onClick={() => {}}
-            w="150px"
-            h="40px"
-            bgcolor="#F89D00"
-            borderColor="#F89D00"
-          />
-        </Link>
-      </Box>
-      <Box
-        flexGrow={1}
-        height={1}
-        width={1}
-        display="flex"
-        flexDirection="column"
-        justifyContent="space-between"
-      >
+    <>
+      {activeCase && (
+        <CaseOpen
+          card={activeCase}
+          openCase={openCaseStore}
+          onOpened={onOpenedCase}
+        />
+      )}
+      <Box display="flex" flexDirection="column" width={1} height={'90%'}>
+        <Box mb={3} display="flex" justifyContent="center">
+          <Link href="/store">
+            <UiButton
+              value="Магазин скинов"
+              onClick={() => {}}
+              w="150px"
+              h="40px"
+              bgcolor="#F89D00"
+              borderColor="#F89D00"
+            />
+          </Link>
+        </Box>
         <Box
+          flexGrow={1}
+          height={1}
+          width={1}
           display="flex"
-          flexWrap="wrap"
+          flexDirection="column"
           justifyContent="space-between"
-          maxHeight={1}
-          overflow="hidden auto"
-          mb={2}
-          className={s.overflow}
         >
-          {skinsCases.map(skinsCase => (
-            <CaseCard
-              key={skinsCase.id}
-              card={skinsCase}
-              small
-              selectCard={selectSkinCase}
-              selectedCards={selectedSkinCases}
-            />
-          ))}
-          {cards.map(card => (
-            <WeaponCard
-              key={card.id}
-              card={{ ...card.skin, id: card.id }}
-              small
-              selectCard={selectSkin}
-              selectedCards={selectedSkins}
-            />
-          ))}
-        </Box>
-        <Box>
-          <Box display="flex" justifyContent="space-between" width={1}>
-            <Box>
-              <Box
-                fontSize={10}
-                fontWeight={400}
-                color="#9292C1"
-                lineHeight="20px"
-              >
-                Всего ({Object.keys(selectedSkins).length})
-              </Box>
-              <Box
-                fontSize={14}
-                fontWeight={600}
-                color="#fff"
-                lineHeight="20px"
-              >
-                {selectedSkinsPrice.toFixed(2)} $
-              </Box>
-            </Box>
-            {renderAllBtn()}
+          <Box
+            display="flex"
+            flexWrap="wrap"
+            justifyContent="space-between"
+            maxHeight={1}
+            overflow="hidden auto"
+            mb={2}
+            className={s.overflow}
+          >
+            {skinsCases.map(skinsCase => (
+              <CaseCard
+                key={skinsCase.id}
+                card={skinsCase}
+                small
+                selectCard={selectSkinCase}
+                selectedCards={selectedSkinCases}
+              />
+            ))}
+            {cards.map(card => (
+              <WeaponCard
+                key={card.id}
+                card={{ ...card.skin, id: card.id }}
+                small
+                selectCard={selectSkin}
+                selectedCards={selectedSkins}
+              />
+            ))}
           </Box>
-          {renderNav()}
+          <Box>
+            <Box display="flex" justifyContent="space-between" width={1}>
+              <Box>
+                <Box
+                  fontSize={10}
+                  fontWeight={400}
+                  color="#9292C1"
+                  lineHeight="20px"
+                >
+                  Всего ({Object.keys(selectedSkins).length})
+                </Box>
+                <Box
+                  fontSize={14}
+                  fontWeight={600}
+                  color="#fff"
+                  lineHeight="20px"
+                >
+                  {selectedSkinsPrice.toFixed(2)} $
+                </Box>
+              </Box>
+              {renderAllBtn()}
+            </Box>
+            {renderNav()}
+          </Box>
         </Box>
       </Box>
-    </Box>
+    </>
   );
 }
