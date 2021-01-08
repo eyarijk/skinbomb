@@ -1,0 +1,25 @@
+.root {
+  &.small {
+    zoom: 0.9;
+  }
+  .ellipsis {
+    width: 92px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .cover {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('/weapon-card-bg.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 79px;
+
+    > img {
+      width: 78px;
+    }
+  }
+}

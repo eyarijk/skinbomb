@@ -14,6 +14,7 @@ import { useStore } from '../../../lib/api/store';
 import Loading from '../../Loading';
 import { useSkins } from '../../../lib/api/skins';
 import { useAuth } from '../../../lib/api/auth';
+import { setCurrentExchange } from '../../../utils/LocalStorage';
 
 const rarityData = {
   title: 'Раритетнось',
@@ -96,7 +97,7 @@ function Store() {
       const handleSubmit = async () => {
         if (typeExchange === 'exchange') {
           const [skin] = Object.values(buyingSkins);
-          localStorage.setItem('currentExchange', JSON.stringify(skin));
+          setCurrentExchange(skin);
           router.push('/');
           return;
         }

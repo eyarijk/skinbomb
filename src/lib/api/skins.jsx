@@ -12,6 +12,7 @@ function SkinsProvider({ children }) {
   const [skinsCases, setSkinsCases] = useState([]);
   const [isSkinsLoaded, setIsSkinsLoaded] = useState(false);
   const [selectedSkins, setSelectedSkins] = useState({});
+  const [selectedSkinCases, setSelectedSkinCases] = useState({});
   const [selectedSkinsPrice, setSelectedSkinsPrice] = useState(0);
 
   useEffect(() => {
@@ -72,6 +73,15 @@ function SkinsProvider({ children }) {
     }
   };
 
+  const selectSkinCase = skinCase => {
+    if (selectedSkinCases[skinCase.id]) {
+      delete selectedSkinCases[skinCase.id];
+      setSelectedSkinCases({ ...selectedSkinCases });
+    } else {
+      setSelectedSkinCases({ ...selectedSkinCases, [skinCase.id]: skinCase });
+    }
+  };
+
   useEffect(() => {
     if (token) {
       getSkins();
@@ -90,6 +100,8 @@ function SkinsProvider({ children }) {
         selectSkin,
         isSkinsLoaded,
         skinToSteam,
+        selectedSkinCases,
+        selectSkinCase,
       }}
     >
       {children}

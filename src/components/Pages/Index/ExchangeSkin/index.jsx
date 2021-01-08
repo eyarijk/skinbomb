@@ -7,6 +7,10 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
 import { useSkins } from '../../../../lib/api/skins';
 import PropTypes from 'react';
+import {
+  getCurrentExchange,
+  removeCurrentExchange,
+} from '../../../../utils/LocalStorage';
 
 function ExchangeSkin({ handleChangeRate }) {
   const theme = useTheme();
@@ -24,15 +28,11 @@ function ExchangeSkin({ handleChangeRate }) {
   }, [exchangeSkin, selectedSkinsPrice]);
 
   useEffect(() => {
-    const currentExchange = localStorage.getItem('currentExchange');
-
-    if (currentExchange) {
-      setExchangeSkin(JSON.parse(currentExchange));
-    }
+    setExchangeSkin(getCurrentExchange());
   }, []);
 
   const cancelSkin = () => {
-    localStorage.removeItem('currentExchange');
+    removeCurrentExchange();
     setExchangeSkin(null);
   };
 
@@ -132,9 +132,11 @@ function ExchangeSkin({ handleChangeRate }) {
       alignItems="center"
       position="relative"
     >
-      <button onClick={cancelSkin} className={s.cancelEgg}>
-        x
-      </button>
+      {!!exchangeSkin && (
+        <button onClick={cancelSkin} className={s.cancelEgg}>
+          x
+        </button>
+      )}
       <Box
         display="flex"
         justifyContent="center"

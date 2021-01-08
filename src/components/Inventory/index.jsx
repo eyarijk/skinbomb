@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { Box, Button } from '@material-ui/core';
 import UiButton from '../UiKit/Button';
 import WeaponCard from '../WeaponCard';
+import CaseCard from '../CaseCard';
 import { useAuth } from '../../lib/api/auth';
 import { useSkins } from '../../lib/api/skins';
 import s from './styles.module.scss';
@@ -11,10 +12,13 @@ export default function Inventory() {
   const auth = useAuth();
   const {
     skins,
+    skinsCases,
     getSkins,
     selectedSkins,
     selectSkin,
     setSelectedSkins,
+    selectSkinCase,
+    selectedSkinCases,
     selectedSkinsPrice,
     skinToSteam,
   } = useSkins();
@@ -30,53 +34,55 @@ export default function Inventory() {
     setCards(skins);
   }, [skins]);
 
-  const openCase = skinCase => {
+  const openCase = () => {
+    const [skinCase] = Object.values(selectedSkinCases);
+
     console.log(skinCase);
   };
 
   const renderNav = () => {
     const countSelectedSkins = Object.keys(selectedSkins).length;
+    const countSelectedSkinCases = Object.keys(selectedSkinCases).length;
 
-    if (countSelectedSkins === 0) {
+    if (countSelectedSkins === 0 && countSelectedSkinCases === 0) {
       return '';
     }
 
-    const [skin] = Object.values(selectedSkins);
-
-    if (countSelectedSkins === 1 && skin) {
-      return (
-        <Box display="flex" justifyContent="center" mt={3}>
-          <UiButton
-            value="Открыть"
-            onClick={() => openCase(skin)}
-            w="150px"
-            h="40px"
-            bgcolor="linear-gradient(139.23deg, #6361C8 13.34%, #713AEB 86.08%)"
-            borderColor="linear-gradient(139.23deg, #6361C8 13.34%, #713AEB 86.08%)"
-          />
-        </Box>
-      );
-    }
-
     return (
-      <Box display="flex" justifyContent="space-between" mt={3}>
-        <UiButton
-          value="Обмен"
-          onClick={() => {}}
-          w="90px"
-          h="40px"
-          bgcolor="linear-gradient(139.23deg, #6361C8 13.34%, #713AEB 86.08%)"
-          borderColor="linear-gradient(139.23deg, #6361C8 13.34%, #713AEB 86.08%)"
-        />
-        <UiButton
-          value="Вывести"
-          onClick={() => skinToSteam()}
-          w="90px"
-          h="40px"
-          bgcolor="linear-gradient(139.23deg, #6361C8 13.34%, #713AEB 86.08%)"
-          borderColor="linear-gradient(139.23deg, #6361C8 13.34%, #713AEB 86.08%)"
-        />
-      </Box>
+      <>
+        {countSelectedSkinCases > 0 && (
+          <Box display="flex" justifyContent="center" mt={3}>
+            <UiButton
+              value="Открыть"
+              onClick={() => openCase()}
+              w="150px"
+              h="40px"
+              bgcolor="linear-gradient(139.23deg, #6361C8 13.34%, #713AEB 86.08%)"
+              borderColor="linear-gradient(139.23deg, #6361C8 13.34%, #713AEB 86.08%)"
+            />
+          </Box>
+        )}
+        {countSelectedSkins > 0 && (
+          <Box display="flex" justifyContent="space-between" mt={3}>
+            <UiButton
+              value="Обмен"
+              onClick={() => {}}
+              w="90px"
+              h="40px"
+              bgcolor="linear-gradient(139.23deg, #6361C8 13.34%, #713AEB 86.08%)"
+              borderColor="linear-gradient(139.23deg, #6361C8 13.34%, #713AEB 86.08%)"
+            />
+            <UiButton
+              value="Вывести"
+              onClick={() => skinToSteam()}
+              w="90px"
+              h="40px"
+              bgcolor="linear-gradient(139.23deg, #6361C8 13.34%, #713AEB 86.08%)"
+              borderColor="linear-gradient(139.23deg, #6361C8 13.34%, #713AEB 86.08%)"
+            />
+          </Box>
+        )}
+      </>
     );
   };
 
@@ -233,6 +239,15 @@ export default function Inventory() {
           mb={2}
           className={s.overflow}
         >
+          {skinsCases.map(skinsCase => (
+            <CaseCard
+              key={skinsCase.id}
+              card={skinsCase}
+              small
+              selectCard={selectSkinCase}
+              selectedCards={selectedSkinCases}
+            />
+          ))}
           {cards.map(card => (
             <WeaponCard
               key={card.id}

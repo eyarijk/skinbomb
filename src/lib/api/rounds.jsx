@@ -8,6 +8,7 @@ import fetch from '../fetch';
 import { useAuth } from './auth';
 import { useSkins } from './skins';
 import swal from 'sweetalert2';
+import {getCurrentExchange, removeCurrentExchange} from "../../utils/LocalStorage";
 
 const RoundsContext = createContext({});
 
@@ -57,9 +58,16 @@ function RoundsProvider({ children }) {
         if (Object.keys(selectedSkins).length > 0) {
           const formData = new FormData();
           formData.append('bet', bet);
+          const currentExchangeSkin = getCurrentExchange();
+
+          if (currentExchangeSkin) {
+            formData.append('wanted_item', currentExchangeSkin.id);
+          }
+
           Object.keys(selectedSkins).forEach(skinId => {
             formData.append('skins_history_id[]', skinId);
           });
+
           await fetch('/rounds/store', {
             method: 'POST',
             data: formData,
@@ -109,6 +117,7 @@ function RoundsProvider({ children }) {
         if (betProcess) {
           fetchUser();
           setBetProcess(false);
+          removeCurrentExchange();
         }
       });
   }, []);
