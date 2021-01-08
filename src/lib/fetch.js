@@ -24,6 +24,8 @@ const fetch = async (path, options) => {
 
   if (method === 'get') {
     delete requestParams.data;
+  } else {
+    requestParams.params = data;
   }
 
   try {

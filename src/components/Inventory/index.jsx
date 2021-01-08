@@ -16,6 +16,7 @@ export default function Inventory() {
     selectSkin,
     setSelectedSkins,
     selectedSkinsPrice,
+    skinToSteam,
   } = useSkins();
   const [cards, setCards] = useState(skins);
   function onLoginClick() {
@@ -69,7 +70,7 @@ export default function Inventory() {
         />
         <UiButton
           value="Вывести"
-          onClick={() => {}}
+          onClick={() => skinToSteam()}
           w="90px"
           h="40px"
           bgcolor="linear-gradient(139.23deg, #6361C8 13.34%, #713AEB 86.08%)"

@@ -229,7 +229,7 @@ function Index() {
                         fontSize={(isXsDesktop && 16) || 18}
                         color="#fff"
                       >
-                        {selectedSkinsPrice} $
+                        {selectedSkinsPrice.toFixed(2)} $
                       </Box>
                     </Box>
                   }
@@ -252,7 +252,7 @@ function Index() {
                       Начать апгрейд
                     </Box>
                     <Box fontWeight={600} fontSize={18} color="#fff">
-                      {selectedSkinsPrice} $
+                      {selectedSkinsPrice.toFixed(2)} $
                     </Box>
                   </Box>
                 }
@@ -334,7 +334,7 @@ function Index() {
                     fontSize={isMobileOrTablet ? 14 : 18}
                     color="#070707"
                   >
-                    {selectedSkinsPrice} $
+                    {selectedSkinsPrice.toFixed(2)} $
                   </Box>
                 </Box>
               }

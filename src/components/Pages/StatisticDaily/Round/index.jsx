@@ -6,7 +6,7 @@ import BetColor from '../../../../utils/BetColor';
 import s from './styles.module.scss';
 
 function Round({ round }) {
-  const color = BetColor(round.bet);
+  const color = BetColor(round.coefficient);
   const [entered, setEntered] = useState(false);
 
   return (
