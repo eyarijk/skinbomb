@@ -13,7 +13,7 @@ function CaseOpen({ card, onOpened, openCase }) {
   const [isOpened, setIsOpened] = useState(false);
 
   useEffect(() => {
-    if (!card) {
+    if (!card || card.case.skins.length === 0) {
       return;
     }
 
@@ -52,26 +52,32 @@ function CaseOpen({ card, onOpened, openCase }) {
       <Box className={s.root}>
         <Box>
           <Box className={s.skins}>
-            {skins.map(skin => (
-              <Box
-                key={skin.id}
-                className={cn(s.skin, {
-                  [s.skinCompleted]: skin.uuid === winSkinUuid,
-                })}
-              >
-                <img
-                  src="/vector.svg"
-                  className={cn(s.skinArrow, s.skinArrowTop)}
-                />
-                <WeaponCard card={skin.skin} percent={skin.percent} />
-                <img
-                  src="/vector.svg"
-                  className={cn(s.skinArrow, s.skinArrowBottom)}
-                />
+            {skins.length > 0 &&
+              skins.map(skin => (
+                <Box
+                  key={skin.id}
+                  className={cn(s.skin, {
+                    [s.skinCompleted]: skin.uuid === winSkinUuid,
+                  })}
+                >
+                  <img
+                    src="/vector.svg"
+                    className={cn(s.skinArrow, s.skinArrowTop)}
+                  />
+                  <WeaponCard card={skin.skin} percent={skin.percent} />
+                  <img
+                    src="/vector.svg"
+                    className={cn(s.skinArrow, s.skinArrowBottom)}
+                  />
+                </Box>
+              ))}
+            {skins.length === 0 && (
+              <Box className={s.emptyList} component="h2">
+                Здесь пусто
               </Box>
-            ))}
+            )}
           </Box>
-          {isOpened && (
+          {(skins.length === 0 || isOpened) && (
             <Box className={s.nav}>
               <UiButton
                 value="Продолжить"

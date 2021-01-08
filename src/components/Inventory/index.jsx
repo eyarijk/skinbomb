@@ -48,9 +48,10 @@ export default function Inventory() {
   };
 
   const onOpenedCase = () => {
-    getSkins();
+    delete selectedSkinCases[activeCase.id];
     setActiveCase(null);
-    setSelectedSkinCases({});
+    setSelectedSkinCases({ ...selectedSkinCases });
+    getSkins();
   };
 
   const renderNav = () => {
