@@ -11,20 +11,25 @@
     border-radius: 10px;
     top: 189px;
     margin-left: 44px;
-
-    .indicator{
-      font-size: 16px;
-      color: #000;
-      background-color: rgba(0,0,0,.5);
-      line-height: 20px;
-      font-weight: 600;
-      padding: 2px 5px;
-      border-radius: 1px;
-      &.active{
-        background-color: rgba(0,0,0,.9);
+    .indicators {
+      display: flex;
+      flex-direction: column;
+      width: 20%;
+      justify-content: center;
+      align-items: center;
+      .indicator{
+        font-size: 16px;
+        color: #000;
+        background-color: rgba(0,0,0,.5);
+        line-height: 20px;
+        font-weight: 600;
+        padding: 2px 5px;
+        border-radius: 1px;
+        &.active{
+          background-color: rgba(0,0,0,.9);
+        }
       }
     }
-
     .countdown {
       font-family: Calc;
       font-size: 40px;
@@ -33,7 +38,6 @@
       width: 80%;
     }
   }
-
   .bombLeft {
     position: absolute;
     width: 90px;
@@ -62,16 +66,44 @@
   }  
 }
 @media screen and (max-width: 959px) {
-  .countdownWrapper {
-    position: absolute !important;
-    width: 85px !important;
-    height: 39px !important;
-    border-radius: 10px !important;
-    top: 181px !important;
-    margin-left: 29px !important;
-  }
-  .countdown {
-    font-size: 32px !important;
-    line-height: 46px !important;
+  .root {
+    .countdownWrapper {
+      position: absolute;
+      width: 85px;
+      height: 39px;
+      border-radius: 10px;
+      top: 181px;
+      margin-left: 29px;
+      .countdown {
+        font-size: 32px;
+        line-height: 46px;
+        margin-top: -7px;
+        margin-left: 2px;
+      }
+      .indicators {
+        flex-direction: row;
+        margin-left: 47px;
+        .indicator {
+          font-size: 9px;
+          margin-top: 8px;
+          padding: 0 3px;
+        }
+      }
+    }
+    .glass {
+      width: 102px;
+      top: 163px;
+      margin-right: -28px;
+    }
+    .bombLeft {
+      width: 60px;
+      top: 153px;
+      margin-left: -199px;
+    }
+    .bombRight {
+      width: 60px;
+      top: 175px;
+      margin-right: -229px;
+    }
   }
 }
