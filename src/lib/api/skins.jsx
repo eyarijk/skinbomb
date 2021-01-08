@@ -7,7 +7,7 @@ import swal from 'sweetalert2';
 const SkinsContext = createContext({});
 
 function SkinsProvider({ children }) {
-  const { token } = useAuth();
+  const { token, user } = useAuth();
   const [skins, setSkins] = useState([]);
   const [skinsCases, setSkinsCases] = useState([]);
   const [isSkinsLoaded, setIsSkinsLoaded] = useState(false);
@@ -64,6 +64,20 @@ function SkinsProvider({ children }) {
     }
   };
 
+  const openCaseStore = async skinCase => {
+    const data = new FormData();
+
+    data.append('case_inventory_id', skinCase.id);
+    data.append('user_id', user.id);
+
+    const response = await fetch('/cases/open', {
+      method: 'POST',
+      data,
+    });
+
+    return response.skin_id;
+  };
+
   const selectSkin = (id, skin) => {
     if (selectedSkins[id]) {
       delete selectedSkins[id];
@@ -102,6 +116,8 @@ function SkinsProvider({ children }) {
         skinToSteam,
         selectedSkinCases,
         selectSkinCase,
+        openCaseStore,
+        setSelectedSkinCases,
       }}
     >
       {children}
