@@ -43,7 +43,7 @@ function Bomb() {
   return (
     <div className={s.root}>
       <div className={s.countdownWrapper} style={{ backgroundColor: bombBg }}>
-        <Box display="flex">
+        <Box display={isMobileOrTablet ? 'block' : 'flex'}>
           <Box className={s.countdown}>
             {isCountDown
               ? timeToStart >= 0
@@ -52,11 +52,7 @@ function Bomb() {
               : currentRate.toFixed(2)}
           </Box>
           <Box
-            display="flex"
-            flexDirection="column"
-            width="20%"
-            justifyContent="center"
-            alignItems="center"
+            className={s.indicators}
           >
             <Box
               style={{ color: bombBg }}
@@ -78,7 +74,7 @@ function Bomb() {
         </Box>
       </div>
       <img style={{ height: 350, width: isMobileOrTablet ? '100%' : 'auto'} } src="/bomb.svg" alt="timer" />
-      <img className={s.glass} style={{width: isMobileOrTablet ? 70 : 90, marginLeft: isMobileOrTablet ? -211 : -37}} src="/glass.svg" alt="glass" />
+      <img className={s.glass} src="/glass.svg" alt="glass" />
       <img className={s.bombLeft} src="/bomb-left.svg" alt="sides" />
       <img className={s.bombRight} src="/bomb-right.svg" alt="sides" />
     </div>
