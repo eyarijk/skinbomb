@@ -42,6 +42,7 @@
 
   .message {
     color: #DEDEDE;
+    word-wrap: break-word;
 
     &.isAdmin {
       color: #FB9414;
@@ -54,6 +55,7 @@
 
     .time {
       color: #818181;
+      font-size: 14px;
     }
   }
 }

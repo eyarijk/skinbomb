@@ -62,9 +62,9 @@ const Header = props => {
               <>
                 <img className={s.wallet} src="/wallet.svg" alt="wallet" />
                 <Box
-                  ml={1}
-                  mr={(isLgDes && user && 1) || 3.5}
-                  fontSize={isLgDes && user && 12}
+                  ml={1.3}
+                  mr={(isLgDes && user && 1) || 4.5}
+                  fontSize={isLgDes && user && 16}
                 >
                   {(user?.amount).toFixed(2)} $
                 </Box>
@@ -92,11 +92,11 @@ const Header = props => {
             </Link>
           </Box>
         </Box>
-        <Box display="flex" alignItems="center">
+        <Box display="flex" alignItems="center" mr={2.5}>
           <Box
             color="#fff"
             mx={isDesk ? 1 : 9}
-            fontSize={(isXsDes && user && 10) || 12}
+            fontSize={(isXsDes && user && 10) || 14}
           >
             <img src="/refferal.svg" alt="ref" />
             <Link href="/referral" className={s.navLink}>
@@ -135,11 +135,11 @@ const Header = props => {
                 <Avatar src={avatar} alt="avatar" />
                 <Box
                   color="#fff"
-                  mr={(isDesk && user && 1) || 5}
+                  mr={(isDesk && user && 1)}
                   ml={(isXsDes && 0.5) || 1.5}
                   fontSize={16}
                   fontWeight={700}
-                  width={(isXsDes && 80) || (isLgDes && 100) || 130}
+                  width={(isXsDes && 80) || (isLgDes && 100)}
                 >
                   {user.nickname}
                 </Box>

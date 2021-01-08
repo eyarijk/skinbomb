@@ -42,6 +42,7 @@ function LeftContent() {
               justifyContent="center"
               width={210}
               height="100%"
+              fontSize={16}
               bgcolor={theme.background.secondary}
               onClick={() => setActiveTab('chat')}
             >
@@ -76,6 +77,7 @@ function LeftContent() {
               justifyContent="center"
               width={210}
               height="100%"
+              fontSize={16}
               onClick={() => setActiveTab('inventory')}
             >
               Инвентарь
@@ -88,7 +90,7 @@ function LeftContent() {
             width={1}
             height="calc(100% -34px)"
             bgcolor={theme.background.primary}
-            p={3}
+            p={4}
           >
             {activeTab === 'chat' ? <Chat /> : <Inventory />}
           </Box>

@@ -78,10 +78,12 @@ function Chat() {
             <Box display="flex" justifyContent="center" mt={5}>
               <UiButton
                 value="Вернуться в чат"
+                h={40}
+                w={140}
                 onClick={() => setScreen('')}
                 bgcolor="linear-gradient(#6361C8, #713AEB)"
                 borderSize="0"
-                fontSize={14}
+                fontSize={12}
                 fontWeight="bold"
                 fontFamily="Open Sans, sans-serif"
                 p="10px 20px"

@@ -24,6 +24,8 @@ function Statistic() {
         display="flex"
         justifyContent="space-between"
         px={4}
+        pt={1}
+        pl={5.25}
         style={{ marginBottom: 10 }}
       >
         <Box
@@ -36,7 +38,7 @@ function Statistic() {
           color="#888"
           height={43}
         >
-          Статистика
+          Статистика раунда
         </Box>
         <Box
           display="flex"

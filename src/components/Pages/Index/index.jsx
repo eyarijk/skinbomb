@@ -89,11 +89,11 @@ function Index() {
             bgcolor={theme.background.primary}
             borderRadius={!isMobileOrTablet && 10}
             mb={!isMobileOrTablet && 1}
-            pr={2}
             pt={isMobileOrTablet && 3}
           >
             <Box
               width={1}
+              pr={2}
               height={
                 (isMobileOrTablet && 'unset') || (isXsDesktop && 150) || 'unset'
               }
@@ -135,8 +135,8 @@ function Index() {
           width="-webkit-fill-available"
           bgcolor={theme.background.primary}
           display="flex"
+          justifyContent="space-between"
           flexDirection="column"
-          alignItems="center"
           position="relative"
           style={{ paddingBottom: 10 }}
         >
@@ -146,18 +146,18 @@ function Index() {
               fontSize={20}
               fontWeight={400}
               color="#979797"
-              px={2.5}
-              width={1}
+              width={0.96}
+              pl={4.1}
             >
               Сделать ставку
             </Box>
           )}
           {!isMobileOrTablet && (
-            <Box display="flex" width={1} px={2.5} mb={1.5} alignItems="center">
+              <Box display="flex" width={0.96} pl={4.1} mb={1.5} alignItems="center" justifyContent="space-between">
               <BetHistory
-                justifyContent="center"
                 my={1.5}
-                width="auto"
+                justifyContent="space-between"
+                width="430px"
                 onClick={bet => setRate(bet.bet)}
                 history={[
                   { id: 1, bet: 1.1 },
@@ -168,7 +168,7 @@ function Index() {
                 ]}
               />
               {!isMobileOrTablet && !isSmDesktop && (
-                <Box width="-webkit-fill-available" pl={2.5}>
+                <Box width="32%" pl={2.5}>
                   <Input
                     value={rate}
                     onChange={handleChangeRate}
@@ -193,6 +193,7 @@ function Index() {
               <Box width="100px">
                 <Input
                   value={rate}
+                  align="center"
                   onChange={handleChangeRate}
                   name="rate"
                   type="number"
@@ -202,7 +203,7 @@ function Index() {
                   fontWeight="400"
                 />
               </Box>
-              <Box width={1} px={2.5}>
+              <Box width={630}>
                 <Button
                   w="100%"
                   h="40px"
@@ -238,7 +239,7 @@ function Index() {
             </Box>
           )}
           {!isMobileOrTablet && !isSmDesktop && (
-            <Box width={1} px={2.5}>
+            <Box width={1} px={4.1}>
               <Button
                 w="100%"
                 h="40px"

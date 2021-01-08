@@ -16,7 +16,8 @@ function Stats() {
       width={1}
       bgcolor={theme.background.secondary}
       borderRadius={10}
-      p={1}
+      pt={1.3}
+      p={3.6}
       flexGrow={1}
       height="1px"
       className={s.root}
