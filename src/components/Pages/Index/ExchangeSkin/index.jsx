@@ -126,8 +126,8 @@ function ExchangeSkin({ handleChangeRate }) {
       width={(isMobileOrTablet && 299) || (isXsDesktop && 250) || 299}
       bgcolor={theme.background.primary}
       borderRadius={!isMobileOrTablet && 10}
-      padding={isMobileOrTablet ? 0 : '40px 40px 20px 40px'}
-      pl={isMobileOrTablet ? "36px" : 0}
+      padding={isMobileOrTablet ? 0 : '41px'}
+      pl={isMobileOrTablet ? "36px" : "41px"}
       display="flex"
       justifyContent="center"
       flexDirection="column"
@@ -158,6 +158,11 @@ function ExchangeSkin({ handleChangeRate }) {
           src={exchangeSkin ? '/sphere.gif' : '/sphere.png'}
           alt="sphere"
           className={s.sphere}
+        />
+        <img
+            src="/line.png"
+            alt="line"
+            className={s.line}
         />
       </Box>
       {renderSkin()}
