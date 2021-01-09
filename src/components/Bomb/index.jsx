@@ -43,7 +43,7 @@ function Bomb() {
   return (
     <div className={s.root}>
       <div className={s.countdownWrapper} style={{ backgroundColor: bombBg }}>
-        <Box display={isMobileOrTablet ? 'block' : 'flex'}>
+        <Box display="block" mt={-1} ml={3.1}>
           <Box className={s.countdown}>
             {isCountDown
               ? timeToStart >= 0
@@ -52,7 +52,6 @@ function Bomb() {
               : currentRate.toFixed(2)}
           </Box>
           <Box
-            className={s.indicators}
             className={s.indicators}
           >
             <Box
