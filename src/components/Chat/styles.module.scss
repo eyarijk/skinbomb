@@ -26,8 +26,17 @@
       &::-webkit-input-placeholder {
         padding-top: 45px;
         padding-left: 35px;
-      } 
+      }
     }
+  }
+
+  .textareaWrapper::before {
+    border-top: none;
+    height: .9em;
+    border-radius: 0 0 50% 50% / 0 0 100% 100%;
+    background: silver;
+    border-color: silver;
+    margin-left: -.9em;
   }
 
   .emoji{
