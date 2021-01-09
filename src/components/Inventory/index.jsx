@@ -173,7 +173,7 @@ export default function Inventory() {
       </Box>
     );
   }
-  if (!skins || !skins.length) {
+  if ((!skins || !skins.length) && (!skinsCases || !skinsCases.length)) {
     return (
       <Box
         display="flex"

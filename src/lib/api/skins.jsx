@@ -30,6 +30,7 @@ function SkinsProvider({ children }) {
       setSkins(payload.skin_history);
       setSkinsCases(payload.inventory_cases);
       setSelectedSkins({});
+      setSelectedSkinCases({});
       setIsSkinsLoaded(true);
     } catch (err) {
       console.error('>>> API Error: ', err);
