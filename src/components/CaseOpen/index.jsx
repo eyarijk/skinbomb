@@ -1,95 +1,136 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Box } from '@material-ui/core';
 import s from './styles.module.scss';
 import WeaponCard from '../WeaponCard';
+import Loading from '../Loading';
 import UiButton from '../UiKit/Button';
 import cn from 'classnames';
 
 function CaseOpen({ card, onOpened, openCase }) {
   const cardWidth = 142;
   const [skins, setSkins] = useState([]);
-  const [winSkinUuid, setWinUuid] = useState(null);
-  const [isOpened, setIsOpened] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isCompleted, setIsCompleted] = useState(false);
+  const [viewportSkins, setViewportSkins] = useState(null);
+  const [winSkinUuid, setWinSkinUuid] = useState(null);
+  const wrapSkins = useRef(null);
 
-  useEffect(() => {
-    if (!card || card.case.skins.length === 0) {
-      return;
-    }
+  const startGame = async () => {
+    const winSkinId = await openCase(card);
 
-    const countSkins = Math.round(window.innerWidth / cardWidth);
-    const parts = Math.floor(countSkins / card.case.skins.length);
+    const countScreens = 10;
+    const countSkinsPerScreen = Math.floor(window.innerWidth / cardWidth);
+    const allCount = countSkinsPerScreen * countScreens;
+    const viewPortSkins = countSkinsPerScreen * cardWidth;
+    const offsetSide = window.innerWidth - viewPortSkins;
 
-    const skinsList = [];
     let uuid = 1;
-    for (let i = 0; i < parts; i++) {
+    const skinsList = [];
+    while (skinsList.length < allCount) {
       for (const skin of card.case.skins) {
         skinsList.push({ ...skin, uuid });
         uuid++;
       }
     }
 
-    setSkins(skinsList.splice(0, countSkins));
-  }, [card]);
+    const skins = skinsList.splice(0, allCount);
+    const winIndex =
+      (countScreens - 1) * countSkinsPerScreen +
+      Math.floor(countSkinsPerScreen / 2);
+
+    const tempSkinIndex = skins.findIndex(skin => skin.skin_id === winSkinId);
+    const tempSkin = skins[winIndex];
+    skins[winIndex] = skins[tempSkinIndex];
+    skins[tempSkinIndex] = tempSkin;
+
+    setSkins(skins);
+    setIsCompleted(false);
+    setViewportSkins(viewPortSkins * countScreens);
+
+    setIsLoading(false);
+
+    setTimeout(async () => {
+      const speed = 3500;
+      const translateX = (countScreens - 1) * viewPortSkins - offsetSide;
+      wrapSkins.current.style.transition = `transform ${speed}ms ease-out 0s`;
+      wrapSkins.current.style.transform = `translateX(-${translateX}px)`;
+
+      setTimeout(() => {
+        setWinSkinUuid(skins[winIndex].uuid);
+        setIsCompleted(true);
+      }, speed);
+    }, 2000);
+  };
 
   useEffect(() => {
-    if (skins.length === 0 && !isOpened) {
+    setIsLoading(true);
+    setWinSkinUuid(null);
+    if (card.case.skins.length === 0) {
+      setIsCompleted(true);
+      setIsLoading(false);
       return;
     }
 
-    setTimeout(async () => {
-      const skinId = await openCase(card);
-      const skin = skins.find(skin => skin.skin_id === skinId);
+    startGame();
+  }, [card]);
 
-      setWinUuid(skin.uuid);
-      setIsOpened(true);
-    }, 100);
-  }, [skins]);
+  if (isLoading) {
+    return (
+      <>
+        <Box className={s.overflow} />
+        <Box className={s.root}>
+          <Loading />
+        </Box>
+      </>
+    );
+  }
 
   return (
     <>
       <Box className={s.overflow} />
       <Box className={s.root}>
-        <Box>
-          <Box className={s.skins}>
-            {skins.length > 0 &&
-              skins.map(skin => (
-                <Box
-                  key={skin.id}
-                  className={cn(s.skin, {
-                    [s.skinCompleted]: skin.uuid === winSkinUuid,
-                  })}
-                >
-                  <img
-                    src="/vector.svg"
-                    className={cn(s.skinArrow, s.skinArrowTop)}
-                  />
-                  <WeaponCard card={skin.skin} percent={skin.percent} />
-                  <img
-                    src="/vector.svg"
-                    className={cn(s.skinArrow, s.skinArrowBottom)}
-                  />
-                </Box>
-              ))}
-            {skins.length === 0 && (
-              <Box className={s.emptyList} component="h2">
-                Здесь пусто
+        <div
+          className={s.skins}
+          ref={wrapSkins}
+          style={{
+            width: `${viewportSkins}px`,
+            transform: `translateX(0px)`,
+          }}
+        >
+          {skins.map(skin => (
+            <Box key={skin.id} className={s.skin}>
+              <Box
+                key={skin.id}
+                className={cn(s.skin, {
+                  [s.skinCompleted]: skin.uuid === winSkinUuid,
+                })}
+              >
+                <img
+                  src="/vector.svg"
+                  className={cn(s.skinArrow, s.skinArrowTop)}
+                />
+                <WeaponCard card={skin.skin} percent={skin.percent} />
+                <img
+                  src="/vector.svg"
+                  className={cn(s.skinArrow, s.skinArrowBottom)}
+                />
               </Box>
-            )}
-          </Box>
-          {(skins.length === 0 || isOpened) && (
-            <Box className={s.nav}>
-              <UiButton
-                value="Продолжить"
-                onClick={() => onOpened()}
-                w="150px"
-                h="40px"
-                bgcolor="#F89D00"
-                borderColor="#F89D00"
-              />
             </Box>
-          )}
-        </Box>
+          ))}
+        </div>
+        {isCompleted && (
+          <Box className={s.nav}>
+            <UiButton
+              value="Продолжить"
+              onClick={() => onOpened()}
+              w="150px"
+              h="40px"
+              bgcolor="#F89D00"
+              borderColor="#F89D00"
+            />
+          </Box>
+        )}
       </Box>
     </>
   );
