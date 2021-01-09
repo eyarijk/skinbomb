@@ -138,7 +138,7 @@ function Index() {
           justifyContent="space-between"
           flexDirection="column"
           position="relative"
-          style={{ paddingBottom: 10 }}
+          pb={ isMobileOrTablet ? 0 : 10 }
         >
           <Bomb />
           {!isMobileOrTablet && (
@@ -286,7 +286,7 @@ function Index() {
           <BetHistory
             justifyContent="space-between"
             my={1.5}
-            width="100vw"
+            width="100%"
             onClick={bet => setRate(bet.bet)}
             history={[
               { id: 1, bet: 1.1 },
@@ -300,7 +300,7 @@ function Index() {
       )}
       {isMobileOrTablet && (
         <Box display="flex" bgcolor={theme.background.primary} px={2.5}>
-          <Box width="130px" mr={3}>
+          <Box width={isMobileOrTablet ? 70 : 130} mr={3}>
             <Input
               value={rate}
               onChange={handleChangeRate}
@@ -312,11 +312,11 @@ function Index() {
               fontWeight="400"
             />
           </Box>
-          <Box width="calc(100% - 130px)">
+          <Box width={isMobileOrTablet ? 1 : "calc(100% - 130px)"}>
             <Button
               w="100%"
               h="40px"
-              p="0 26px"
+              p={isMobileOrTablet ? "0 5px" : "0 26px"}
               bgcolor="#F89D00"
               onClick={() => handleBet(rate)}
               borderSize={0}

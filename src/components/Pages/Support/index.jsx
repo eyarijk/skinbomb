@@ -160,8 +160,8 @@ function Support() {
           <Box flexGrow={1} height={2} display="flex" flexDirection="column">
             <UnauthorizedContainer>
               <>
-                <Box display="flex" justifyContent="space-between">
-                  <Box width={475}>
+                <Box display={isMobileOrTablet ? "block" : "flex"} justifyContent="space-between">
+                  <Box width={isMobileOrTablet ? 1 : 475}>
                     <Input
                       value={title}
                       onChange={setTitle}
@@ -181,7 +181,7 @@ function Support() {
                         rows={7}
                         placeholder="Введите ваш Вопрос"
                       />
-                      <img src="/send-question.svg" alt="" style={{cursor: "pointer"}} onClick={async () => {
+                      <img src="/send-question.svg" alt="" style={{cursor: "pointer", width: isMobileOrTablet ? 50 : 60}} onClick={async () => {
                         if(!loading) {
                           await storeFaq(title, question);
                           setQuestion("");

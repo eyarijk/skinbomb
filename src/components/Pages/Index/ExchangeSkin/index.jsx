@@ -45,8 +45,9 @@ function ExchangeSkin({ handleChangeRate }) {
             display="flex"
             alignItems="center"
             justifyContent="center"
+            fontSize={isMobileOrTablet ? 10 : 13}
           >
-            Выбрать скин в магазине
+            {isMobileOrTablet ? 'Выбрать скин' : 'Выбрать скин в магазине'}
           </Box>
         </Link>
       );
@@ -121,16 +122,17 @@ function ExchangeSkin({ handleChangeRate }) {
 
   return (
     <Box
-      height={(isMobileOrTablet && 300) || '100%'}
+      height={(isMobileOrTablet && 185) || '100%'}
       width={(isMobileOrTablet && 299) || (isXsDesktop && 250) || 299}
       bgcolor={theme.background.primary}
       borderRadius={!isMobileOrTablet && 10}
-      padding="40px 40px 20px 40px"
+      padding={isMobileOrTablet ? 0 : '40px 40px 20px 40px'}
+      pl={isMobileOrTablet ? "36px" : 0}
       display="flex"
       justifyContent="center"
       flexDirection="column"
       alignItems="center"
-      position="relative"
+      position={isMobileOrTablet ? 'inherit' : 'relative'}
     >
       {!!exchangeSkin && (
         <button onClick={cancelSkin} className={s.cancelEgg}>
@@ -141,7 +143,7 @@ function ExchangeSkin({ handleChangeRate }) {
         display="flex"
         justifyContent="center"
         alignItems="center"
-        width={1}
+        width={isMobileOrTablet ? 85 : 0.9}
         height={isMobileOrTablet ? 90 : 240}
         className={s.eggWrapper}
       >

@@ -3,10 +3,12 @@ import PropTypes from 'prop-types';
 
 import { Box } from '@material-ui/core';
 import BetHistoryItem from './BetHistoryItem';
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 function BetHistory({ history, small, onClick, ...props }) {
+  const isMobileOrTablet = useMediaQuery('(max-width: 959px)');
   return (
-    <Box display="flex" width="100%" {...props}>
+    <Box display="flex" width="100%" position={isMobileOrTablet ? 'relative' : "inherit"} {...props}>
       {history.map(bet => {
         return (
           <BetHistoryItem

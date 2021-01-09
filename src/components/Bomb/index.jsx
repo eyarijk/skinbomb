@@ -53,6 +53,7 @@ function Bomb() {
           </Box>
           <Box
             className={s.indicators}
+            className={s.indicators}
           >
             <Box
               style={{ color: bombBg }}
@@ -73,7 +74,7 @@ function Bomb() {
           </Box>
         </Box>
       </div>
-      <img style={{ height: 350, width: isMobileOrTablet ? '100%' : 'auto'} } src="/bomb.svg" alt="timer" />
+      <img style={{ height: 350, width: isMobileOrTablet ? '330px' : 'auto'} } src="/bomb.svg" alt="timer" />
       <img className={s.glass} src="/glass.svg" alt="glass" />
       <img className={s.bombLeft} src="/bomb-left.svg" alt="sides" />
       <img className={s.bombRight} src="/bomb-right.svg" alt="sides" />
