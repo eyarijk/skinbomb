@@ -24,7 +24,7 @@ function Index() {
   const isMobileOrTablet = useMediaQuery('(max-width: 959px)');
   const isXsDesktop = useMediaQuery('(max-width: 1129px)');
   const isSmDesktop = useMediaQuery('(max-width: 1329px)');
-  const isMdDesktop = useMediaQuery('(max-width: 1459px)');
+  const isMdDesktop = useMediaQuery('(max-width: 1439px)');
 
   const router = useRouter();
   const { fetchUser, saveToken } = useAuth();
