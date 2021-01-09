@@ -13,15 +13,15 @@ function CaseOpen({ card, onOpened, openCase }) {
   const [isLoading, setIsLoading] = useState(true);
   const [isCompleted, setIsCompleted] = useState(false);
   const [viewportSkins, setViewportSkins] = useState(null);
-  const [winSkinUuid, setWinSkinUuid] = useState(null);
+  const [selectedCards, setSelectedCards] = useState({});
   const wrapSkins = useRef(null);
 
   const startGame = async () => {
     const winSkinId = await openCase(card);
 
-    const countScreens = 10;
+    const countScreens = 8;
     const countSkinsPerScreen = Math.floor(window.innerWidth / cardWidth);
-    const allCount = countSkinsPerScreen * countScreens;
+    const allCount = countSkinsPerScreen * countScreens + countSkinsPerScreen;
     const viewPortSkins = countSkinsPerScreen * cardWidth;
     const offsetSide = window.innerWidth - viewPortSkins;
 
@@ -46,7 +46,7 @@ function CaseOpen({ card, onOpened, openCase }) {
 
     setSkins(skins);
     setIsCompleted(false);
-    setViewportSkins(viewPortSkins * countScreens);
+    setViewportSkins(viewPortSkins * (countScreens + 1));
 
     setIsLoading(false);
 
@@ -57,7 +57,7 @@ function CaseOpen({ card, onOpened, openCase }) {
       wrapSkins.current.style.transform = `translateX(-${translateX}px)`;
 
       setTimeout(() => {
-        setWinSkinUuid(skins[winIndex].uuid);
+        setSelectedCards({ [skins[winIndex].uuid]: true });
         setIsCompleted(true);
       }, speed);
     }, 2000);
@@ -65,7 +65,6 @@ function CaseOpen({ card, onOpened, openCase }) {
 
   useEffect(() => {
     setIsLoading(true);
-    setWinSkinUuid(null);
     if (card.case.skins.length === 0) {
       setIsCompleted(true);
       setIsLoading(false);
@@ -100,24 +99,22 @@ function CaseOpen({ card, onOpened, openCase }) {
         >
           {skins.map(skin => (
             <Box key={skin.id} className={s.skin}>
-              <Box
-                key={skin.id}
-                className={cn(s.skin, {
-                  [s.skinCompleted]: skin.uuid === winSkinUuid,
-                })}
-              >
-                <img
-                  src="/vector.svg"
-                  className={cn(s.skinArrow, s.skinArrowTop)}
-                />
-                <WeaponCard card={skin.skin} percent={skin.percent} />
-                <img
-                  src="/vector.svg"
-                  className={cn(s.skinArrow, s.skinArrowBottom)}
+              <Box key={skin.id} className={s.skin}>
+                <WeaponCard
+                  card={{ ...skin.skin, id: skin.uuid }}
+                  percent={skin.percent}
+                  selectedCards={selectedCards}
                 />
               </Box>
             </Box>
           ))}
+        </div>
+        <div className={s.skinArrowWrap}>
+          <img src="/vector.svg" className={cn(s.skinArrow, s.skinArrowTop)} />
+          <img
+            src="/vector.svg"
+            className={cn(s.skinArrow, s.skinArrowBottom)}
+          />
         </div>
         {isCompleted && (
           <Box className={s.nav}>

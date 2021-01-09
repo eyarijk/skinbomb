@@ -32,21 +32,10 @@
 
 .skin {
   z-index: 10;
-  position: relative;
-
-  .skinArrow,.skinArrowBottom {
-    display: none;
-  }
 }
 
 .emptyList {
   color: #fff;
-}
-
-.skinCompleted {
-  .skinArrow,.skinArrowBottom {
-    display: block;
-  }
 }
 
 .skinArrow {
@@ -54,13 +43,19 @@
   width: 118px;
 }
 
+.skinArrowWrap {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
 .skinArrowBottom {
   transform: rotate(180deg);
-  bottom: -30px;
+  bottom: -125px;
 }
 
 .skinArrowTop {
-  top: -30px;
+  top: -105px;
 }
 
 .nav {
