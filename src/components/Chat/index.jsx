@@ -210,7 +210,7 @@ function Chat() {
                     <img
                       src="/send.svg"
                       alt="send"
-                      style={{ transform: 'rotate(45deg)' }}
+                      style={{ transform: 'rotate(45deg)', width: "45px" }}
                     />
                   </Button>
                 </Box>

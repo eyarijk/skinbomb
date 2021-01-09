@@ -24,7 +24,7 @@ function Index() {
   const isMobileOrTablet = useMediaQuery('(max-width: 959px)');
   const isXsDesktop = useMediaQuery('(max-width: 1129px)');
   const isSmDesktop = useMediaQuery('(max-width: 1329px)');
-  const isMdDesktop = useMediaQuery('(max-width: 1459px)');
+  const isMdDesktop = useMediaQuery('(max-width: 1439px)');
 
   const router = useRouter();
   const { fetchUser, saveToken } = useAuth();
@@ -153,7 +153,7 @@ function Index() {
             </Box>
           )}
           {!isMobileOrTablet && (
-              <Box display="flex" width={0.96} pl={4.1} mb={1.5} alignItems="center" justifyContent="space-between">
+              <Box display="flex" width={0.855} pl={4.1} mb={1.5} alignItems="center" justifyContent="space-between">
               <BetHistory
                 my={1.5}
                 justifyContent="space-between"
@@ -239,7 +239,7 @@ function Index() {
             </Box>
           )}
           {!isMobileOrTablet && !isSmDesktop && (
-            <Box width={1} px={4.1}>
+            <Box width={0.9} px={4.1}>
               <Button
                 w="100%"
                 h="40px"
