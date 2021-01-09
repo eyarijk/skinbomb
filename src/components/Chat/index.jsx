@@ -1,16 +1,13 @@
-import React, { useState, useEffect } from 'react';
-
+import React, { useState } from 'react';
 import { Box, Button, List } from '@material-ui/core';
 import { useTheme } from '@material-ui/core/styles';
-import { Picker } from 'emoji-mart'
-
-
+import { Picker } from 'emoji-mart';
 import Message from './Message';
 import UiButton from '../UiKit/Button';
-
 import { useChat } from '../../lib/api/chat';
-
 import s from './styles.module.scss';
+import NeedAuth from '../NeedAuth';
+import { useAuth } from '../../lib/api/auth';
 
 const rules = [
   '— Запрещено использовать в никнейме название или ссылки ведущие на сторонний сайт.',
@@ -23,6 +20,7 @@ const rules = [
 
 function Chat() {
   const theme = useTheme();
+  const auth = useAuth();
   const { messages, online, sendMessage } = useChat();
   const [screen, setScreen] = useState('');
   const [rateLimit, setRateLimit] = useState(true);
@@ -37,12 +35,108 @@ function Chat() {
       setRateLimit(true);
     });
     setRateLimit(false);
-    setIsOpenPicker(false)
+    setIsOpenPicker(false);
   }
 
   function addEmoji(e) {
     setNewMessage(newMessage + e.native);
   }
+
+  const renderSendMessage = () => {
+    if (!auth.user) {
+      return <NeedAuth text="Войдите, чтобы отправить сообщение" />;
+    }
+
+    return (
+      <>
+        <Box className={s.textareaWrapper} mb="10px">
+          <textarea
+            className={s.textarea}
+            name="message"
+            rows={7}
+            placeholder="Введите сообщение"
+            maxLength={100}
+            value={newMessage}
+            onKeyPress={e => {
+              if (e.key === 'Enter' && newMessage.length >= 1) {
+                e.preventDefault();
+                rateLimit &&
+                  newMessage.replace(/ /g, '').length >= 1 &&
+                  submitMessage();
+              }
+            }}
+            onChange={e =>
+              e.target.value !== '\n' &&
+              e.target.value.replace(/ /g, '').length >= 1
+                ? setNewMessage(e.target.value)
+                : setNewMessage('')
+            }
+          />
+          <img
+            className={s.emoji}
+            src="/emoji.svg"
+            alt="emoji"
+            onClick={() => setIsOpenPicker(!isOpenPicker)}
+          />
+        </Box>
+        <Box
+          width={1}
+          height={60}
+          display="flex"
+          justifyContent="space-between"
+        >
+          <Box
+            height="100%"
+            display="flex"
+            flexDirection="column"
+            justifyContent="space-between"
+          >
+            <Box
+              color={theme.text.gray}
+              fontSize={12}
+              fontWeight={400}
+              lineHeight="20px"
+              fontFamily="Open Sans, sans-serif"
+            >
+              100 символов максимум
+            </Box>
+            <div
+              className={s.chatRulesButton}
+              onClick={() => setScreen('chatRules')}
+            >
+              <img src="/chat.svg" alt="chat-icon" />
+              <Box
+                ml={1}
+                color={theme.text.gray}
+                fontSize={14}
+                fontWeight={400}
+                lineHeight="20px"
+              >
+                Правила чата
+              </Box>
+            </div>
+          </Box>
+          <Box>
+            <Button
+              disabled={!rateLimit}
+              className={s.send}
+              onClick={() =>
+                rateLimit &&
+                newMessage.replace(/ /g, '').length >= 1 &&
+                submitMessage()
+              }
+            >
+              <img
+                src="/send.svg"
+                alt="send"
+                style={{ transform: 'rotate(45deg)', width: '45px' }}
+              />
+            </Button>
+          </Box>
+        </Box>
+      </>
+    );
+  };
 
   function renderContent() {
     switch (screen) {
@@ -96,24 +190,24 @@ function Chat() {
           <>
             {isOpenPicker ? (
               <span>
-                <Picker onSelect={addEmoji}/>
+                <Picker onSelect={addEmoji} />
               </span>
             ) : (
               <Box
-                  className={s.listWrapper}
-                  height="calc(100% - 264px)"
-                  width={1}
+                className={s.listWrapper}
+                height="calc(100% - 264px)"
+                width={1}
               >
                 <List className={s.list}>
                   {messages.map(item => (
-                      <Message
-                          key={item.id}
-                          img={item.user.avatar}
-                          isAdmin={item.user.is_admin}
-                          name={item.user.personaname}
-                          message={item.message}
-                          time={item.created_at}
-                      />
+                    <Message
+                      key={item.id}
+                      img={item.user.avatar}
+                      isAdmin={item.user.is_admin}
+                      name={item.user.personaname}
+                      message={item.message}
+                      time={item.created_at}
+                    />
                   ))}
                 </List>
               </Box>
@@ -130,91 +224,7 @@ function Chat() {
                 <div className={s.dot} />
                 {`Онлайн: ${online}`}
               </Box>
-              <Box className={s.textareaWrapper} mb="10px">
-                <textarea
-                  className={s.textarea}
-                  name="message"
-                  rows={7}
-                  placeholder="Введите сообщение"
-                  maxLength={100}
-                  value={newMessage}
-                  onKeyPress={e => {
-                    if (e.key === 'Enter' && newMessage.length >= 1) {
-                      e.preventDefault();
-                      rateLimit &&
-                        newMessage.replace(/ /g, '').length >= 1 &&
-                        submitMessage();
-                    }
-                  }}
-                  onChange={e =>
-                    e.target.value !== '\n' &&
-                    e.target.value.replace(/ /g, '').length >= 1
-                      ? setNewMessage(e.target.value)
-                      : setNewMessage('')
-                  }
-                />
-                <img
-                    className={s.emoji}
-                    src="/emoji.svg"
-                    alt="emoji"
-                    onClick={() => setIsOpenPicker(!isOpenPicker)}
-                />
-              </Box>
-              <Box
-                width={1}
-                height={60}
-                display="flex"
-                justifyContent="space-between"
-              >
-                <Box
-                  height="100%"
-                  display="flex"
-                  flexDirection="column"
-                  justifyContent="space-between"
-                >
-                  <Box
-                    color={theme.text.gray}
-                    fontSize={12}
-                    fontWeight={400}
-                    lineHeight="20px"
-                    fontFamily="Open Sans, sans-serif"
-                  >
-                    100 символов максимум
-                  </Box>
-                  <div
-                    className={s.chatRulesButton}
-                    onClick={() => setScreen('chatRules')}
-                  >
-                    <img src="/chat.svg" alt="chat-icon" />
-                    <Box
-                      ml={1}
-                      color={theme.text.gray}
-                      fontSize={14}
-                      fontWeight={400}
-                      lineHeight="20px"
-                    >
-                      Правила чата
-                    </Box>
-                  </div>
-                </Box>
-                <Box>
-                  <Button
-                    disabled={!rateLimit}
-                    className={s.send}
-                    onClick={() =>
-                      rateLimit &&
-                      newMessage.replace(/ /g, '').length >= 1 &&
-                      submitMessage()
-                    }
-                  >
-                    <img
-                      src="/send.svg"
-                      alt="send"
-                      style={{ transform: 'rotate(45deg)', width: "45px" }}
-                    />
-                  </Button>
-                </Box>
-              </Box>
+              {renderSendMessage()}
             </Box>
           </>
         );

@@ -11,9 +11,11 @@ import {
   getCurrentExchange,
   removeCurrentExchange,
 } from '../../../../utils/LocalStorage';
+import { useAuth } from '../../../../lib/api/auth';
 
 function ExchangeSkin({ handleChangeRate }) {
   const theme = useTheme();
+  const auth = useAuth();
   const isMobileOrTablet = useMediaQuery('(max-width: 959px)');
   const isXsDesktop = useMediaQuery('(max-width: 1129px)');
   const [exchangeSkin, setExchangeSkin] = useState(null);
@@ -37,6 +39,10 @@ function ExchangeSkin({ handleChangeRate }) {
   };
 
   const renderSkin = () => {
+    if (!auth.user) {
+      return '';
+    }
+
     if (!exchangeSkin) {
       return (
         <Link href="/store?type=game">
@@ -127,7 +133,7 @@ function ExchangeSkin({ handleChangeRate }) {
       bgcolor={theme.background.primary}
       borderRadius={!isMobileOrTablet && 10}
       padding={isMobileOrTablet ? 0 : '41px'}
-      pl={isMobileOrTablet ? "36px" : "41px"}
+      pl={isMobileOrTablet ? '36px' : '41px'}
       display="flex"
       justifyContent="center"
       flexDirection="column"
@@ -159,11 +165,7 @@ function ExchangeSkin({ handleChangeRate }) {
           alt="sphere"
           className={s.sphere}
         />
-        <img
-            src="/line.png"
-            alt="line"
-            className={s.line}
-        />
+        <img src="/line.png" alt="line" className={s.line} />
       </Box>
       {renderSkin()}
     </Box>

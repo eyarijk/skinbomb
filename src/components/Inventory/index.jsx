@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { Box, Button } from '@material-ui/core';
+import { Box } from '@material-ui/core';
 import UiButton from '../UiKit/Button';
 import WeaponCard from '../WeaponCard';
 import CaseCard from '../CaseCard';
@@ -9,6 +9,7 @@ import { useAuth } from '../../lib/api/auth';
 import { useSkins } from '../../lib/api/skins';
 import s from './styles.module.scss';
 import { useRouter } from 'next/router';
+import NeedAuth from '../NeedAuth';
 
 export default function Inventory() {
   const auth = useAuth();
@@ -30,10 +31,6 @@ export default function Inventory() {
 
   const [cards, setCards] = useState(skins);
   const [activeCase, setActiveCase] = useState(null);
-
-  function onLoginClick() {
-    auth.steamAuth();
-  }
 
   useEffect(() => {
     getSkins();
@@ -140,39 +137,9 @@ export default function Inventory() {
   };
 
   if (!auth.user) {
-    return (
-      <Box className={s.root} display="flex" alignItems="center" height="100%">
-        <Box
-          width={330}
-          height={175}
-          display="flex"
-          flexDirection="column"
-          justifyContent="space-between"
-          alignItems="center"
-        >
-          <Box color="#C4C4C4">Войдите, чтобы начать играть</Box>
-          <Button className={s.loginButton} onClick={onLoginClick}>
-            <img src="/login-steam.svg" alt="login" />
-          </Button>
-          <Box
-            fontWeight="400"
-            fontSize={14}
-            lineHeight="20px"
-            letterSpacing="0.44px"
-            color="#C4C4C4"
-          >
-            Заходя на этот сайт, вы подтверждаете, что вам исполнилось 18 лет и
-            вы соглашаетесь с{' '}
-            <Link href="/privacy-policy">
-              <span className={s.privacy}>
-                Условиями пользовательского соглашения
-              </span>
-            </Link>
-          </Box>
-        </Box>
-      </Box>
-    );
+    return <NeedAuth text="Войдите, чтобы начать играть" />;
   }
+
   if ((!skins || !skins.length) && (!skinsCases || !skinsCases.length)) {
     return (
       <Box

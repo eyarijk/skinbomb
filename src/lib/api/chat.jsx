@@ -2,9 +2,7 @@ import React, { createContext, useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import Echo from 'laravel-echo';
 import io from 'socket.io-client';
-
 import fetch from '../fetch';
-
 import { useAuth } from './auth';
 
 const ChatContext = createContext({});
@@ -25,7 +23,6 @@ function ChatProvider({ children }) {
       return payload.messages;
     } catch (err) {
       console.error('>>> API Error: ', err);
-      return;
     }
   };
 
@@ -34,7 +31,7 @@ function ChatProvider({ children }) {
     formData.append('message', message);
 
     try {
-      const payload = await fetch('/chat/store', {
+      await fetch('/chat/store', {
         data: formData,
         method: 'post',
       });
@@ -42,7 +39,6 @@ function ChatProvider({ children }) {
       return { status: 'success' };
     } catch (err) {
       console.error('>>> API Error: ', err);
-      return;
     }
   };
 
@@ -55,7 +51,7 @@ function ChatProvider({ children }) {
   };
 
   useEffect(() => {
-    if (token && messages.length === 0) {
+    if (messages.length === 0) {
       getMessages();
     }
   }, [token]);
