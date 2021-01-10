@@ -45,7 +45,7 @@ function Bomb() {
   useEffect(() => {
     if (rateToFinish < currentRate) {
       setTimeout(() => {
-        const step = currentRate / 100;
+        const step = currentRate / 50;
         setRateToFinish(prevVal => prevVal + step);
       }, 50);
     } else if (rateToFinish !== currentRate) {
@@ -74,7 +74,7 @@ function Bomb() {
       return '';
     }
 
-    return 'fire';
+    return '';
   };
 
   return (
