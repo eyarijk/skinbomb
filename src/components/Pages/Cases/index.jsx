@@ -53,8 +53,8 @@ function Cases() {
     <Box
       width={
         (isMobileOrTablet && '100vw') ||
-        (isDesk && 'calc(100vw - 300px)') ||
-        'calc(100vw - 430px)'
+        (isDesk && '100%') ||
+        '100%'
       }
       height={1}
       display="flex"
@@ -119,16 +119,15 @@ function Cases() {
               lineHeight="20px"
               letterSpacing="0.44px"
             >
-              Каждое пополнение на{' '}
-              <Box component="span" color="#02C880" fontWeight={700}>
-                0,01$
-              </Box>{' '}
-              это{' '}
-              <Box component="span" color="#02C880" fontWeight={700}>
-                1 опыт
-              </Box>
-              , зарабатывайте опыт и поднимайте уровень. Вы будете вознаграждены
-              специальным кейсом за каждый уровень.
+              {/*Каждое пополнение на{' '}*/}
+              {/*<Box component="span" color="#02C880" fontWeight={700}>*/}
+              {/*  0,01$*/}
+              {/*</Box>{' '}*/}
+              {/*это{' '}*/}
+              {/*<Box component="span" color="#02C880" fontWeight={700}>*/}
+              {/*  1 опыт*/}
+              {/*</Box>*/}
+              Зарабатывайте опыт пополняя счет и делая ставки, чтобы поднять новый уровень. Вы будете вознаграждены специальным кейсом за каждый уровень.
             </Box>
           </Box>
           {!!loggedUser && (
@@ -253,7 +252,7 @@ function Cases() {
                   bounds="parent"
                 >
                   <Box
-                    width="8%"
+                    width="10%"
                     ref={boxRef}
                     display="inline-block"
                     style={{ cursor: 'grab' }}
@@ -261,7 +260,7 @@ function Cases() {
                     zIndex={5}
                   >
                     <img
-                      src="/factory-box.svg"
+                      src="/case2.svg"
                       alt="level"
                       style={{ pointerEvents: 'none', width: '100%' }}
                     />
