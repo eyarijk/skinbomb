@@ -111,6 +111,7 @@ function StoreProvider({ children }) {
     setCards([...cards, ...payload.data]);
     setHasNextPage(payload.data.length > 0);
     setIsStoreLoaded(true);
+    setBuyingSkins({});
   };
 
   const getOptions = async () => {
