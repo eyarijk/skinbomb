@@ -10,13 +10,12 @@ import Input from '../../UiKit/Input';
 import { useReferrals } from '../../../lib/api/referrals';
 
 import s from './styles.module.scss';
-import useMediaQuery from "@material-ui/core/useMediaQuery";
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 function Referral() {
   const theme = useTheme();
   const isDesk = useMediaQuery('(max-width: 1459px)');
   const isMobileOrTablet = useMediaQuery('(max-width: 959px)');
-
 
   const {
     referrals,
@@ -130,8 +129,8 @@ function Referral() {
               </Box>
             </Box>
             <Box fontSize={14} fontWeight={400} color="#ABABAB">
-              <b>{`${referrals.remainder} $`}</b> пополнений требуется к
-              следующему рангу
+              <b>{`${referrals.remainder.toFixed(2)} $`}</b> пополнений
+              требуется к следующему рангу
             </Box>
           </Box>
         </Box>

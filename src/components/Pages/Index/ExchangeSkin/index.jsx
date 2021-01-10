@@ -18,7 +18,12 @@ function ExchangeSkin({ handleChangeRate }) {
   const auth = useAuth();
   const isMobileOrTablet = useMediaQuery('(max-width: 959px)');
   const isXsDesktop = useMediaQuery('(max-width: 1129px)');
-  const { selectedSkinsPrice, exchangeSkin, setExchangeSkin } = useSkins();
+  const {
+    skins,
+    selectedSkinsPrice,
+    exchangeSkin,
+    setExchangeSkin,
+  } = useSkins();
 
   useEffect(() => {
     if (exchangeSkin && selectedSkinsPrice > 0) {
@@ -38,7 +43,7 @@ function ExchangeSkin({ handleChangeRate }) {
   };
 
   const renderSkin = () => {
-    if (!auth.user) {
+    if (!auth.user || Object.keys(skins).length === 0) {
       return '';
     }
 

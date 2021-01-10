@@ -15,6 +15,7 @@ import Loading from '../../Loading';
 import { useSkins } from '../../../lib/api/skins';
 import { useAuth } from '../../../lib/api/auth';
 import { setCurrentExchange } from '../../../utils/LocalStorage';
+import swal from "sweetalert2";
 
 const rarityData = {
   title: 'Раритетнось',
@@ -144,6 +145,20 @@ function Store() {
       if (typeExchange === 'exchange' && exchangeSkinsIds.length > 0) {
         await handleExchange(exchangeSkinsIds);
       } else {
+        const confirmBuy = await swal.fire({
+          title: 'Вы действительно хотите совершить покупку?',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Да',
+          cancelButtonText: 'Нет',
+        });
+
+        if (!confirmBuy.isConfirmed) {
+          return;
+        }
+
         await handleBuy();
       }
 

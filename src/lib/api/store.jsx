@@ -151,16 +151,22 @@ function StoreProvider({ children }) {
           });
           await swal.fire('Info', html, 'info');
         } else {
-          await swal.fire('Success', 'Success', 'success');
+          await swal.fire('Вы успешно совершили покупку', '', 'success');
         }
 
         setBuyingProcess(false);
       } catch (error) {
-        await swal.fire('Failed', error.response.data.message, 'error');
+        if (error.response.data.message === 'Insufficient funds') {
+          await swal.fire('Ошибка', 'Недостаточно средств', 'error');
+          setBuyingSkins({});
+        } else {
+          await swal.fire('Ошибка', error.response.data.message, 'error');
+        }
+
         setBuyingProcess(false);
       }
     } else {
-      swal.fire('Failed', 'You already have buying in process', 'error');
+      await swal.fire('Failed', 'You already have buying in process', 'error');
       setBuyingProcess(false);
     }
   };
