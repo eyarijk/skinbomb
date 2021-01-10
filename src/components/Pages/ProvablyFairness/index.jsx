@@ -171,8 +171,11 @@ function ProvablyFairness() {
         <Box display="flex" pl={4}>
           <Button
             value="Апгрейдер"
+            fontSize={14}
+            fontWeight="bold"
             borderColor="#7D20FF"
-            color="#D0D0D0"
+            color="white"
+            fontFamily="Open Sans, sans-serif"
             bgcolor="#7D20FF"
             onClick={() => setScreen('upgrader')}
             variant={screen !== 'awards' ? 'contained' : 'outlined'}
@@ -183,7 +186,10 @@ function ProvablyFairness() {
           />
           <Button
             value="Награда за уровни"
-            color="#D0D0D0"
+            color="white"
+            fontSize={14}
+            fontWeight="bold"
+            fontFamily="Open Sans, sans-serif"
             bgcolor="#7D20FF"
             borderColor="#7D20FF"
             onClick={() => setScreen('awards')}
