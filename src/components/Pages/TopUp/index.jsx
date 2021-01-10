@@ -96,7 +96,7 @@ function TopUp() {
       flexDirection={mobile ? "column" : "row"}
       justifyContent="space-between"
       className={s.overflow}
-      width={(mobileOrTablet && "100vw") || (desk && "calc(100vw - 300px)") || "calc(100vw - 430px)"}
+      width={1}
     >
       <Box
         pr={{ xs: 0, sm: 1 }}

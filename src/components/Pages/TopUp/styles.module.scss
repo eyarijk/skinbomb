@@ -24,10 +24,14 @@
   top: 10px;
   right: 10px;
   border-radius: 3px;
-  font-size: 10px;
   background-color: #F89D00;
   color: #fff;
-  padding: 0 8px;
+  width: 40px;
+  height: 9px;
+  font-size: 9px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .methodCard {
