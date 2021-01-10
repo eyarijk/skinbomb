@@ -51,8 +51,6 @@ function AuthProvider({ children }) {
         }
       } catch (error) {
         swal.fire('Failed', error.response.data.message, 'error');
-
-        return;
       }
     }
   };
@@ -66,7 +64,6 @@ function AuthProvider({ children }) {
       return user;
     } catch (err) {
       console.error('>>> API Error: ', err);
-      return;
     }
   }
 

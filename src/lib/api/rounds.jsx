@@ -8,13 +8,16 @@ import fetch from '../fetch';
 import { useAuth } from './auth';
 import { useSkins } from './skins';
 import swal from 'sweetalert2';
-import {getCurrentExchange, removeCurrentExchange} from "../../utils/LocalStorage";
+import {
+  getCurrentExchange,
+  removeCurrentExchange,
+} from '../../utils/LocalStorage';
 
 const RoundsContext = createContext({});
 
 function RoundsProvider({ children }) {
-  const { token, fetchUser } = useAuth();
-  const { selectedSkins, getSkins } = useSkins();
+  const { token } = useAuth();
+  const { selectedSkins, getSkins, setExchangeSkin } = useSkins();
   const [lastBets, setLastBets] = useState([]);
   const [statistics, setStatistics] = useState([]);
   const [globalStatistics, setGlobalStatistics] = useState({
@@ -27,6 +30,7 @@ function RoundsProvider({ children }) {
   const [isCountDown, setIsCountDown] = useState(false);
   const [betRequest, setBetRequest] = useState(false);
   const [betProcess, setBetProcess] = useState(false);
+  const [lastBet, setLastBet] = useState(0);
   const [timestamp, setTimestamp] = useState(10);
 
   const getRounds = async () => {
@@ -54,6 +58,7 @@ function RoundsProvider({ children }) {
     if (!betRequest) {
       setBetProcess(true);
       setBetRequest(true);
+      setLastBet(bet);
       try {
         if (Object.keys(selectedSkins).length > 0) {
           const formData = new FormData();
@@ -77,7 +82,6 @@ function RoundsProvider({ children }) {
         }
       } catch (error) {
         await swal.fire('Failed', error.response.data.message, 'error');
-        getSkins();
         setBetRequest(false);
       }
     }
@@ -98,11 +102,20 @@ function RoundsProvider({ children }) {
     });
 
     echo.channel('laravel_database_round').listen('Round', event => {
-      if (event[0].status === 1) {
+      const payload = event[0];
+      if (payload.status === 1) {
         setIsCountDown(false);
-        setCurrentRate(event[0].coefficient);
-      } else if (event[0].status === 0) {
-        setTimestamp(event[0].start);
+        setCurrentRate(payload.coefficient);
+        if (betProcess === true) {
+          if (lastBet > payload.coefficient) {
+            setExchangeSkin(null);
+            removeCurrentExchange();
+          }
+          setBetProcess(false);
+          getSkins();
+        }
+      } else if (payload.status === 0) {
+        setTimestamp(payload.start);
         setIsCountDown(true);
       }
     });
@@ -113,12 +126,6 @@ function RoundsProvider({ children }) {
         setLastBets(event.last_bets);
         setStatistics(event.statistics);
         setGlobalStatistics(event.global_statistics);
-
-        if (betProcess) {
-          fetchUser();
-          setBetProcess(false);
-          removeCurrentExchange();
-        }
       });
   }, []);
 

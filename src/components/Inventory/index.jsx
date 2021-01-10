@@ -33,10 +33,6 @@ export default function Inventory() {
   const [activeCase, setActiveCase] = useState(null);
 
   useEffect(() => {
-    getSkins();
-  }, []);
-
-  useEffect(() => {
     setCards(skins);
   }, [skins]);
 

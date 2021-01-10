@@ -14,6 +14,7 @@ function SkinsProvider({ children }) {
   const [selectedSkins, setSelectedSkins] = useState({});
   const [selectedSkinCases, setSelectedSkinCases] = useState({});
   const [selectedSkinsPrice, setSelectedSkinsPrice] = useState(0);
+  const [exchangeSkin, setExchangeSkin] = useState(null);
 
   useEffect(() => {
     let sum = 0;
@@ -119,6 +120,8 @@ function SkinsProvider({ children }) {
         selectSkinCase,
         openCaseStore,
         setSelectedSkinCases,
+        exchangeSkin,
+        setExchangeSkin,
       }}
     >
       {children}

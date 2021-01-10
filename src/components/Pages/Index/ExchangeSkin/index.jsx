@@ -2,7 +2,7 @@ import { Box } from '@material-ui/core';
 import s from '../styles.module.scss';
 import Link from 'next/link';
 import cn from 'classnames';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
 import { useSkins } from '../../../../lib/api/skins';
@@ -18,8 +18,7 @@ function ExchangeSkin({ handleChangeRate }) {
   const auth = useAuth();
   const isMobileOrTablet = useMediaQuery('(max-width: 959px)');
   const isXsDesktop = useMediaQuery('(max-width: 1129px)');
-  const [exchangeSkin, setExchangeSkin] = useState(null);
-  const { selectedSkinsPrice } = useSkins();
+  const { selectedSkinsPrice, exchangeSkin, setExchangeSkin } = useSkins();
 
   useEffect(() => {
     if (exchangeSkin && selectedSkinsPrice > 0) {
