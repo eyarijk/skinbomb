@@ -125,12 +125,14 @@ function GameItem({ item }) {
             {getStatusText()}
           </Box>
           {item.win === 'win' &&
-            (item.skins_after_win.length > 0 ? (
-              item.skins_after_win.map(gun => (
-                <div key={Math.random()} className={s.winGunWrapper}>
-                  <img src={gun} alt="gun" />
-                </div>
-              ))
+            (item.wanted_item ? (
+              <div key={item.wanted_item.id} className={s.winGunWrapper}>
+                <img
+                  src={`https://api.skinbomb.gg/${item.wanted_item.icon}`}
+                  alt="gun"
+                  style={{ width: '90px' }}
+                />
+              </div>
             ) : (
               <>
                 <Box
