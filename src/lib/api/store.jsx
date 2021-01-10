@@ -21,7 +21,7 @@ const initialSearchOptions = {
 
 function StoreProvider({ children }) {
   const router = useRouter();
-  const { type: typeExchange } = router.query;
+  const { type: typeQuery } = router.query;
 
   const { token } = useAuth();
   const [cards, setCards] = useState([]);
@@ -34,6 +34,7 @@ function StoreProvider({ children }) {
   const [buyingProcess, setBuyingProcess] = useState(false);
   const [typeDataOptions, setTypeDataOptions] = useState([]);
   const [isStoreLoaded, setIsStoreLoaded] = useState(true);
+  const [typeExchange, setTypeExchange] = useState(typeQuery);
   const [lastSearchOptions, setLastSearchOptions] = useState(
     initialSearchOptions,
   );
@@ -214,6 +215,7 @@ function StoreProvider({ children }) {
         typeExchange,
         router,
         handleExchange,
+        setTypeExchange,
       }}
     >
       {children}

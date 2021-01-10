@@ -10,6 +10,7 @@ import { useSkins } from '../../lib/api/skins';
 import s from './styles.module.scss';
 import { useRouter } from 'next/router';
 import NeedAuth from '../NeedAuth';
+import { useStore } from '../../lib/api/store';
 
 export default function Inventory() {
   const auth = useAuth();
@@ -29,12 +30,20 @@ export default function Inventory() {
     openCaseStore,
   } = useSkins();
 
+  const { setTypeExchange, typeExchange } = useStore();
+
   const [cards, setCards] = useState(skins);
   const [activeCase, setActiveCase] = useState(null);
 
   useEffect(() => {
     setCards(skins);
   }, [skins]);
+
+  useEffect(() => {
+    if (Object.keys(selectedSkins)) {
+      setTypeExchange('store');
+    }
+  }, [selectedSkins]);
 
   const openCase = () => {
     const [skinCase] = Object.values(selectedSkinCases);
@@ -75,16 +84,31 @@ export default function Inventory() {
         )}
         {countSelectedSkins > 0 && (
           <Box display="flex" justifyContent="space-between" mt={3}>
-            <UiButton
-              value="Обмен"
-              onClick={() => {
-                !isStorePage && router.push('/store?type=exchange');
-              }}
-              w="90px"
-              h="40px"
-              bgcolor="linear-gradient(139.23deg, #6361C8 13.34%, #713AEB 86.08%)"
-              borderColor="linear-gradient(139.23deg, #6361C8 13.34%, #713AEB 86.08%)"
-            />
+            {typeExchange === 'exchange' ? (
+              <UiButton
+                value="Отменить обмен"
+                onClick={() => {
+                  setTypeExchange('store');
+                }}
+                w="90px"
+                h="40px"
+                bgcolor="linear-gradient(139.23deg, #6361C8 13.34%, #713AEB 86.08%)"
+                borderColor="linear-gradient(139.23deg, #6361C8 13.34%, #713AEB 86.08%)"
+              />
+            ) : (
+              <UiButton
+                value="Обмен"
+                onClick={() => {
+                  isStorePage
+                    ? setTypeExchange('exchange')
+                    : router.push('/store?type=exchange');
+                }}
+                w="90px"
+                h="40px"
+                bgcolor="linear-gradient(139.23deg, #6361C8 13.34%, #713AEB 86.08%)"
+                borderColor="linear-gradient(139.23deg, #6361C8 13.34%, #713AEB 86.08%)"
+              />
+            )}
             <UiButton
               value="Вывести"
               onClick={() => skinToSteam()}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { Box, Slider } from '@material-ui/core';
 import { useTheme } from '@material-ui/core/styles';
@@ -33,7 +33,6 @@ const typeData = {
 
 function Store() {
   const theme = useTheme();
-  const isDesk = useMediaQuery('(max-width: 1459px)');
   const isMobileOrTablet = useMediaQuery('(max-width: 959px)');
 
   const {
@@ -55,7 +54,7 @@ function Store() {
     router,
   } = useStore();
 
-  const { getSkins, selectedSkins } = useSkins();
+  const { getSkins, selectedSkins, selectedSkinsPrice } = useSkins();
   const { fetchUser } = useAuth();
 
   const [isOpen, setIsOpen] = useState(false);
@@ -75,6 +74,18 @@ function Store() {
   function handleMaxChange(val) {
     setSliderValue([sliderValue[0], val]);
   }
+
+  useEffect(() => {
+    if (typeExchange === 'exchange') {
+      setSliderValue([0, selectedSkinsPrice]);
+    }
+  }, [typeExchange]);
+
+  useEffect(() => {
+    if (typeExchange === 'exchange') {
+      fetchItems();
+    }
+  }, [sliderValue]);
 
   async function fetchItems(scrolling = false) {
     const options = {

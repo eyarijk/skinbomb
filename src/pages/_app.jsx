@@ -15,6 +15,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Router from 'next/router';
 import Loading from '../components/Loading';
+import { StoreProvider } from '../lib/api/store';
 
 function MyApp({ Component, pageProps }) {
   const [loader, setLoader] = useState(true);
@@ -56,10 +57,12 @@ function MyApp({ Component, pageProps }) {
           <SkinsProvider>
             <ChatProvider>
               <RoundsProvider>
-                <ReferralsProvider>
-                  <CssBaseline />
-                  {loader ? <Loading /> : <Component {...pageProps} />}
-                </ReferralsProvider>
+                <StoreProvider>
+                  <ReferralsProvider>
+                    <CssBaseline />
+                    {loader ? <Loading /> : <Component {...pageProps} />}
+                  </ReferralsProvider>
+                </StoreProvider>
               </RoundsProvider>
             </ChatProvider>
           </SkinsProvider>

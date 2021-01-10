@@ -121,7 +121,7 @@ function Bomb() {
         className={s.bombRoot}
       />
       <img className={s.glass} src="/glass.svg" alt="glass" />
-      <img className={s.bombLeft} src="/bomb-left.svg" alt="sides" />
+      <img className={s.bombLeft} src="/bomb-left.png" alt="sides" />
       <img className={s.bombRight} src="/bomb-right.svg" alt="sides" />
       {renderWingsFire()}
     </div>
