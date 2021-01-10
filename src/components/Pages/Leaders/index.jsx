@@ -58,7 +58,7 @@ function Leaders() {
       pt={2}
       display="flex"
       flexDirection="column"
-      width={(isMobileOrTablet && "100vw") || (isDesk && "calc(100vw - 300px)") || "calc(100vw - 430px)"}
+      width={(isMobileOrTablet && "100vw") || (isDesk && "100%") || "100%"}
       height={1}
       pl={!isMobileOrTablet && 5.5}
       pr={16}
@@ -80,7 +80,7 @@ function Leaders() {
       </Box>
       <Box display="flex" flexDirection={isMobileOrTablet && "column"}
            justifyContent="space-between"
-           width={(isMobileOrTablet && "100vw") || (isDesk && "calc(100vw - 300px)") || "calc(100vw - 430px)"} mb={10}
+           width={(isMobileOrTablet && "100vw") || (isDesk && "100%") || "100%"} mb={10}
            pr={!isMobileOrTablet && 11}
            >
         <Box
@@ -91,7 +91,7 @@ function Leaders() {
           mr={!isMobileOrTablet && 5}
         >
           <Box
-            fontSize={24}
+            fontSize={16}
             fontWeight={700}
             lineHeight="36px"
             color="#fff"
@@ -99,7 +99,7 @@ function Leaders() {
           >
             Список лидеров
           </Box>
-          <Box color="#fff" fontSize={16} fontWeight={400} lineHeight="20px">
+          <Box color="#fff" fontSize={14} fontWeight={400} lineHeight="20px">
             Покоряйте список лидеров играя на сайте, и получайте приз за
             достигнутое место когда актуальное соревнование закончится.
           </Box>
@@ -138,7 +138,7 @@ function Leaders() {
             >
               <Box
                   color="#FB9414"
-                  fontSize="25px"
+                  fontSize="24px"
                   fontWeight={500}
               >
                 {days}
@@ -218,7 +218,7 @@ function Leaders() {
       </Box>
       <Box
           className={!isMobileOrTablet && s.overflow}
-          width={(isMobileOrTablet && "98vw") || (isDesk && "calc(100vw - 300px)") || "calc(100vw - 430px)"}
+          width={(isMobileOrTablet && "98vw") || (isDesk && "100%") || "100%"}
           mb={isMobileOrTablet && 5}
           mx={isMobileOrTablet && 1}
           pr={!isMobileOrTablet && 11}

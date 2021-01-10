@@ -11,7 +11,7 @@ export default function LeaderBoard() {
       <thead className={s.head}>
         <tr>
           <td>Ползователь</td>
-          <td>Билеты</td>
+          <td>Выигрыш</td>
           <td>Приз</td>
         </tr>
       </thead>

@@ -52,7 +52,7 @@ function Support() {
       pt={isMobileOrTablet ? 3 : 6}
       pl={1}
       pr={isMobileOrTablet ? 1 : 4}
-      width={(isMobileOrTablet && "98vw") || (isDesk && "calc(100vw - 300px)") || "calc(100vw - 430px)"}
+      width={(isMobileOrTablet && "98vw") || (isDesk && "100%") || "100%"}
     >
       {isMobileOrTablet && (
         <Box fontSize={24} fontWeight={700} color="#fff" mb={2}>
