@@ -45,6 +45,12 @@ function StatItem({ item }) {
     }
   }
 
+  const showSkins = [...item.skins]
+    .sort((a, b) => parseFloat(b.amount) - parseFloat(a.amount))
+    .slice(0, 2);
+
+  const addSkinsCount = item.skins?.length - 2;
+
   return (
     <Box
       width={1}
@@ -86,14 +92,15 @@ function StatItem({ item }) {
             fontFamily="Open Sans, sans-serif"
           >{`${item.current_user_amount.toFixed(2)} $`}</Box>
         </Box>
-        {item.skins?.map(gun => (
+        {showSkins.map(gun => (
           <img
-            key={Math.random()}
+            key={gun.id}
             src={`https://api.skinbomb.gg/${gun.skin.icon}`}
             alt="gun"
             style={{ width: '90px' }}
           />
         ))}
+        {addSkinsCount > 0 && <Box component="span">+{addSkinsCount}</Box>}
       </Box>
       <Box
         width={0.5}
