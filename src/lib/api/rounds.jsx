@@ -78,6 +78,7 @@ function RoundsProvider({ children }) {
             data: formData,
           });
           getSkins();
+          setExchangeSkin(null);
           setBetRequest(false);
         }
       } catch (error) {
@@ -110,6 +111,8 @@ function RoundsProvider({ children }) {
           if (lastBet > payload.coefficient) {
             setExchangeSkin(null);
             removeCurrentExchange();
+          } else {
+            setExchangeSkin(getCurrentExchange());
           }
           setBetProcess(false);
           getSkins();

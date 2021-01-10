@@ -53,6 +53,7 @@ function Store() {
     buyingSkinsPrice,
     typeExchange,
     router,
+    setTypeExchange,
   } = useStore();
 
   const { getSkins, selectedSkins, selectedSkinsPrice } = useSkins();
@@ -87,6 +88,12 @@ function Store() {
       fetchItems();
     }
   }, [sliderValue]);
+
+  useEffect(() => {
+    const { type: typeQuery } = router.query;
+
+    setTypeExchange(typeQuery);
+  }, []);
 
   async function fetchItems(scrolling = false) {
     const options = {
