@@ -10,12 +10,9 @@ import Input from '../../UiKit/Input';
 import { useReferrals } from '../../../lib/api/referrals';
 
 import s from './styles.module.scss';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 function Referral() {
   const theme = useTheme();
-  const isDesk = useMediaQuery('(max-width: 1459px)');
-  const isMobileOrTablet = useMediaQuery('(max-width: 959px)');
 
   const {
     referrals,

@@ -299,7 +299,7 @@ function Cases() {
             height={1}
           >
             <Box display="flex" flexDirection="column" width={185} mr={6}>
-              <img src="/Box.svg" alt="box" />
+              <img src="/case.png" alt="box" className={s.caseImg} />
               <Box
                 fontSize={16}
                 fontWeight={700}

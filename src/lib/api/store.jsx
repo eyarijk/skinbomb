@@ -26,7 +26,7 @@ function StoreProvider({ children }) {
   const [cards, setCards] = useState([]);
   const [rarityDataOptions, setRarityDataOptions] = useState([]);
   const [qualityDataOptions, setQualityDataOptions] = useState([]);
-  const [maxFilterPrice, setMaxFilterPrice] = useState([]);
+  const [maxFilterPrice, setMaxFilterPrice] = useState(0);
   const [buyingSkins, setBuyingSkins] = useState({});
   const [buyingSkinsPrice, setBuyingSkinsPrice] = useState(0);
   const [hasNextPage, setHasNextPage] = useState(true);
@@ -119,7 +119,8 @@ function StoreProvider({ children }) {
       setRarityDataOptions(payload.data.rarities);
       setQualityDataOptions(payload.data.wear_levels);
       setTypeDataOptions(payload.data.types);
-      setMaxFilterPrice(payload.data.max_price);
+      // setMaxFilterPrice(payload.data.max_price);
+      setMaxFilterPrice(5000); // in design
     } catch (err) {
       console.error('>>> API Error: ', err);
     }

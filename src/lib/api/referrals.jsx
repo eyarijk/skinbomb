@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import fetch from '../fetch';
 
 import { useAuth } from './auth';
+import swal from 'sweetalert2';
 
 const ReferralsContext = createContext({});
 
@@ -20,7 +21,6 @@ function ReferralsProvider({ children }) {
       setIsReferralsLoaded(true);
     } catch (err) {
       console.error('>>> API Error: ', err);
-      return;
     }
   };
 
@@ -36,7 +36,6 @@ function ReferralsProvider({ children }) {
       setReferrals(payload.data);
     } catch (err) {
       console.error('>>> API Error: ', err);
-      return;
     }
   };
 
@@ -51,8 +50,8 @@ function ReferralsProvider({ children }) {
 
       setReferrals(payload.data);
     } catch (err) {
+      await swal.fire('Failed', err.response.data.message, 'error');
       console.error('>>> API Error: ', err);
-      return;
     }
   };
 
