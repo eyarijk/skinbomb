@@ -72,7 +72,7 @@ function Referral() {
             color="#fff"
             display="flex"
             alignItems="center"
-            fontSize={20}
+            fontSize={16}
             fontWeight={700}
             mr={12}
             mb={3}
@@ -80,13 +80,13 @@ function Referral() {
             <img
               src="/star.svg"
               alt="star"
-              style={{ marginRight: 8, width: 33 }}
+              style={{ marginRight: 8, width: 25 }}
             />
             {`Ранг ${referrals.rank}`}
           </Box>
           <Box flexDirection="column" justifyContent="space-between" pl={2}>
             <Box
-              fontSize={16}
+              fontSize={14}
               fontWeight={400}
               width={0.98}
               color="#F5F5F5"
@@ -167,7 +167,7 @@ function Referral() {
               bgcolor="#070707"
               borderColor="#FB9414"
               borderSize="1px"
-              h="50px"
+              h="40px"
               align="left"
               color="#F6AF25"
             />
@@ -305,9 +305,9 @@ function Referral() {
               name="referralCode"
               onChange={val => setCode(val)}
               bgcolor="#070707"
-              borderColor="#FB9414"
+              borderColor="#4A4A4A"
               borderSize="1px"
-              h="50px"
+              h="40px"
               align="left"
               color="#F6AF25"
             />
@@ -372,12 +372,13 @@ function Referral() {
                 color="#F5F5F5"
               >
                 <Input
-                  label="Придумайте ваш уникальный код:"
+                  label="Ваш код:"
                   value={newCode}
                   name="referralTitle"
                   onChange={val => setNewCode(val)}
                   bgcolor="#070707"
                   borderColor="#4A4A4A"
+                  fontSize={14}
                   borderSize="1px"
                   h="40px"
                   align="left"
@@ -402,7 +403,7 @@ function Referral() {
                 display="flex"
                 justifyContent="space-between"
                 mb={2}
-                fontSize={14}
+                fontSize="14px"
                 color="#F5F5F5"
               >
                 <Input
@@ -415,6 +416,7 @@ function Referral() {
                   bgcolor="#070707"
                   borderColor="#4A4A4A"
                   borderSize="1px"
+                  fontSize="14px"
                   h="40px"
                   align="left"
                   color="#FFFFFF"
@@ -475,12 +477,15 @@ function Referral() {
             Заработано
           </Box>
           <Button
+              variant={s.btn}
             borderSize="0px"
             value="Забрать"
             bgcolor="#FB9414"
-            color="#FFFFFF"
+            color="#000"
             w="105px"
             h="36px"
+            fontSize={16}
+            fontWeight="bold"
             onClick={() => {
               console.log('Забрать');
             }}
