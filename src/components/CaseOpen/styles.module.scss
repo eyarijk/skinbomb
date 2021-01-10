@@ -36,6 +36,7 @@
 
 .emptyList {
   color: #fff;
+  position: absolute;
 }
 
 .skinArrow {
@@ -58,8 +59,21 @@
   top: -105px;
 }
 
+.activeSkinArrowBottom {
+  transform: rotate(180deg);
+  bottom: -39px;
+}
+
+.activeSkinArrowTop {
+  top: -12px;
+}
+
 .nav {
   display: flex;
   justify-content: center;
   margin-top: 320px;
+}
+
+.navEmpty {
+  margin-top: 100px;
 }

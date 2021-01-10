@@ -87,15 +87,18 @@ function SkinsProvider({ children }) {
     } else {
       setSelectedSkins({ ...selectedSkins, [id]: skin });
     }
+
+    setSelectedSkinCases({});
   };
 
   const selectSkinCase = skinCase => {
-    if (selectedSkinCases[skinCase.id]) {
-      delete selectedSkinCases[skinCase.id];
-      setSelectedSkinCases({ ...selectedSkinCases });
+    if (selectedSkins[skinCase.id]) {
+      setSelectedSkinCases({});
     } else {
-      setSelectedSkinCases({ ...selectedSkinCases, [skinCase.id]: skinCase });
+      setSelectedSkinCases({ [skinCase.id]: skinCase });
     }
+
+    setSelectedSkins({});
   };
 
   useEffect(() => {

@@ -288,7 +288,10 @@ export default function Inventory() {
                   color="#9292C1"
                   lineHeight="20px"
                 >
-                  Всего ({Object.keys(selectedSkins).length})
+                  Всего (
+                  {Object.keys(selectedSkins).length +
+                    Object.keys(selectedSkinCases).length}
+                  )
                 </Box>
                 <Box
                   fontSize={14}

@@ -65,6 +65,7 @@ function CaseOpen({ card, onOpened, openCase }) {
 
   useEffect(() => {
     setIsLoading(true);
+
     if (card.case.skins.length === 0) {
       setIsCompleted(true);
       setIsLoading(false);
@@ -85,10 +86,29 @@ function CaseOpen({ card, onOpened, openCase }) {
     );
   }
 
-  return (
-    <>
-      <Box className={s.overflow} />
-      <Box className={s.root}>
+  const renderSlider = () => {
+    if (skins.length === 0) {
+      return (
+        <>
+          <Box className={s.emptyList} component="h2">
+            Здесь пусто
+          </Box>
+          <Box className={cn(s.nav, s.navEmpty)}>
+            <UiButton
+              value="Продолжить"
+              onClick={() => onOpened()}
+              w="150px"
+              h="40px"
+              bgcolor="#F89D00"
+              borderColor="#F89D00"
+            />
+          </Box>
+        </>
+      );
+    }
+
+    return (
+      <>
         <div
           className={s.skins}
           ref={wrapSkins}
@@ -105,17 +125,34 @@ function CaseOpen({ card, onOpened, openCase }) {
                   percent={skin.percent}
                   selectedCards={selectedCards}
                 />
+                {selectedCards[skin.uuid] && (
+                  <>
+                    <img
+                      src="/vector.svg"
+                      className={cn(s.skinArrow, s.activeSkinArrowTop)}
+                    />
+                    <img
+                      src="/vector.svg"
+                      className={cn(s.skinArrow, s.activeSkinArrowBottom)}
+                    />
+                  </>
+                )}
               </Box>
             </Box>
           ))}
         </div>
-        <div className={s.skinArrowWrap}>
-          <img src="/vector.svg" className={cn(s.skinArrow, s.skinArrowTop)} />
-          <img
-            src="/vector.svg"
-            className={cn(s.skinArrow, s.skinArrowBottom)}
-          />
-        </div>
+        {!isCompleted && (
+          <div className={s.skinArrowWrap}>
+            <img
+              src="/vector.svg"
+              className={cn(s.skinArrow, s.skinArrowTop)}
+            />
+            <img
+              src="/vector.svg"
+              className={cn(s.skinArrow, s.skinArrowBottom)}
+            />
+          </div>
+        )}
         {isCompleted && (
           <Box className={s.nav}>
             <UiButton
@@ -128,7 +165,14 @@ function CaseOpen({ card, onOpened, openCase }) {
             />
           </Box>
         )}
-      </Box>
+      </>
+    );
+  };
+
+  return (
+    <>
+      <Box className={s.overflow} />
+      <Box className={s.root}>{renderSlider()}</Box>
     </>
   );
 }

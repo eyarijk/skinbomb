@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { Box } from '@material-ui/core';
 import { useTheme } from '@material-ui/core/styles';
@@ -6,17 +6,16 @@ import { useTheme } from '@material-ui/core/styles';
 import LeaderBoard from '../../LeaderBoard';
 
 import s from './styles.module.scss';
-import useMediaQuery from "@material-ui/core/useMediaQuery";
-import {useLeaders} from "../../../lib/api/leaders";
-import moment from "moment";
-
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { useLeaders } from '../../../lib/api/leaders';
+import moment from 'moment';
 
 function Leaders() {
   const theme = useTheme();
   const isDesk = useMediaQuery('(max-width: 1459px)');
   const isMobileOrTablet = useMediaQuery('(max-width: 959px)');
-  const {date} = useLeaders();
-  
+  const { date } = useLeaders();
+
   const [days, setDays] = useState(0);
   const [hours, setHours] = useState(0);
   const [minutes, setMinutes] = useState(0);
@@ -25,40 +24,40 @@ function Leaders() {
   const [interval, setSecondInterval] = useState(null);
 
   const calculateDate = () => {
-    if(date){
+    if (date) {
       const now = moment();
       const duration = moment.duration(moment(date).diff(now));
       const days = Math.floor(duration.asDays());
 
       const asHours = Math.floor(duration.asHours());
-      const hours = asHours - (days * 24);
+      const hours = asHours - days * 24;
 
       const asMinutes = Math.floor(duration.asMinutes());
-      const minutes = asMinutes - (asHours * 60);
+      const minutes = asMinutes - asHours * 60;
 
       const asSeconds = Math.floor(duration.asSeconds());
-      const seconds = asSeconds - (asMinutes * 60);
+      const seconds = asSeconds - asMinutes * 60;
 
       setDays(days);
       setHours(hours);
       setMinutes(minutes);
       setSeconds(seconds);
     }
-  }
+  };
 
   useEffect(() => {
-    if(interval) clearInterval(interval);
+    if (interval) clearInterval(interval);
 
     const newInterval = setInterval(calculateDate, 1000);
     setSecondInterval(newInterval);
-  }, [date])
+  }, [date]);
 
   return (
     <Box
       pt={2}
       display="flex"
       flexDirection="column"
-      width={(isMobileOrTablet && "100vw") || (isDesk && "100%") || "100%"}
+      width={(isMobileOrTablet && '100vw') || (isDesk && '100%') || '100%'}
       height={1}
       pl={!isMobileOrTablet && 5.5}
       pr={16}
@@ -78,13 +77,16 @@ function Leaders() {
       >
         Лидеры
       </Box>
-      <Box display="flex" flexDirection={isMobileOrTablet && "column"}
-           justifyContent="space-between"
-           width={(isMobileOrTablet && "100vw") || (isDesk && "100%") || "100%"} mb={10}
-           pr={!isMobileOrTablet && 11}
-           >
+      <Box
+        display="flex"
+        flexDirection={isMobileOrTablet && 'column'}
+        justifyContent="space-between"
+        width={(isMobileOrTablet && '100vw') || (isDesk && '100%') || '100%'}
+        mb={10}
+        pr={!isMobileOrTablet && 11}
+      >
         <Box
-          width={(isMobileOrTablet && "100vw") || 430}
+          width={(isMobileOrTablet && '100vw') || 430}
           bgcolor={theme.background.primary}
           p={2.5}
           borderRadius={10}
@@ -105,7 +107,7 @@ function Leaders() {
           </Box>
         </Box>
         <Box
-          width={(isMobileOrTablet && "94vw") || 430}
+          width={(isMobileOrTablet && '94vw') || 430}
           py={5}
           display="flex"
           flexDirection="column"
@@ -114,7 +116,7 @@ function Leaders() {
           border="2px solid #FB9414"
           bgcolor={theme.background.secondary}
           mt={isMobileOrTablet && 5}
-          mx={(isMobileOrTablet && 3) }
+          mx={isMobileOrTablet && 3}
         >
           <Box
             color="#FB9414"
@@ -125,10 +127,7 @@ function Leaders() {
           >
             Заканчиваеться через
           </Box>
-          <Box
-              width={1}
-              display="flex"
-          >
+          <Box width={1} display="flex">
             <Box
               width="25%"
               display="flex"
@@ -136,17 +135,10 @@ function Leaders() {
               alignItems="center"
               flexDirection="column"
             >
-              <Box
-                  color="#FB9414"
-                  fontSize="24px"
-                  fontWeight={500}
-              >
+              <Box color="#FB9414" fontSize="24px" fontWeight={500}>
                 {days}
               </Box>
-              <Box
-                  color="#F5F5F5"
-                  fontSize="16px"
-              >
+              <Box color="#F5F5F5" fontSize="16px">
                 Дня
               </Box>
             </Box>
@@ -157,17 +149,10 @@ function Leaders() {
               alignItems="center"
               flexDirection="column"
             >
-              <Box
-                  color="#FB9414"
-                  fontSize="25px"
-                  fontWeight={500}
-              >
+              <Box color="#FB9414" fontSize="25px" fontWeight={500}>
                 {hours}
               </Box>
-              <Box
-                  color="#F5F5F5"
-                  fontSize="16px"
-              >
+              <Box color="#F5F5F5" fontSize="16px">
                 Час
               </Box>
             </Box>
@@ -178,17 +163,10 @@ function Leaders() {
               alignItems="center"
               flexDirection="column"
             >
-              <Box
-                  color="#FB9414"
-                  fontSize="25px"
-                  fontWeight={500}
-              >
+              <Box color="#FB9414" fontSize="25px" fontWeight={500}>
                 {minutes}
               </Box>
-              <Box
-                  color="#F5F5F5"
-                  fontSize="16px"
-              >
+              <Box color="#F5F5F5" fontSize="16px">
                 Минут
               </Box>
             </Box>
@@ -199,17 +177,10 @@ function Leaders() {
               alignItems="center"
               flexDirection="column"
             >
-              <Box
-                  color="#FB9414"
-                  fontSize="25px"
-                  fontWeight={500}
-              >
+              <Box color="#FB9414" fontSize="25px" fontWeight={500}>
                 {seconds}
               </Box>
-              <Box
-                  color="#F5F5F5"
-                  fontSize="16px"
-              >
+              <Box color="#F5F5F5" fontSize="16px">
                 Секунд
               </Box>
             </Box>
@@ -217,11 +188,11 @@ function Leaders() {
         </Box>
       </Box>
       <Box
-          className={!isMobileOrTablet && s.overflow}
-          width={(isMobileOrTablet && "98vw") || (isDesk && "100%") || "100%"}
-          mb={isMobileOrTablet && 5}
-          mx={isMobileOrTablet && 1}
-          pr={!isMobileOrTablet && 11}
+        className={!isMobileOrTablet && s.overflow}
+        width={(isMobileOrTablet && '98vw') || (isDesk && '100%') || '100%'}
+        mb={isMobileOrTablet && 5}
+        mx={isMobileOrTablet && 1}
+        pr={!isMobileOrTablet && 11}
       >
         <LeaderBoard />
       </Box>

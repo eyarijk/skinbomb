@@ -54,7 +54,7 @@ function ChatProvider({ children }) {
     if (messages.length === 0) {
       getMessages();
     }
-  }, [token]);
+  }, []);
 
   useEffect(() => {
     window.io = io;
