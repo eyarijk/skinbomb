@@ -15,7 +15,7 @@ function Statistic() {
       bgcolor={theme.background.primary}
       style={{ borderTopLeftRadius: 10 }}
       pl={3}
-      pr={7}
+      pr={4.1}
       flexGrow={1}
       height="1px"
       display="flex"
