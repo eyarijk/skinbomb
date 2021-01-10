@@ -55,7 +55,7 @@ function ExchangeSkin({ handleChangeRate }) {
             display="flex"
             alignItems="center"
             justifyContent="center"
-            fontSize={isMobileOrTablet ? 10 : 13}
+            fontSize={isMobileOrTablet ? 10 : 14}
           >
             {isMobileOrTablet ? 'Выбрать скин' : 'Выбрать скин в магазине'}
           </Box>
