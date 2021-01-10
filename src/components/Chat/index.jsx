@@ -172,15 +172,13 @@ function Chat() {
             <Box display="flex" justifyContent="center" mt={5}>
               <UiButton
                 value="Вернуться в чат"
-                h={40}
                 w={140}
+                p="11px 0"
                 onClick={() => setScreen('')}
                 bgcolor="linear-gradient(#6361C8, #713AEB)"
-                borderSize="0"
-                fontSize={12}
-                fontWeight="bold"
+                fontSize={14}
+                fontWeight="700"
                 fontFamily="Open Sans, sans-serif"
-                p="10px 20px"
               />
             </Box>
           </Box>
@@ -218,7 +216,7 @@ function Chat() {
                 color="#24AE60"
                 alignItems="center"
                 mt={1.5}
-                mb={4}
+                mb={1.2}
                 fontFamily="Open Sans, sans-serif"
               >
                 <div className={s.dot} />
