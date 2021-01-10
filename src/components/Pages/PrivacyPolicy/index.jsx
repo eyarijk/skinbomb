@@ -48,7 +48,7 @@ function PrivacyPolicy() {
         pt={!isMobileOrTablet && 1}
         pl={1}
         pr={!isMobileOrTablet && 2}
-        width={(isMobileOrTablet && "99vw") || (isDesk && "calc(100vw - 300px)") || "calc(100vw - 430px)"}
+        width={(isMobileOrTablet && "99vw") || (isDesk && "100%") || "100%"}
     >
       <Box
         borderRadius={10}
@@ -90,12 +90,12 @@ function PrivacyPolicy() {
             );
           })}
           {
-            isMobileOrTablet && <Box color="#FB9414" mt={2} mb={6}>
+            isMobileOrTablet && <Box color="#7D20FF" mt={2} mb={6}>
               Последнее изминение: 10.08.20
             </Box>
           }
         </Box>
-        {!isMobileOrTablet && <Box color="#FB9414" mt={2}>
+        {!isMobileOrTablet && <Box color="#7D20FF" mt={2}>
           Последнее изминение: 10.08.20
         </Box>}
       </Box>

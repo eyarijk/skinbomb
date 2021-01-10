@@ -88,6 +88,9 @@ function Support() {
         >
           <Box display="flex">
             <Button
+              fontSize={14}
+              fontWeight="bold"
+              fontFamily="Open Sans, sans-serif"
               value="FAQ"
               onClick={() => setScreen('answers')}
               variant={screen !== 'question' ? 'contained' : 'outlined'}
@@ -102,11 +105,12 @@ function Support() {
               m="0 20px 0 0"
               borderColor="#7D20FF"
               color={screen !== 'question' ? '#fff' : '#D0D0D0'}
-              fontSize={14}
-              fontWeight={400}
             />
             <Button
               value="Задать вопрос"
+              fontSize={14}
+              fontWeight="bold"
+              fontFamily="Open Sans, sans-serif"
               onClick={() => setScreen('question')}
               variant={screen === 'question' ? 'contained' : 'outlined'}
               bgcolor={
@@ -120,8 +124,6 @@ function Support() {
               m="0 20px 0 0"
               borderColor="#7D20FF"
               color={screen === 'question' ? '#fff' : '#D0D0D0'}
-              fontSize={14}
-              fontWeight={400}
             />
           </Box>
           {!isMobileOrTablet && (
@@ -169,6 +171,7 @@ function Support() {
                       placeholder="Название"
                       bgcolor="#070707"
                       h="50px"
+                      fontSize="16px"
                       borderSize="0"
                       align="left"
                     />
@@ -181,7 +184,8 @@ function Support() {
                         rows={7}
                         placeholder="Введите ваш Вопрос"
                       />
-                      <img src="/send-question.svg" alt="" style={{cursor: "pointer", width: isMobileOrTablet ? 50 : 60}} onClick={async () => {
+                      <img src="/send.svg" alt="send" style={{cursor: "pointer", width: isMobileOrTablet ? 33 : 43,
+                        transform: "rotate(45deg)", marginTop: "10px"}} onClick={async () => {
                         if(!loading) {
                           await storeFaq(title, question);
                           setQuestion("");
