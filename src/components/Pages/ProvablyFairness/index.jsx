@@ -1,15 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useTheme } from '@material-ui/core/styles';
-
 import { Box } from '@material-ui/core';
-
 import Button from '../../UiKit/Button';
 import Table from '../../UiKit/Table';
-
 import fetch from '../../../lib/fetch';
-
 import s from './styles.module.scss';
-import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 const upgraderText = {
   firstSentence:
@@ -61,8 +56,7 @@ const awardsText = {
 };
 
 function ProvablyFairness() {
-  const theme = useTheme()
-  const isMobileOrTablet = useMediaQuery('(max-width: 959px)');
+  const theme = useTheme();
 
   const [screen, setScreen] = useState('upgrader');
   const [tableData, setTableData] = useState([]);
@@ -95,18 +89,22 @@ function ProvablyFairness() {
           <Box mb={2}>{upgraderText.fourthSentence}</Box>
           <Box mb={3}>
             {upgraderText.fifthSentence.first}
-            <span style={{ color: '#F89D00' }}>
+            <a
+              href="https://jsfiddle.net/o02y1spu/"
+              target="_blank"
+              style={{ color: '#F89D00' }}
+            >
               {upgraderText.fifthSentence.second}
-            </span>
+            </a>
             {upgraderText.fifthSentence.third}
           </Box>
           <Box className={s.tab}>
-              {isTableLoaded && (
-                <Table
-                  headElements={upgraderText.tableData.headElements}
-                  items={tableData}
-                />
-              )}
+            {isTableLoaded && (
+              <Table
+                headElements={upgraderText.tableData.headElements}
+                items={tableData}
+              />
+            )}
           </Box>
         </Box>
       );

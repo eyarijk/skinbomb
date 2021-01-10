@@ -87,7 +87,12 @@ function StatItem({ item }) {
           >{`${item.current_user_amount.toFixed(2)} $`}</Box>
         </Box>
         {item.skins?.map(gun => (
-          <img key={Math.random()} src={`https://api.skinbomb.gg/${gun.skin.icon}`} alt="gun" style={{width: "90px"}}/>
+          <img
+            key={Math.random()}
+            src={`https://api.skinbomb.gg/${gun.skin.icon}`}
+            alt="gun"
+            style={{ width: '90px' }}
+          />
         ))}
       </Box>
       <Box
@@ -110,12 +115,14 @@ function StatItem({ item }) {
             {getStatusText()}
           </Box>
           {item.win === 'win' &&
-            (item.skins_after_win.length > 0 ? (
-              item.skins_after_win.map(gun => (
-                <div key={Math.random()} className={s.winGunWrapper}>
-                  <img src={gun} alt="gun" />
-                </div>
-              ))
+            (item.wanted_item ? (
+              <div key={item.wanted_item.id} className={s.winGunWrapper}>
+                <img
+                  src={`https://api.skinbomb.gg/${item.wanted_item.icon}`}
+                  alt="gun"
+                  style={{ width: '90px' }}
+                />
+              </div>
             ) : (
               <>
                 <Box
