@@ -33,6 +33,7 @@ function TopUp() {
   const [gameValut, setGameValut] = useState('');
   const [refCode, setRefCode] = useState('');
   const [tab, setTab] = useState("0");
+  let errorNotify = ''
 
   useEffect(() => {
     if(!!currentMethod && currentMethod.is_skins)
@@ -50,7 +51,6 @@ function TopUp() {
         fetchData = await fetch(currentMethod.url.replace('/api', ''));
       } catch (error){
         swal.fire('Failed', error.response.data.message, 'error');
-
         return;
       }
     }else{
@@ -281,7 +281,7 @@ function TopUp() {
           Бонус
         </Box>
         <Box
-          width={mobile ? 1 : "320px"}
+          width={mobile ? 1 : "343px"}
           height={170}
           bgcolor={theme.background.primary}
           borderRadius={10}
@@ -300,7 +300,10 @@ function TopUp() {
           >
             Введите реферальный код ниже и получите ваши бесплатные 0,50 $
           </Box>
-          <Box ml={1} width={1} display="flex" justifyContent={!mobile && "space-between"}>
+          <Box color="red">
+            {errorNotify}
+          </Box>
+          <Box width={1} display="flex" justifyContent={!mobile && "space-between"}>
             <Box width={240} mr={mobile && 3}>
               <Input
                 value={refCode}
@@ -310,11 +313,14 @@ function TopUp() {
               />
             </Box>
             <Button
+              variant={s.checkImg}
               h="40px"
               w="40px"
               borderSize="0"
               bgcolor="#FB9414"
-              onClick={() => {}}
+              onClick={() => {
+                errorNotify = 'Test'
+              }}
               value={<img src="/check.svg" alt="check" />}
             />
           </Box>

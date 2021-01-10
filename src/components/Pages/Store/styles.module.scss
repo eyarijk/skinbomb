@@ -28,9 +28,19 @@
 
 .icon {
   position: absolute;
-  right: 10%;
+  right: 4%;
   bottom: 30%;
   z-index: 99;
+}
+@media screen and (max-width: 1300px) {
+  .icon {
+    right: 6%;
+  }
+}
+@media screen and (max-width: 1080px) {
+  .icon {
+    right: 9%;
+  }
 }
 
 .resultsContainer {

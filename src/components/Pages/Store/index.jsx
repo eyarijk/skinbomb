@@ -33,6 +33,8 @@ const typeData = {
 
 function Store() {
   const theme = useTheme();
+  const isDesk = useMediaQuery('(max-width: 1459px)');
+  const isBigDesk = useMediaQuery('(max-width: 2560px)');
   const isMobileOrTablet = useMediaQuery('(max-width: 959px)');
 
   const {
@@ -195,15 +197,15 @@ function Store() {
           <Box
             py={2}
             px={2.5}
-            bgcolor={!isMobileOrTablet && theme.background.primary}
+            bgcolor={!isBigDesk && theme.background.primary}
             borderRadius={10}
             width={1}
-            className={isMobileOrTablet && s.search}
+            className={isBigDesk && s.search}
           >
-            {isMobileOrTablet && (
+            {isBigDesk && (
               <Box className={s.icon}>
                 <div>
-                  <img src="/search.svg" aly="search" />
+                  <img src="/search.svg" alt="search" />
                 </div>
               </Box>
             )}
