@@ -103,7 +103,7 @@ function WeaponCard({ card, small, selectCard, selectedCards, percent = 0 }) {
               {percent}%
             </Box>
           ) : (
-            <Box height={7} width={7} borderRadius="50%" bgcolor={card.color} />
+            <Box />
           )}
         </Box>
       </Box>

@@ -33,7 +33,6 @@
   justify-content: center;
   align-items: center;
 }
-
 .methodCard {
   display: flex;
   position: relative;
@@ -48,15 +47,12 @@
   &.active {
     border: 0.5px solid #FFFFFF;
   }
-
   &:hover {
     border: 0.5px solid #FFFFFF;
-
     * {
       fill: #fff;
     }
   }
-
   @media screen and (max-width: 600px) {
     width: 70px;
     height: 70px;
