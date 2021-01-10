@@ -9,7 +9,7 @@ function StatItem({ item }) {
   function getItemColor() {
     switch (item.win) {
       case 'win':
-        return '#58AD3A';
+        return '#02C880';
       case 'lose':
         return '#EB5757';
       default:

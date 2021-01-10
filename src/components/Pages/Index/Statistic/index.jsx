@@ -14,7 +14,8 @@ function Statistic() {
       xs={12}
       bgcolor={theme.background.primary}
       style={{ borderTopLeftRadius: 10 }}
-      px={3}
+      pl={3}
+      pr={7}
       flexGrow={1}
       height="1px"
       display="flex"
@@ -24,7 +25,6 @@ function Statistic() {
         width={1}
         display="flex"
         justifyContent="space-between"
-        px={mobileOrTablet ? 0 : 4}
         pt={mobileOrTablet ? 0 : 1}
         pl={mobileOrTablet ? 0 : 5.25}
         style={{ marginBottom: mobileOrTablet ? 0 : 10 }}

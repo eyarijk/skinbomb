@@ -162,11 +162,6 @@ function Store() {
       height={1}
       pt={isMobileOrTablet ? 2 : 6}
       pl={1}
-      width={
-        (isMobileOrTablet && '100vw') ||
-        (isDesk && 'calc(100vw - 300px)') ||
-        'calc(100vw - 430px)'
-      }
       pr={!isMobileOrTablet && 2}
     >
       <Box
