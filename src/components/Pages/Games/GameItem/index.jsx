@@ -45,6 +45,12 @@ function GameItem({ item }) {
     }
   }
 
+  const showSkins = [...item.skins]
+    .sort((a, b) => parseFloat(b.amount) - parseFloat(a.amount))
+    .slice(0, 2);
+
+  const addSkinsCount = item.skins?.length - 2;
+
   return (
     <Box
       width={1}
@@ -75,7 +81,7 @@ function GameItem({ item }) {
           <span>{item.id_and_date}</span>
         </Box>
 
-        {item.skins?.map(gun => (
+        {showSkins.map(gun => (
           <img
             key={Math.random()}
             src={`https://api.skinbomb.gg/${gun.skin.icon}`}
@@ -83,6 +89,21 @@ function GameItem({ item }) {
             style={{ width: '90px' }}
           />
         ))}
+        {addSkinsCount > 0 && (
+          <Box
+            component="span"
+            width={64}
+            ml="15px"
+            height={26}
+            display="flex"
+            alignItems="center"
+            borderRadius="10px"
+            justifyContent="center"
+            style={{ backgroundColor: getItemColor() }}
+          >
+            +{addSkinsCount}
+          </Box>
+        )}
       </Box>
       <Box
         width={0.5}
