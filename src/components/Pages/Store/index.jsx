@@ -33,7 +33,6 @@ const typeData = {
 
 function Store() {
   const theme = useTheme();
-  const isDesk = useMediaQuery('(max-width: 1459px)');
   const isBigDesk = useMediaQuery('(max-width: 2560px)');
   const isMobileOrTablet = useMediaQuery('(max-width: 959px)');
 
