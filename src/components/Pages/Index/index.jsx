@@ -146,14 +146,14 @@ function Index() {
               fontSize={20}
               fontWeight={400}
               color="#979797"
-              width={0.96}
+              width={1}
               pl={4.1}
             >
               Сделать ставку
             </Box>
           )}
           {!isMobileOrTablet && (
-              <Box display="flex" width={0.855} pl={4.1} mb={1.5} alignItems="center" justifyContent="space-between">
+              <Box display="flex" width={1} pl={4.1} pr={4.1} mb={1.5} alignItems="center" justifyContent="space-between">
               <BetHistory
                 my={1.5}
                 justifyContent="space-between"
@@ -168,7 +168,7 @@ function Index() {
                 ]}
               />
               {!isMobileOrTablet && !isSmDesktop && (
-                <Box width="32%" pl={2.5}>
+                <Box width="178px">
                   <Input
                     value={rate}
                     onChange={handleChangeRate}
@@ -186,7 +186,7 @@ function Index() {
           {isSmDesktop && (
             <Box
               px={2.5}
-              width="100%"
+              width={1}
               display={isMobileOrTablet ? 'none' : 'flex'}
               justifyContent={'space-between'}
             >
@@ -239,7 +239,7 @@ function Index() {
             </Box>
           )}
           {!isMobileOrTablet && !isSmDesktop && (
-            <Box width={0.9} px={4.1}>
+            <Box width={1} px={4.1}>
               <Button
                 w="100%"
                 h="40px"

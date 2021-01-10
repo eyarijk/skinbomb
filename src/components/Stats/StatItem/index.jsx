@@ -9,7 +9,7 @@ function StatItem({ item }) {
   function getItemColor() {
     switch (item.win) {
       case 'win':
-        return '#58AD3A';
+        return '#02C880';
       case 'lose':
         return '#EB5757';
       default:
@@ -100,7 +100,16 @@ function StatItem({ item }) {
             style={{ width: '90px' }}
           />
         ))}
-        {addSkinsCount > 0 && <Box component="span">+{addSkinsCount}</Box>}
+        {addSkinsCount > 0 && <Box component="span"
+          width={64}
+          ml="15px"
+          height={26}
+          display="flex"
+          alignItems="center"
+          borderRadius="10px"
+          justifyContent="center"
+          style={{ backgroundColor: getItemColor() }}
+        >+{addSkinsCount}</Box>}
       </Box>
       <Box
         width={0.5}
