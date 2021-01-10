@@ -115,7 +115,7 @@ function Bomb() {
         </Box>
       </div>
       <img
-        style={{ height: 350, width: isMobileOrTablet ? '330px' : 'auto' }}
+        style={{ height: isMobileOrTablet ? 185 : 350, width: isMobileOrTablet ? '100%' : 'auto' }}
         src={`/bomb_${bombStep}.png`}
         alt="timer"
         className={s.bombRoot}

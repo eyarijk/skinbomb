@@ -156,7 +156,7 @@ function TopUp() {
                   })}
               >
                 {method.is_skins && <Box className={s.skin}>Скины</Box>}
-                <img src={`https://api.skinbomb.gg${(!!currentMethod && currentMethod.id === method.id) ? method.logo_active : method.logo}`} width={mobileOrTablet ? 60 : 70}/>
+                <img src={`https://api.skinbomb.gg${(!!currentMethod && currentMethod.id === method.id) ? method.logo_active : method.logo}`} width={mobileOrTablet ? 50 : 70}/>
               </Box>
             ))}
           </Box>

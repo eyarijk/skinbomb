@@ -34,7 +34,7 @@ function Statistic() {
           alignItems="flex-end"
           fontWeight={400}
           fontSize={mobileOrTablet ? 13 : 20}
-          lineHeight="32px"
+          lineHeight={mobileOrTablet ? "40px" : "32px"}
           letterSpacing="0.44"
           color="#888"
           height={mobileOrTablet ? "none" : 43}
@@ -45,7 +45,7 @@ function Statistic() {
           display="flex"
           alignItems="center"
           fontWeight={600}
-          fontSize={12}
+          fontSize={mobileOrTablet ? 8 : 12}
           lineHeight="32px"
           letterSpacing="0.44"
           color="#686868"

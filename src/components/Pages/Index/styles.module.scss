@@ -13,6 +13,7 @@
 
     @media screen and (max-width: 959px) {
       width: 98px;
+      left: -6px;
       bottom: 0;
     }
     @media screen and (min-width: 959px) and (max-width: 1129px) {
@@ -78,6 +79,7 @@
   }
   @media screen and (max-width: 1023px) {
     width: 80px;
+    margin-top: 10px;
   }
 }
 
@@ -97,5 +99,10 @@
   &:hover {
     color: #fff;
     background: #f24a4a;
+  }
+}
+@media screen and (max-width: 991px) {
+  .line {
+    display: none;
   }
 }
