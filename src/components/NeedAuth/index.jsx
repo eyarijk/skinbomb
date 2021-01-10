@@ -28,6 +28,7 @@ function NeedAuth({ text }) {
           lineHeight="20px"
           letterSpacing="0.44px"
           color="#C4C4C4"
+          textAlign="center"
         >
           Заходя на этот сайт, вы подтверждаете, что вам исполнилось 18 лет и вы
           соглашаетесь с{' '}

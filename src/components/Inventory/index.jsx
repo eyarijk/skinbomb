@@ -166,6 +166,7 @@ export default function Inventory() {
           fontSize={14}
           fontWeight={400}
           mb={2}
+          textAlign="center"
         >
           1. Для начала вам нужно пополнить балланс, вы можете пополнить его,
           используя скины или деньги во вкладке Пополнить
@@ -177,6 +178,7 @@ export default function Inventory() {
           fontWeight={400}
           mb={3}
           maxWidth={320}
+          textAlign="center"
         >
           2. Вы можете обменять деньги на скины в магазине
         </Box>
