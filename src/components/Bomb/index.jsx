@@ -63,6 +63,7 @@ function Bomb() {
   }, [rateToFinish]);
 
   useEffect(() => {
+    setTimeToStart(0);
     setRateToFinish(0);
   }, [currentRate]);
 

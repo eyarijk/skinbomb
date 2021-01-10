@@ -17,6 +17,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useSkins } from '../../../lib/api/skins';
 import ExchangeSkin from './ExchangeSkin';
 import Statistic from './Statistic';
+import RateUpper from '../../RateUpper';
 
 function Index() {
   const theme = useTheme();
@@ -92,7 +93,7 @@ function Index() {
             pt={isMobileOrTablet && 3}
           >
             <Box
-                width={(isMobileOrTablet && 0.5) || (isXsDesktop && 1) || 1}
+              width={(isMobileOrTablet && 0.5) || (isXsDesktop && 1) || 1}
               pr={2}
               height={
                 (isMobileOrTablet && 'unset') || (isXsDesktop && 150) || 'unset'
@@ -106,19 +107,7 @@ function Index() {
                 'row'
               }
             >
-              <Box
-                width={isMobileOrTablet ? '100%' : '-webkit-fill-available'}
-                display="flex"
-                justifyContent="center"
-                alignItems="center"
-                fontWeight="700"
-                fontSize={isMobile ? 14 : 24}
-                color="white"
-                px={isMobileOrTablet && 1}
-                align="center"
-              >
-                {`${currentRate.toFixed(2)} X`}
-              </Box>
+              <RateUpper currentRate={currentRate} />
               <Chart startAnimation={isCountDown} currentRate={currentRate} />
             </Box>
             <Box mt={2.5} mb={1.5} pl={2}>
@@ -138,7 +127,7 @@ function Index() {
           justifyContent="space-between"
           flexDirection="column"
           position="relative"
-          pb={ isMobileOrTablet ? 0 : 10 }
+          pb={isMobileOrTablet ? 0 : 10}
         >
           <Bomb />
           {!isMobileOrTablet && (
@@ -153,7 +142,15 @@ function Index() {
             </Box>
           )}
           {!isMobileOrTablet && (
-              <Box display="flex" width={1} pl={4.1} pr={4.1} mb={1.5} alignItems="center" justifyContent="space-between">
+            <Box
+              display="flex"
+              width={1}
+              pl={4.1}
+              pr={4.1}
+              mb={1.5}
+              alignItems="center"
+              justifyContent="space-between"
+            >
               <BetHistory
                 my={1.5}
                 justifyContent="space-between"
@@ -312,11 +309,11 @@ function Index() {
               fontWeight="400"
             />
           </Box>
-          <Box width={isMobileOrTablet ? 1 : "calc(100% - 130px)"}>
+          <Box width={isMobileOrTablet ? 1 : 'calc(100% - 130px)'}>
             <Button
               w="100%"
               h="40px"
-              p={isMobileOrTablet ? "0 5px" : "0 26px"}
+              p={isMobileOrTablet ? '0 5px' : '0 26px'}
               bgcolor="#F89D00"
               onClick={() => handleBet(rate)}
               borderSize={0}
