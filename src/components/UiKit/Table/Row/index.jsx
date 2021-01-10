@@ -21,7 +21,7 @@ function Row({ row, collapsable, hidden }) {
         )}
         {row.map(item => {
           return (
-            <td className="item" key={item}>
+            <td className="item" style={item === row[3] ? {color: 'orange'} : {color: 'white'}} key={item}>
               {item}
             </td>
           );
