@@ -10,6 +10,7 @@ import Input from '../../UiKit/Input';
 import { useReferrals } from '../../../lib/api/referrals';
 
 import s from './styles.module.scss';
+import Copy from '../../Copy';
 
 function Referral() {
   const theme = useTheme();
@@ -412,7 +413,7 @@ function Referral() {
                   }
                   label="Ваша ссылка:"
                   name="referralLink"
-                  onChange={() => console.log('Save Ref link')}
+                  onChange={() => {}}
                   bgcolor="#070707"
                   borderColor="#4A4A4A"
                   borderSize="1px"
@@ -421,20 +422,7 @@ function Referral() {
                   align="left"
                   color="#FFFFFF"
                 />
-                <Button
-                  value={
-                    <img src="/copy.svg" alt="copy" style={{ width: 20 }} />
-                  }
-                  borderSize="0px"
-                  bgcolor="#FB9414"
-                  color="#141415"
-                  w="41px"
-                  h="40px"
-                  m="28px 0 0 20px"
-                  onClick={() => {
-                    console.log('Копировать');
-                  }}
-                />
+                <Copy text={`https://skinbomb.gg/${referrals.url}`} />
               </Box>
             </Box>
           </Box>
@@ -477,7 +465,7 @@ function Referral() {
             Заработано
           </Box>
           <Button
-              variant={s.btn}
+            variant={s.btn}
             borderSize="0px"
             value="Забрать"
             bgcolor="#FB9414"

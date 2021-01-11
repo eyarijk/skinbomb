@@ -27,6 +27,7 @@ function ReferralsProvider({ children }) {
   const createCode = async code => {
     const formData = new FormData();
     formData.append('code', code);
+
     try {
       const payload = await fetch('/referrals/code', {
         method: 'post',
@@ -35,7 +36,9 @@ function ReferralsProvider({ children }) {
 
       setReferrals(payload.data);
     } catch (err) {
-      console.error('>>> API Error: ', err);
+      if (Array.isArray(err.response.data.code)) {
+        await swal.fire('Ошибка', err.response.data.code.join('<br>'), 'error');
+      }
     }
   };
 
@@ -51,7 +54,6 @@ function ReferralsProvider({ children }) {
       setReferrals(payload.data);
     } catch (err) {
       await swal.fire('Failed', err.response.data.message, 'error');
-      console.error('>>> API Error: ', err);
     }
   };
 
