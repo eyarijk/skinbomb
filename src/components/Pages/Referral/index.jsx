@@ -20,6 +20,7 @@ function Referral() {
     isReferralsLoaded,
     createCode,
     activateCode,
+    toBalance,
   } = useReferrals();
   const [code, setCode] = useState('');
   const [newCode, setNewCode] = useState('');
@@ -475,7 +476,7 @@ function Referral() {
             fontSize={16}
             fontWeight="bold"
             onClick={() => {
-              console.log('Забрать');
+              toBalance();
             }}
           />
         </Box>

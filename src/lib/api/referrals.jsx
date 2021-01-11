@@ -9,7 +9,7 @@ import swal from 'sweetalert2';
 const ReferralsContext = createContext({});
 
 function ReferralsProvider({ children }) {
-  const { token } = useAuth();
+  const { token, fetchUser } = useAuth();
   const [referrals, setReferrals] = useState(null);
   const [isReferralsLoaded, setIsReferralsLoaded] = useState(false);
 
@@ -57,6 +57,19 @@ function ReferralsProvider({ children }) {
     }
   };
 
+  const toBalance = async () => {
+    try {
+      await fetch('/referrals/to-balance', {
+        method: 'post',
+      });
+
+      await fetchUser();
+      await getReferrals();
+    } catch (err) {
+      await swal.fire('Ошибка', err.response.data.message, 'error');
+    }
+  };
+
   useEffect(() => {
     if (token && referrals === null) {
       getReferrals();
@@ -71,6 +84,7 @@ function ReferralsProvider({ children }) {
         getReferrals,
         createCode,
         activateCode,
+        toBalance,
       }}
     >
       {children}
