@@ -169,7 +169,7 @@ function ExchangeSkin({ handleChangeRate }) {
           alt="sphere"
           className={s.sphere}
         />
-        <img src="/line.png" alt="line" className={s.line} />
+        <img src="/line.png" alt="line" className={exchangeSkin ? s.none : s.line} />
       </Box>
       {renderSkin()}
     </Box>

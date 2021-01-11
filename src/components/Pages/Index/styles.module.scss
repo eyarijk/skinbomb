@@ -5,6 +5,7 @@
   justify-content: center;
   background: url('/weapon-card-bg.svg') no-repeat center top / cover;
 
+
   .sphere {
     width: 267px;
     position: absolute;
@@ -53,6 +54,9 @@
 }
 .line {
   position: absolute;
+}
+.none {
+  display: none;
 }
 
 .button {
