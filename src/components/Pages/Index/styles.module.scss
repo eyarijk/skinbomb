@@ -27,7 +27,8 @@
     width: 145px;
 
     @media screen and (max-width: 959px) {
-      width: 90px;
+      width: 62px;
+      margin-top: 0;
     }
     @media screen and (min-width: 959px) and (max-width: 1129px) {
       width: 110px;

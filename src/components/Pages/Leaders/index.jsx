@@ -81,6 +81,7 @@ function Leaders() {
         display="flex"
         flexDirection={isMobileOrTablet && 'column'}
         justifyContent="space-between"
+        alignItems={isMobileOrTablet ? "center" : "none"}
         width={(isMobileOrTablet && '100vw') || (isDesk && '100%') || '100%'}
         mb={10}
         pr={!isMobileOrTablet && 11}
@@ -115,8 +116,7 @@ function Leaders() {
           borderRadius={10}
           border="2px solid #FB9414"
           bgcolor={theme.background.secondary}
-          mt={isMobileOrTablet && 5}
-          mx={isMobileOrTablet && 3}
+          mx={isMobileOrTablet ? 0 : 3}
         >
           <Box
             color="#FB9414"
