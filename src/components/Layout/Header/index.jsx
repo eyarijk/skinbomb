@@ -15,7 +15,6 @@ const Header = props => {
   const theme = useTheme();
 
   const isMobile = useMediaQuery('(max-width: 600px)');
-  const mobileOrTablet = useMediaQuery('(max-width: 959px)');
   const isTablet = useMediaQuery('(max-width: 1023px)');
   const isXsDes = useMediaQuery('(max-width: 1060px)');
   const isSmDes = useMediaQuery('(max-width: 1100px)');
@@ -68,28 +67,28 @@ const Header = props => {
                 >
                   {(user?.amount).toFixed(2)} $
                 </Box>
+                <Link href="/top-up">
+                  <Box
+                    className={s.button}
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="center"
+                  >
+                    Пополнить
+                  </Box>
+                </Link>
+                <Link href="/store">
+                  <Box
+                    className={cn(s.button, s.shop)}
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="center"
+                  >
+                    Магазин
+                  </Box>
+                </Link>
               </>
             )}
-            <Link href="/top-up">
-              <Box
-                className={s.button}
-                display="flex"
-                alignItems="center"
-                justifyContent="center"
-              >
-                Пополнить
-              </Box>
-            </Link>
-            <Link href="/store">
-              <Box
-                className={cn(s.button, s.shop)}
-                display="flex"
-                alignItems="center"
-                justifyContent="center"
-              >
-                Магазин
-              </Box>
-            </Link>
           </Box>
         </Box>
         <Box display="flex" alignItems="center" mr={2.5}>
@@ -135,7 +134,7 @@ const Header = props => {
                 <Avatar src={avatar} alt="avatar" />
                 <Box
                   color="#fff"
-                  mr={(isDesk && user && 1)}
+                  mr={isDesk && user && 1}
                   ml={(isXsDes && 0.5) || 1.5}
                   fontSize={16}
                   fontWeight={700}
