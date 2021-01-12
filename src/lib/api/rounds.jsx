@@ -12,7 +12,7 @@ import {
   getCurrentExchange,
   removeCurrentExchange,
 } from '../../utils/LocalStorage';
-import {useChat} from "./chat";
+import { useChat } from './chat';
 
 const RoundsContext = createContext({});
 
