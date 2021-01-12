@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import {Box, Button as MuiButton} from '@material-ui/core';
+import { Box } from '@material-ui/core';
 import { useTheme } from '@material-ui/core/styles';
 
 import Button from '../../UiKit/Button';
@@ -9,79 +9,83 @@ import Input from '../../UiKit/Input';
 import fetch from '../../../lib/fetch';
 
 import s from './styles.module.scss';
-import {useTopUp} from "../../../lib/api/top-up";
-import cn from "classnames";
-import * as swal from "sweetalert2";
-import {useAuth} from "../../../lib/api/auth";
-import Link from "next/link";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
+import { useTopUp } from '../../../lib/api/top-up';
+import cn from 'classnames';
+import * as swal from 'sweetalert2';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 const buttons = ['1', '5', '10', '25', '50', '100'];
 
-function round (num){
+function round(num) {
   return Math.round((num + Number.EPSILON) * 100) / 100;
 }
 
 function TopUp() {
   const theme = useTheme();
-  const desk = useMediaQuery('(max-width: 1459px)');
   const mobileOrTablet = useMediaQuery('(max-width: 959px)');
   const mobile = useMediaQuery('(max-width: 767px)');
   const [currentMethod, setCurrentMethod] = useState(null);
-  const {paymentTypes, isPaymentTypeLoaded, paymentMethods, getPaymentMethods, usdRubRate} = useTopUp();
+  const {
+    paymentTypes,
+    isPaymentTypeLoaded,
+    paymentMethods,
+    getPaymentMethods,
+    usdRubRate,
+  } = useTopUp();
   const [sum, setSum] = useState('');
   const [gameValut, setGameValut] = useState('');
   const [refCode, setRefCode] = useState('');
-  const [tab, setTab] = useState("0");
-  let errorNotify = ''
+  const [tab, setTab] = useState('0');
+  let errorNotify = '';
 
   useEffect(() => {
-    if(!!currentMethod && currentMethod.is_skins)
-      submit();
-  }, [currentMethod])
+    if (!!currentMethod && currentMethod.is_skins) submit();
+  }, [currentMethod]);
 
   useEffect(() => {
     getPaymentMethods(tab);
   }, [tab]);
 
-  async function submit(){
+  async function submit() {
     let fetchData = null;
-    if(currentMethod.is_skins){
+    if (currentMethod.is_skins) {
       try {
         fetchData = await fetch(currentMethod.url.replace('/api', ''));
-      } catch (error){
+      } catch (error) {
         swal.fire('Failed', error.response.data.message, 'error');
         return;
       }
-    }else{
-      if(gameValut == '' || gameValut == 0 ){
+    } else {
+      if (gameValut == '' || gameValut == 0) {
         return;
       }
       const fd = new FormData();
       fd.append('amount', gameValut);
       try {
-        fetchData = await fetch(currentMethod.url.replace('/api', ''), {method: 'POST', data: fd});
-      } catch (error){
+        fetchData = await fetch(currentMethod.url.replace('/api', ''), {
+          method: 'POST',
+          data: fd,
+        });
+      } catch (error) {
         swal.fire('Failed', error.response.data.message, 'error');
 
         return;
       }
     }
 
-    if(!!fetchData && (fetchData.status === 'success' || fetchData.success))
+    if (!!fetchData && (fetchData.status === 'success' || fetchData.success))
       window.location.replace(fetchData.url);
-
   }
 
-  function handleChangeSum(rub){
-    console.log('aaa', rub)
-    if (parseInt(rub, 10) || rub === ''){
+  function handleChangeSum(rub) {
+    console.log('aaa', rub);
+    if (parseInt(rub, 10) || rub === '') {
       setSum(rub);
       setGameValut(rub === '' ? rub : round(rub * usdRubRate));
     }
   }
 
-  function handleChangeValut(usd){
+  function handleChangeValut(usd) {
     if (parseInt(usd, 10) || usd === '') {
       setGameValut(usd);
       setSum(usd === '' ? usd : round(usd / usdRubRate));
@@ -93,7 +97,7 @@ function TopUp() {
       py={{ xs: 1, sm: 2 }}
       px={{ xs: 0, sm: 1 }}
       display="flex"
-      flexDirection={mobile ? "column" : "row"}
+      flexDirection={mobile ? 'column' : 'row'}
       justifyContent="space-between"
       className={s.overflow}
       width={1}
@@ -101,7 +105,7 @@ function TopUp() {
       <Box
         pr={{ xs: 0, sm: 1 }}
         pb={2}
-        width={mobile ? "100vw" : 'calc(100% - 320px)'}
+        width={mobile ? '100vw' : 'calc(100% - 320px)'}
         height="fit-content"
       >
         <Box
@@ -126,9 +130,10 @@ function TopUp() {
             display="flex"
             justifyContent={{ xs: 'space-between', sm: 'flex-start' }}
           >
-            {!!isPaymentTypeLoaded && Object.keys(paymentTypes).map(key => (
-              <Box
-                key={key}
+            {!!isPaymentTypeLoaded &&
+              Object.keys(paymentTypes).map(key => (
+                <Box
+                  key={key}
                   height={57}
                   color={tab === key ? '#fff' : '#737AAE'}
                   display="inline-flex"
@@ -146,17 +151,24 @@ function TopUp() {
           <Box display="flex" maxWidth={1} flexWrap="wrap">
             {paymentMethods.map(method => (
               <Box
-                  key={method.name}
-                  m={{ xs: 0.6, sm: 1 }}
-                  onClick={async () => {
-                    setCurrentMethod(method);
-                  }}
-                  className={cn(s.methodCard, {
-                    [s.active]: (!!currentMethod && currentMethod.id === method.id),
-                  })}
+                key={method.name}
+                m={{ xs: 0.6, sm: 1 }}
+                onClick={async () => {
+                  setCurrentMethod(method);
+                }}
+                className={cn(s.methodCard, {
+                  [s.active]: !!currentMethod && currentMethod.id === method.id,
+                })}
               >
                 {method.is_skins && <Box className={s.skin}>Скины</Box>}
-                <img src={`https://api.skinbomb.gg${(!!currentMethod && currentMethod.id === method.id) ? method.logo_active : method.logo}`} width={mobileOrTablet ? 50 : 70}/>
+                <img
+                  src={`https://api.skinbomb.gg${
+                    !!currentMethod && currentMethod.id === method.id
+                      ? method.logo_active
+                      : method.logo
+                  }`}
+                  width={mobileOrTablet ? 50 : 70}
+                />
               </Box>
             ))}
           </Box>
@@ -281,7 +293,7 @@ function TopUp() {
           Бонус
         </Box>
         <Box
-          width={mobile ? 1 : "343px"}
+          width={mobile ? 1 : '343px'}
           height={170}
           bgcolor={theme.background.primary}
           borderRadius={10}
@@ -300,10 +312,12 @@ function TopUp() {
           >
             Введите реферальный код ниже и получите ваши бесплатные 0,50 $
           </Box>
-          <Box color="red">
-            {errorNotify}
-          </Box>
-          <Box width={1} display="flex" justifyContent={!mobile && "space-between"}>
+          <Box color="red">{errorNotify}</Box>
+          <Box
+            width={1}
+            display="flex"
+            justifyContent={!mobile && 'space-between'}
+          >
             <Box width={240} mr={mobile && 3}>
               <Input
                 value={refCode}
@@ -319,7 +333,7 @@ function TopUp() {
               borderSize="0"
               bgcolor="#FB9414"
               onClick={() => {
-                errorNotify = 'Test'
+                errorNotify = 'Test';
               }}
               value={<img src="/check.svg" alt="check" />}
             />

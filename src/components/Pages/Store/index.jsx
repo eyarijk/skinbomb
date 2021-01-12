@@ -15,7 +15,8 @@ import Loading from '../../Loading';
 import { useSkins } from '../../../lib/api/skins';
 import { useAuth } from '../../../lib/api/auth';
 import { setCurrentExchange } from '../../../utils/LocalStorage';
-import swal from "sweetalert2";
+import swal from 'sweetalert2';
+import cn from 'classnames';
 
 const rarityData = {
   title: 'Раритетнось',
@@ -69,6 +70,7 @@ function Store() {
   const [rarity, setRarity] = useState(null);
   const [quality, setQuality] = useState(null);
   const [type, setType] = useState(null);
+  const [sort, setSort] = useState('asc');
 
   function handleMinChange(val) {
     setSliderValue([val, sliderValue[1]]);
@@ -105,6 +107,7 @@ function Store() {
       price_min: sliderValue[0],
       price_max: sliderValue[1],
       scrolling: scrolling,
+      sort,
     };
 
     handleSearch(options);
@@ -113,6 +116,11 @@ function Store() {
   if (buyingProcess) {
     return <Loading />;
   }
+
+  const handleSort = () => {
+    setSort(prev => (prev === 'asc' ? 'desc' : 'asc'));
+    fetchItems();
+  };
 
   const renderFilterButton = () => {
     if (Object.keys(buyingSkins).length === 0) {
@@ -209,6 +217,7 @@ function Store() {
           display={isMobileOrTablet && 'flex'}
           alignItems="center"
           px={isMobileOrTablet && 2.5}
+          className={s.searchBox}
         >
           {isMobileOrTablet && (
             <Box width={40} height={40} onClick={() => setIsOpen(!isOpen)}>
@@ -241,6 +250,13 @@ function Store() {
               align="left"
               bgcolor={isMobileOrTablet ? '#000' : '#141415'}
             />
+          </Box>
+          <Box
+            className={cn(s.priceSort, { [s.sortDesc]: sort === 'desc' })}
+            onClick={handleSort}
+          >
+            По цене
+            <img src="sort.svg" alt="sort" />
           </Box>
         </Box>
         <Box

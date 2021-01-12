@@ -17,6 +17,7 @@ const initialSearchOptions = {
   price_min: 0,
   scrolling: false,
   price_max: 0,
+  sort: 'asc',
 };
 
 function StoreProvider({ children }) {
@@ -82,14 +83,15 @@ function StoreProvider({ children }) {
       wear_level_id,
       price_min,
       price_max,
+      sort,
     } = options;
 
     setIsStoreLoaded(false);
 
-    let searchUrl = `/store/${cards.length}?`;
+    let searchUrl = `/store/${cards.length}?order=${sort || 'asc'}`;
 
     if (q.trim() !== '') {
-      searchUrl += `search=${q}`;
+      searchUrl += `&search=${q}`;
     }
 
     if (rarity_id && rarity_id !== 0) {

@@ -1,3 +1,5 @@
+@import "../../../styles/variables";
+
 .rightContainer {
   overflow: hidden auto;
 
@@ -26,21 +28,38 @@
   position: relative;
 }
 
+.searchBox {
+  display: flex;
+  align-items: center;
+}
+
+.priceSort {
+  color: $orange;
+  width: 160px;
+  cursor: pointer;
+  user-select: none;
+
+  @media screen and (max-width: 700px) {
+    width: auto;
+    white-space: nowrap;
+  }
+
+  &.sortDesc {
+    img {
+      transform: rotate(180deg);
+    }
+  }
+
+  img {
+    margin-left: 5px;
+  }
+}
+
 .icon {
   position: absolute;
-  right: 4%;
+  right: 30px;
   bottom: 30%;
   z-index: 1;
-}
-@media screen and (max-width: 1300px) {
-  .icon {
-    right: 6%;
-  }
-}
-@media screen and (max-width: 1080px) {
-  .icon {
-    right: 9%;
-  }
 }
 
 .resultsContainer {
