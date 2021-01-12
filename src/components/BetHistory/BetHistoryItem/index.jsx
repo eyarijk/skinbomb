@@ -54,7 +54,7 @@ function BetHistoryItem({ bet, small, onClick }) {
       fontFamily="Open Sans, unset"
       className={`${classes.root}`}
     >
-      {`${bet}x`}
+      {`${bet.toFixed(2)}x`}
     </Box>
   );
 }

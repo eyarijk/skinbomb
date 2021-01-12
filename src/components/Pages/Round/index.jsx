@@ -86,7 +86,7 @@ function RoundPage() {
           color="#fff"
           px={2}
         >
-          Разрушен @ {round.coefficient}x
+          Разрушен @ {round.coefficient.toFixed(2)}x
         </Box>
         <Box
           component="span"
