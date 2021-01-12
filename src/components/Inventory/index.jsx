@@ -103,18 +103,20 @@ export default function Inventory() {
                     ? setTypeExchange('exchange')
                     : router.push('/store?type=exchange');
                 }}
-                w="90px"
+                w="140px"
                 h="40px"
-                bgcolor="linear-gradient(139.23deg, #6361C8 13.34%, #713AEB 86.08%)"
+                bgcolor="linear-gradient(139.23deg, #7D20FF 13.34%, #6101E9 86.08%)"
+                border="none"
                 borderColor="linear-gradient(139.23deg, #6361C8 13.34%, #713AEB 86.08%)"
               />
             )}
             <UiButton
               value="Вывести"
               onClick={() => skinToSteam()}
-              w="90px"
+              w="140px"
               h="40px"
-              bgcolor="linear-gradient(139.23deg, #6361C8 13.34%, #713AEB 86.08%)"
+              border="none"
+              bgcolor="linear-gradient(139.23deg, #7D20FF 13.34%, #6101E9 86.08%)"
               borderColor="linear-gradient(139.23deg, #6361C8 13.34%, #713AEB 86.08%)"
             />
           </Box>

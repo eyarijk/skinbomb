@@ -7,6 +7,7 @@ function Button({
   value,
   onClick,
   variant,
+  border,
   borderSize,
   borderColor,
   color,
@@ -37,6 +38,7 @@ function Button({
           maxWidth={w}
           height={`${h}!important`}
           color={color}
+          border={border}
           p={p}
           m={m}
           minWidth={minWidth}
