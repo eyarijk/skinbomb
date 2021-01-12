@@ -122,6 +122,9 @@
     &:hover {
       color: #F89D00;
       cursor: pointer;
+      * {
+        fill: white;
+      }
     }
   }
 }

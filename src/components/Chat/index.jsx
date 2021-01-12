@@ -193,7 +193,7 @@ function Chat() {
             ) : (
               <Box
                 className={s.listWrapper}
-                height="calc(100% - 264px)"
+                height="100%"
                 width={1}
               >
                 <List className={s.list}>
