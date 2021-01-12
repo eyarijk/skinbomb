@@ -7,10 +7,10 @@
 
 
   .sphere {
-    width: 267px;
+    width: 284px;
     position: absolute;
-    bottom: -3px;
-    left: -34px;
+    bottom: -10px;
+    left: -42px;
 
     @media screen and (max-width: 959px) {
       width: 98px;
@@ -55,6 +55,8 @@
 }
 .line {
   position: absolute;
+  height: 103%;
+  top: -6px;
 }
 .none {
   display: none;
