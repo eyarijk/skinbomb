@@ -102,6 +102,7 @@
     margin-left: -404px;
   }
 }
+
 @media screen and (max-width: 959px) {
   .root {
     padding-bottom: 0;
@@ -142,6 +143,44 @@
       width: 60px;
       top: 94px;
       margin-right: -29px;
+    }
+  }
+}
+@media screen and (max-width: 425px) {
+  .root {
+    .countdownWrapper {
+      width: 103px;
+      height: 44px;
+      border-radius: 10px;
+      top: 124px;
+      margin-left: 22px;
+    }
+    .bombRoot {
+      height: 230px !important;
+    }
+    .glass {
+      width: 118px;
+      top: 98px;
+      margin-right: -18px;
+    }
+  }
+}
+@media screen and (max-width: 320px) {
+  .root {
+    .countdownWrapper {
+      width: 91px;
+      height: 39px;
+      border-radius: 10px;
+      top: 96px;
+      margin-left: 22px;
+    }
+    .bombRoot {
+      height: 185px !important;
+    }
+    .glass {
+      width: 113px;
+      top: 70px;
+      margin-right: -18px;
     }
   }
 }
