@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Box } from '@material-ui/core';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { stepRate } from '../../utils/BombUtils';
 
 function RateUpper({ currentRate }) {
   const isMobileOrTablet = useMediaQuery('(max-width: 959px)');
@@ -11,7 +12,7 @@ function RateUpper({ currentRate }) {
   useEffect(() => {
     if (rateToFinish < currentRate) {
       setTimeout(() => {
-        const step = currentRate / 50;
+        const step = stepRate(rateToFinish, currentRate);
         setRateToFinish(prevVal => prevVal + step);
       }, 50);
     } else if (rateToFinish !== currentRate) {

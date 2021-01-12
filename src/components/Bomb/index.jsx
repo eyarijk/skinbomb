@@ -6,7 +6,12 @@ import s from './styles.module.scss';
 import Box from '@material-ui/core/Box';
 import BetColor from '../../utils/BetColor';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { calcStep, calcWingsFire, calcWingsStep } from '../../utils/BombUtils';
+import {
+  calcStep,
+  calcWingsFire,
+  calcWingsStep,
+  stepRate,
+} from '../../utils/BombUtils';
 
 function Bomb() {
   const isMobileOrTablet = useMediaQuery('(max-width: 959px)');
@@ -45,7 +50,7 @@ function Bomb() {
   useEffect(() => {
     if (rateToFinish < currentRate) {
       setTimeout(() => {
-        const step = currentRate / 50;
+        const step = stepRate(rateToFinish, currentRate);
         setRateToFinish(prevVal => prevVal + step);
       }, 50);
     } else if (rateToFinish !== currentRate) {
@@ -77,6 +82,18 @@ function Bomb() {
     return '';
   };
 
+  const renderEmpty = num => {
+    if (num < 10) {
+      return '00';
+    }
+
+    if (num < 100) {
+      return '0';
+    }
+
+    return '';
+  };
+
   return (
     <div
       className={cn(s.root, {
@@ -86,14 +103,18 @@ function Bomb() {
       })}
     >
       <div className={s.countdownWrapper} style={{ backgroundColor: bombBg }}>
-        <Box display="block" mt={-1} ml={3.1}>
-          <Box className={s.countdown}>
+        <Box display="block" mt={-1} className={s.timer}>
+          <Box className={cn(s.countdown, s.countdownReal)}>
+            <span className={s.noneTimer}>
+              {renderEmpty(timeToStart >= 0 ? timeToStart : rateToFinish)}
+            </span>
             {isCountDown
               ? timeToStart >= 0
                 ? timeToStart.toFixed(2)
                 : '0.00'
               : rateToFinish.toFixed(2)}
           </Box>
+          <Box className={cn(s.countdown, s.countdownBackground)}>000.00</Box>
           <Box className={s.indicators}>
             <Box
               style={{ color: bombBg }}
@@ -115,7 +136,10 @@ function Bomb() {
         </Box>
       </div>
       <img
-        style={{ height: isMobileOrTablet ? 185 : 350, width: isMobileOrTablet ? '100%' : 'auto' }}
+        style={{
+          height: isMobileOrTablet ? 185 : 350,
+          width: isMobileOrTablet ? '100%' : 'auto',
+        }}
         src={`/bomb_${bombStep}.png`}
         alt="timer"
         className={s.bombRoot}

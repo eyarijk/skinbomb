@@ -6,6 +6,7 @@ import { LineChart, Line } from 'recharts';
 
 import s from './styles.module.scss';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { calcTime } from '../../utils/BombUtils';
 
 const data = [
   {
@@ -35,6 +36,8 @@ function Chart({ startAnimation, currentRate }) {
   const isMobileOrTablet = useMediaQuery('(max-width: 959px)');
 
   const [yAxis, setYAxis] = useState([0, 1, 2, 3]);
+  const [animationDuration, setAnimationDuration] = useState(2000);
+  const [showChart, setShowChart] = useState(false);
 
   useEffect(() => {
     setYAxis([
@@ -44,6 +47,11 @@ function Chart({ startAnimation, currentRate }) {
       currentRate.toFixed(2),
     ]);
   }, [currentRate]);
+
+  useEffect(() => {
+    setAnimationDuration(calcTime(currentRate));
+    setShowChart(startAnimation);
+  }, [startAnimation, currentRate]);
 
   return (
     <Box className={s.wrapper}>
@@ -56,7 +64,7 @@ function Chart({ startAnimation, currentRate }) {
           );
         })}
       </div>
-      {!startAnimation && (
+      {!showChart && (
         <LineChart width={isMobileOrTablet ? 130 : 160} height={80} data={data}>
           <defs>
             <linearGradient id="colorUv" x1="0%" y1="0%" x2="0%" y2="100%">
@@ -72,7 +80,7 @@ function Chart({ startAnimation, currentRate }) {
             stroke="url(#colorUv)"
             strokeWidth={3}
             dot={false}
-            animationDuration={2000}
+            animationDuration={animationDuration}
           />
         </LineChart>
       )}

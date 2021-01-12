@@ -23,7 +23,7 @@ function Stats() {
       className={s.root}
     >
       {statistics.map(item => {
-        return <StatItem key={item.id} item={item} />;
+        return <StatItem key={Math.random()} item={item} />;
       })}
     </Box>
   );
