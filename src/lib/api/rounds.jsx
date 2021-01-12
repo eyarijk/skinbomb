@@ -12,11 +12,13 @@ import {
   getCurrentExchange,
   removeCurrentExchange,
 } from '../../utils/LocalStorage';
+import {useChat} from "./chat";
 
 const RoundsContext = createContext({});
 
 function RoundsProvider({ children }) {
   const { token } = useAuth();
+  const { setOnline } = useChat();
   const { selectedSkins, getSkins, setExchangeSkin } = useSkins();
   const [lastBets, setLastBets] = useState([]);
   const [statistics, setStatistics] = useState([]);
@@ -111,6 +113,8 @@ function RoundsProvider({ children }) {
             setExchangeSkin(null);
             removeCurrentExchange();
           }
+
+          getSkins();
           setBetProcess(false);
         }
       } else if (payload.status === 0) {
@@ -125,6 +129,10 @@ function RoundsProvider({ children }) {
         setLastBets(event.last_bets);
         setStatistics(event.statistics);
         setGlobalStatistics(event.global_statistics);
+
+        if (event.user_online >= 0) {
+          setOnline(event.user_online);
+        }
       });
   }, []);
 

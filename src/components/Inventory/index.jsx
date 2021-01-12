@@ -39,12 +39,6 @@ export default function Inventory() {
     setCards(skins);
   }, [skins]);
 
-  useEffect(() => {
-    if (Object.keys(selectedSkins)) {
-      setTypeExchange('store');
-    }
-  }, [selectedSkins]);
-
   const openCase = () => {
     const [skinCase] = Object.values(selectedSkinCases);
 

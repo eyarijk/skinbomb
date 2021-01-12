@@ -3,12 +3,10 @@ import PropTypes from 'prop-types';
 import Echo from 'laravel-echo';
 import io from 'socket.io-client';
 import fetch from '../fetch';
-import { useAuth } from './auth';
 
 const ChatContext = createContext({});
 
 function ChatProvider({ children }) {
-  const { token } = useAuth();
   const [messages, setMessages] = useState([]);
   const [isMessagesLoaded, setIsMessagesLoaded] = useState(false);
   const [online, setOnline] = useState(0);
@@ -79,6 +77,7 @@ function ChatProvider({ children }) {
         isMessagesLoaded,
         online,
         sendMessage,
+        setOnline,
       }}
     >
       {children}
