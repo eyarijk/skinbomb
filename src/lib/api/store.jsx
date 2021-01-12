@@ -189,6 +189,8 @@ function StoreProvider({ children }) {
         data: formData,
       });
 
+      setBuyingSkins({});
+
       await swal.fire('Success', 'Success', 'success');
     } catch (error) {
       await swal.fire('Failed', error.response.data.message, 'error');

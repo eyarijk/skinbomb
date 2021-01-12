@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import cn from 'classnames';
 
 import { Box } from '@material-ui/core';
@@ -9,11 +9,19 @@ import Inventory from '../../Inventory';
 
 import s from './styles.module.scss';
 import { useChat } from '../../../lib/api/chat';
+import { useAuth } from '../../../lib/api/auth';
 
 function LeftContent() {
   const [activeTab, setActiveTab] = useState('chat');
+  const { user } = useAuth();
+
   const { online } = useChat();
   const theme = useTheme();
+
+  useEffect(() => {
+    setActiveTab(user ? 'inventory' : 'chat');
+  }, [user]);
+
   return (
     <Box className={s.root}>
       <Box

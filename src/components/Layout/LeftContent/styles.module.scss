@@ -17,6 +17,10 @@
         background: transparent;
         color: #ADB1CE;
         cursor: pointer;
+        &:hover:not(.active) {
+          background-color: rgb(20, 20, 21)!important;
+          transition: background-color 300ms ease;
+        }
         &.chat {
           border-top-right-radius: 10px;
           position: relative;
@@ -24,7 +28,7 @@
           &.active {
             background-color: rgb(20, 20, 21)!important;
             color: #fff;
-            
+
             &::before {
               content: "";
               position: absolute;
@@ -59,7 +63,7 @@
           &.active {
             background-color: rgb(20, 20, 21)!important;
             color: #fff;
-            
+
             &::before {
               content: "";
               position: absolute;
