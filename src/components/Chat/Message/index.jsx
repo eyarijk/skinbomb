@@ -18,7 +18,7 @@ function Message({ img, isAdmin, name, message, time }) {
     <ListItem className={s.root}>
       <ListItemAvatar className={cn(s.avatarWrapper, { [s.isAdmin]: isAdmin })}>
         <Avatar className={s.container}>
-          <Box style={{ backgroundImage: `url(${img})` }} className={s.image} />
+          <img src={img} className={s.image} />
         </Avatar>
       </ListItemAvatar>
       <ListItemText
