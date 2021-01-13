@@ -10,7 +10,7 @@ export default function LeaderBoard() {
     <table className={s.root}>
       <thead className={s.head}>
         <tr>
-          <td>Ползователь</td>
+          <td>Пользователь</td>
           <td>Выигрыш</td>
           <td>Приз</td>
         </tr>

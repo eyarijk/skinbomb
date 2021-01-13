@@ -299,6 +299,7 @@ function Store() {
           height={!isMobileOrTablet ? 1 : 900}
           bgcolor={theme.background.primary}
           p={2}
+          borderRadius="10px"
           className={s.rightContainer}
         >
           <Box display="flex" justifyContent="space-between" width={1} mb={4}>
