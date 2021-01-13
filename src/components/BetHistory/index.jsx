@@ -10,6 +10,7 @@ function BetHistory({ history, small, onClick, ...props }) {
   return (
     <Box
       display="flex"
+      justifyContent="center"
       width="100%"
       position={isMobileOrTablet ? 'relative' : 'inherit'}
       {...props}

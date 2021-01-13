@@ -227,7 +227,7 @@ function Store() {
           <Box
             py={2}
             px={2.5}
-            bgcolor={!isBigDesk && theme.background.primary}
+            bgcolor="#141415"
             borderRadius={10}
             width={1}
             className={isBigDesk && s.search}
@@ -266,7 +266,7 @@ function Store() {
           className={s.resultsContainer}
           id="scroller"
         >
-          <Box display="flex" flexWrap="wrap" justifyContent="center">
+          <Box className={s.grid}>
             {cards.map(card => (
               <WeaponCard
                 selectCard={selectBuyingSkin}

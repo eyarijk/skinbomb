@@ -19,7 +19,6 @@ function WeaponCard({ card, small, selectCard, selectedCards, percent = 0 }) {
       }`}
       height="min-content"
       mt={small ? 1 : 3}
-      mr={small ? 1 : 3}
       width={118}
       style={{ cursor: 'pointer' }}
       position="relative"

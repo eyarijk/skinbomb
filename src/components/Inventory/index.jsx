@@ -205,10 +205,10 @@ export default function Inventory() {
               <UiButton
                 value="Магазин"
                 onClick={() => {}}
-                w="150px"
+                w="135px"
                 h="40px"
-                bgcolor="#7D20FF"
-                borderColor="#7D20FF"
+                bgcolor="linear-gradient(139.23deg, #7D20FF 13.34%, #6101E9 86.08%)"
+                border="none"
               />
             </Link>
           </Box>
