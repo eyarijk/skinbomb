@@ -175,8 +175,9 @@ function Chat() {
                 w={140}
                 p="11px 0"
                 onClick={() => setScreen('')}
-                bgcolor="linear-gradient(#6361C8, #713AEB)"
+                bgcolor="linear-gradient(139.23deg, #7D20FF 13.34%, #6101E9 86.08%)"
                 fontSize={14}
+                border="none"
                 fontWeight="700"
                 fontFamily="Open Sans, sans-serif"
               />

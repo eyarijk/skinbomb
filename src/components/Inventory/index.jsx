@@ -69,9 +69,10 @@ export default function Inventory() {
             <UiButton
               value="Открыть"
               onClick={() => openCase()}
-              w="150px"
+              w="140px"
               h="40px"
-              bgcolor="linear-gradient(139.23deg, #6361C8 13.34%, #713AEB 86.08%)"
+              border="none"
+              bgcolor="linear-gradient(139.23deg, #7D20FF 13.34%, #6101E9 86.08%)"
               borderColor="linear-gradient(139.23deg, #6361C8 13.34%, #713AEB 86.08%)"
             />
           </Box>
@@ -84,9 +85,10 @@ export default function Inventory() {
                 onClick={() => {
                   setTypeExchange('store');
                 }}
-                w="90px"
+                w="140px"
                 h="40px"
-                bgcolor="linear-gradient(139.23deg, #6361C8 13.34%, #713AEB 86.08%)"
+                border="none"
+                bgcolor="linear-gradient(139.23deg, #7D20FF 13.34%, #6101E9 86.08%)"
                 borderColor="linear-gradient(139.23deg, #6361C8 13.34%, #713AEB 86.08%)"
               />
             ) : (
@@ -144,10 +146,9 @@ export default function Inventory() {
             : 'outlined'
         }`}
         borderSize="2px"
-        borderColor="#6361C8"
-        bgcolor="#6361C8"
-        w={44}
-        h={34}
+        borderColor="#9104F9"
+        w={50}
+        p="5.5px 0"
       />
     );
   };
