@@ -184,6 +184,9 @@ function Support() {
                         rows={7}
                         placeholder="Введите ваш Вопрос"
                       />
+                      <Box className={s.tail2}>
+
+                      </Box>
                       <img src="/send.svg" alt="send" style={{cursor: "pointer", width: isMobileOrTablet ? 33 : 43,
                         transform: "rotate(45deg)", marginTop: "10px"}} onClick={async () => {
                         if(!loading) {

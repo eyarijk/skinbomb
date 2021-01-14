@@ -16,7 +16,25 @@
     border: 0;
   }
 }
+.textareaWrapper textarea {
+  padding:10px;
+  background-color:#f9f9f9;
+  border:solid 1px #a0c7ff;
+  -moz-border-radius:5px;-ie-border-radius:5px;-webkit-border-radius:5px;-o-border-radius:5px;border-radius:5px;
+}
 
+.tail2 {
+  position: absolute;
+  bottom: 49px;
+  right: -11px;
+  width: 0;
+  height: 0;
+  border-color: #000 transparent transparent transparent;
+  border-width: 11px;
+  -webkit-transform: rotate(-133deg);
+  transform: rotate(-133deg);
+  border-style: solid;
+}
 .overflow {
   overflow: hidden auto;
   padding-right: 12px;

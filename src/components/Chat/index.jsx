@@ -72,6 +72,8 @@ function Chat() {
                 : setNewMessage('')
             }
           />
+          <Box className={s.tail2}>
+          </Box>
           <img
             className={s.emoji}
             src="/emoji.svg"
