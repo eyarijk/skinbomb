@@ -22,6 +22,7 @@ function RoundsProvider({ children }) {
   const { selectedSkins, getSkins, setExchangeSkin } = useSkins();
   const [lastBets, setLastBets] = useState([]);
   const [statistics, setStatistics] = useState([]);
+  const [participateInRound, setParticipateInRound] = useState(false);
   const [globalStatistics, setGlobalStatistics] = useState({
     amount: 0,
     rounds_count_current_day: 0,
@@ -75,6 +76,8 @@ function RoundsProvider({ children }) {
             formData.append('skins_history_id[]', skinId);
           });
 
+          setParticipateInRound(true);
+
           await fetch('/rounds/store', {
             method: 'POST',
             data: formData,
@@ -107,6 +110,7 @@ function RoundsProvider({ children }) {
       const payload = event[0];
       if (payload.status === 1) {
         setIsCountDown(false);
+        setParticipateInRound(false);
         setCurrentRate(payload.coefficient);
         if (betProcess === true) {
           if (lastBet > payload.coefficient) {
@@ -150,6 +154,7 @@ function RoundsProvider({ children }) {
         currentRate,
         isCountDown,
         timestamp,
+        participateInRound,
       }}
     >
       {children}
