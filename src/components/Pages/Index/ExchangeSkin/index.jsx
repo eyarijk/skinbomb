@@ -39,6 +39,12 @@ function ExchangeSkin({ handleChangeRate }) {
     setExchangeSkin(getCurrentExchange());
   }, []);
 
+  useEffect(() => {
+    if (!isCountDown && (participateInRound === true)) {
+      cancelSkin();
+    }
+  }, [isCountDown, participateInRound]);
+
   const cancelSkin = () => {
     removeCurrentExchange();
     setExchangeSkin(null);
@@ -47,8 +53,6 @@ function ExchangeSkin({ handleChangeRate }) {
   const renderSkin = () => {
     if (!auth.user || Object.keys(skins).length === 0) {
       return '';
-    } else if (!isCountDown && (participateInRound === true)) {
-     cancelSkin();
     }
 
     if (!exchangeSkin) {
