@@ -163,6 +163,7 @@ export default function Inventory() {
         display="flex"
         alignItems="center"
         flexDirection="column"
+        justifyContent="center"
         width={1}
         height={1}
       >
