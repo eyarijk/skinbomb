@@ -387,6 +387,7 @@ function Referral() {
                   h="40px"
                   align="left"
                   color="#FFFFFF"
+                  className={s.referralCode}
                 />
                 <Button
                   value={
