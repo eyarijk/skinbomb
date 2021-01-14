@@ -16,7 +16,7 @@ const useStyles = makeStyles({
   },
 });
 
-function BetHistoryItem({ bet, small, onClick }) {
+function BetHistoryItem({ bet, small, toFixed2, onClick }) {
   const classes = useStyles(bet);
   const isMobile = useMediaQuery('(max-width: 500px)');
   const isMobileOrTablet = useMediaQuery('(max-width: 959px)');
@@ -54,7 +54,7 @@ function BetHistoryItem({ bet, small, onClick }) {
       fontFamily="Open Sans, unset"
       className={`${classes.root}`}
     >
-      {`${bet}x`}
+      {`${toFixed2 ? bet.toFixed(2) : bet}x`}
     </Box>
   );
 }
@@ -62,6 +62,7 @@ function BetHistoryItem({ bet, small, onClick }) {
 BetHistoryItem.propTypes = {
   bet: PropTypes.number.isRequired,
   small: PropTypes.bool.isRequired,
+  toFixed2: PropTypes.bool.isRequired,
   onClick: PropTypes.func.isRequired,
 };
 

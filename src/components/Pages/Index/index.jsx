@@ -115,6 +115,7 @@ function Index() {
                 history={lastBets}
                 onClick={bet => router.push(`/round?id=${bet.round_id}`)}
                 small
+                toFixed2
               />
             </Box>
           </Box>

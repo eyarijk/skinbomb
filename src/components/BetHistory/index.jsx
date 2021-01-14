@@ -5,7 +5,7 @@ import { Box } from '@material-ui/core';
 import BetHistoryItem from './BetHistoryItem';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
-function BetHistory({ history, small, onClick, ...props }) {
+function BetHistory({ history, small, toFixed2, onClick, ...props }) {
   const isMobileOrTablet = useMediaQuery('(max-width: 959px)');
   return (
     <Box
@@ -21,6 +21,7 @@ function BetHistory({ history, small, onClick, ...props }) {
             key={Math.round(Math.random() * 100000)}
             bet={bet.bet}
             small={small}
+            toFixed2={toFixed2}
             onClick={() => onClick(bet)}
           />
         );
@@ -32,12 +33,14 @@ function BetHistory({ history, small, onClick, ...props }) {
 BetHistory.defaultProps = {
   history: [],
   small: false,
+  toFixed2: false,
   onClick: () => {},
 };
 
 BetHistory.propTypes = {
   history: PropTypes.array,
   small: PropTypes.bool,
+  toFixed2: PropTypes.bool,
   onClick: PropTypes.func,
 };
 
