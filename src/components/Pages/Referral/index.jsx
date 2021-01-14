@@ -60,7 +60,7 @@ function Referral() {
       >
         <Box
           borderRadius={10}
-          mr={{ xs: 0, sm: 2 }}
+          mr={{ xs: 0, sm: 1.2 }}
           py={2}
           px={2}
           bgcolor={theme.background.primary}
@@ -191,6 +191,7 @@ function Referral() {
         <Box
           display="flex"
           width={{ xs: 170, sm: 0.19 }}
+          mr={1.2}
           height={171}
           borderRadius={10}
           px={2}

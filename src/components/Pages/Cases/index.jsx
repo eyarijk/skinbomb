@@ -323,7 +323,7 @@ function Cases() {
               </Box>
             </Box>
             <Box width={1}>
-              <Box display="flex" flexWrap="wrap">
+              <Box display="flex" flexWrap="wrap" justifyContent="space-around">
                 {factoryCurrentLevel.skins.map(card => (
                   <WeaponCard
                     key={card.id}

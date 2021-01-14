@@ -47,6 +47,9 @@
     &:hover {
       filter: brightness(0) invert(1);
     }
+    &:active {
+      filter: brightness(0) invert(1);
+    }
   }
   .navLink {
     padding: 0 10px;
