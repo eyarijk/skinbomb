@@ -21,6 +21,7 @@ function Referral() {
     createCode,
     activateCode,
     toBalance,
+    isErrorCode,
   } = useReferrals();
   const [code, setCode] = useState('');
   const [newCode, setNewCode] = useState('');
@@ -150,11 +151,23 @@ function Referral() {
             fontSize={14}
             pr={4}
             fontWeight={700}
-            mb={3}
+            mb={2}
             fontFamily="Open Sans, sans-serif"
           >
             Введите реферальный код ниже и получите ваши бесплатные 0,50 $
           </Box>
+          {isErrorCode && (
+            <Box
+              className={s.errorCode}
+              fontSize={14}
+              pr={4}
+              fontWeight={700}
+              mb={2}
+              fontFamily="Open Sans, sans-serif"
+            >
+              Неверный код
+            </Box>
+          )}
           <Box
             display="flex"
             justifyContent="space-between"
@@ -291,11 +304,23 @@ function Referral() {
             fontSize={14}
             pr={4}
             fontWeight={700}
-            mb={3}
+            mb={2}
             fontFamily="Open Sans, sans-serif"
           >
             Введите реферальный код ниже и получите ваши бесплатные 0,50 $
           </Box>
+          {isErrorCode && (
+            <Box
+              className={s.errorCode}
+              fontSize={14}
+              pr={4}
+              fontWeight={700}
+              mb={2}
+              fontFamily="Open Sans, sans-serif"
+            >
+              Неверный код
+            </Box>
+          )}
           <Box
             display="flex"
             justifyContent="space-between"

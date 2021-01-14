@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/router';
-import Link from 'next/link';
 
-import { Box, Button as MuiButton } from '@material-ui/core';
+import { Box } from '@material-ui/core';
 import { useTheme } from '@material-ui/core/styles';
 
 import Button from '../../UiKit/Button';
@@ -11,36 +10,41 @@ import Accordion from '../../UiKit/Accordion';
 import Select from '../../UiKit/Select';
 import Table from './QuestionsTable';
 
-import { useAuth } from '../../../lib/api/auth';
-
 import s from './styles.module.scss';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import {useSupport} from "../../../lib/api/support";
-import Loading from "../../Loading";
-import UnauthorizedContainer from "../../UnauthorizedPage";
+import { useSupport } from '../../../lib/api/support';
+import Loading from '../../Loading';
+import UnauthorizedContainer from '../../UnauthorizedPage';
 
 const categoryData = {
   title: 'Категория',
-  placeholder: 'Выберите категорию'
+  placeholder: 'Выберите категорию',
 };
 
 const answersData = {
-  headElements: ['Название', 'Категория', 'Статус', 'Последнее обновление']
+  headElements: ['Название', 'Категория', 'Статус', 'Последнее обновление'],
 };
 
 function Support() {
   const isDesk = useMediaQuery('(max-width: 1459px)');
   const isMobileOrTablet = useMediaQuery('(max-width: 959px)');
 
-  const { user, steamAuth } = useAuth();
-  const { categories, activeCategory, setActiveCategory, loading, storeFaq, popularQuestions, questions } = useSupport();
+  const {
+    categories,
+    activeCategory,
+    setActiveCategory,
+    loading,
+    storeFaq,
+    popularQuestions,
+    questions,
+  } = useSupport();
   const router = useRouter();
   const theme = useTheme();
   const [screen, setScreen] = useState('answers');
   const [title, setTitle] = useState('');
   const [question, setQuestion] = useState('');
 
-  if (loading){
+  if (loading) {
     return <Loading />;
   }
 
@@ -52,7 +56,7 @@ function Support() {
       pt={isMobileOrTablet ? 3 : 6}
       pl={1}
       pr={isMobileOrTablet ? 1 : 4}
-      width={(isMobileOrTablet && "98vw") || (isDesk && "100%") || "100%"}
+      width={(isMobileOrTablet && '98vw') || (isDesk && '100%') || '100%'}
     >
       {isMobileOrTablet && (
         <Box fontSize={24} fontWeight={700} color="#fff" mb={2}>
@@ -70,12 +74,7 @@ function Support() {
         flexDirection="column"
       >
         {!isMobileOrTablet && (
-          <Box
-            fontSize={24}
-            fontWeight={700}
-            color="#fff"
-            mb={2}
-          >
+          <Box fontSize={24} fontWeight={700} color="#fff" mb={2}>
             Поддержка
           </Box>
         )}
@@ -150,10 +149,12 @@ function Support() {
         </Box>
         {screen === 'answers' && (
           <Box>
-            <Accordion items={
-              popularQuestions?.map(question => ({
+            <Accordion
+              items={popularQuestions?.map(question => ({
                 title: question.question,
-                content: question.answers?.map(answer => <p>{answer.answer}</p>)
+                content: question.answers?.map(answer => (
+                  <p>{answer.answer}</p>
+                )),
               }))}
             />
           </Box>
@@ -162,7 +163,10 @@ function Support() {
           <Box flexGrow={1} height={2} display="flex" flexDirection="column">
             <UnauthorizedContainer>
               <>
-                <Box display={isMobileOrTablet ? "block" : "flex"} justifyContent="space-between">
+                <Box
+                  display={isMobileOrTablet ? 'block' : 'flex'}
+                  justifyContent="space-between"
+                >
                   <Box width={isMobileOrTablet ? 1 : 475}>
                     <Input
                       value={title}
@@ -178,23 +182,30 @@ function Support() {
                     <Box className={s.textareaWrapper} mb="10px">
                       <textarea
                         value={question}
-                        onChange={(e) => setQuestion(e.target.value)}
+                        onChange={e => setQuestion(e.target.value)}
                         className={s.textarea}
                         name="message"
                         rows={7}
                         placeholder="Введите ваш Вопрос"
                       />
-                      <Box className={s.tail2}>
-
-                      </Box>
-                      <img src="/send.svg" alt="send" style={{cursor: "pointer", width: isMobileOrTablet ? 33 : 43,
-                        transform: "rotate(45deg)", marginTop: "10px"}} onClick={async () => {
-                        if(!loading) {
-                          await storeFaq(title, question);
-                          setQuestion("");
-                          setTitle("");
-                        }
-                      }}/>
+                      <Box className={s.tail2}></Box>
+                      <img
+                        src="/send.svg"
+                        alt="send"
+                        style={{
+                          cursor: 'pointer',
+                          width: isMobileOrTablet ? 33 : 43,
+                          transform: 'rotate(45deg)',
+                          marginTop: '10px',
+                        }}
+                        onClick={async () => {
+                          if (!loading) {
+                            await storeFaq(title, question);
+                            setQuestion('');
+                            setTitle('');
+                          }
+                        }}
+                      />
                     </Box>
                   </Box>
                   <Box width={225}>
@@ -203,7 +214,10 @@ function Support() {
                       withPlaceholderOption
                       value={activeCategory}
                       onChange={setActiveCategory}
-                      options={categories.map((item) => ({id: item.id, label: item.name}))}
+                      options={categories.map(item => ({
+                        id: item.id,
+                        label: item.name,
+                      }))}
                       title={categoryData.title}
                       placeholder={categoryData.placeholder}
                     />
@@ -219,28 +233,27 @@ function Support() {
             </UnauthorizedContainer>
           </Box>
         )}
-        {
-          isMobileOrTablet && <Box mt={15}>
+        {isMobileOrTablet && (
+          <Box mt={15}>
             <Box
-                onClick={() => router.push('/privacy-policy')}
-                display="flex"
-                alignItems="center"
-                style={{ cursor: 'pointer' }}
+              onClick={() => router.push('/privacy-policy')}
+              display="flex"
+              alignItems="center"
+              style={{ cursor: 'pointer' }}
             >
               <img src="/privacy-policy.svg" alt="privacy-policy" />
               <Box
-                  ml={1}
-                  color={theme.text.gray}
-                  fontSize={14}
-                  fontWeight={400}
-                  lineHeight="20px"
+                ml={1}
+                color={theme.text.gray}
+                fontSize={14}
+                fontWeight={400}
+                lineHeight="20px"
               >
                 Пользовательское соглашение
               </Box>
             </Box>
           </Box>
-        }
-
+        )}
       </Box>
     </Box>
   );

@@ -3,12 +3,18 @@ import Stats from '../../../Stats';
 import React from 'react';
 import { useRound } from '../../../../lib/api/rounds';
 import { useTheme } from '@material-ui/core/styles';
-import useMediaQuery from "@material-ui/core/useMediaQuery";
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import Link from 'next/link';
+import * as moment from 'moment';
+
+const currentDate = moment().format('YYYY-MM-DD');
 
 function Statistic() {
   const theme = useTheme();
   const { globalStatistics } = useRound();
   const mobileOrTablet = useMediaQuery('(max-width: 959px)');
+  const link = `/statistic-daily?date=${currentDate}`;
+
   return (
     <Box
       xs={12}
@@ -34,10 +40,10 @@ function Statistic() {
           alignItems="flex-end"
           fontWeight={400}
           fontSize={mobileOrTablet ? 13 : 20}
-          lineHeight={mobileOrTablet ? "40px" : "32px"}
+          lineHeight={mobileOrTablet ? '40px' : '32px'}
           letterSpacing="0.44"
           color="#888"
-          height={mobileOrTablet ? "none" : 43}
+          height={mobileOrTablet ? 'none' : 43}
         >
           Статистика раунда
         </Box>
@@ -64,7 +70,9 @@ function Statistic() {
               alt="collections"
               style={{ marginRight: 4 }}
             />
-            {globalStatistics.rounds_count_current_day}
+            <Link href={link}>
+              <a href={link}>{globalStatistics.rounds_count_current_day}</a>
+            </Link>
           </Box>
         </Box>
       </Box>

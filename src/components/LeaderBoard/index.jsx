@@ -2,43 +2,50 @@ import React from 'react';
 
 import s from './styles.module.scss';
 import { useLeaders } from '../../lib/api/leaders';
+import Leader from './Leader';
 
 export default function LeaderBoard() {
-  const { leaders } = useLeaders();
+  const { leaders, currentUser } = useLeaders();
+
+  const renderCurrent = () => {
+    if (!currentUser) {
+      return '';
+    }
+
+    return (
+      <table className={s.root}>
+        <thead className={s.head}>
+          <tr>
+            <td>Пользователь</td>
+          </tr>
+        </thead>
+        <tbody>
+          <Leader leader={currentUser} />;
+        </tbody>
+      </table>
+    );
+  };
 
   return (
-    <table className={s.root}>
-      <thead className={s.head}>
-        <tr>
-          <td>Пользователь</td>
-          <td>Выигрыш</td>
-          <td>Приз</td>
-        </tr>
-      </thead>
-      <tbody>
-        {!!leaders &&
-          leaders.length > 0 &&
-          leaders.map((leader, i) => {
-            return (
-              <>
-                <tr key={leader.id} className={s.leader}>
-                  <td className={s.user}>
-                    <div className={s.wrapper}>
-                      <div className={s.avatar}>
-                        <div>{i + 1}</div>
-                        <img src={leader.avatar} alt="avatar" />
-                      </div>
-                      <span className={s.name}>{leader.user}</span>
-                    </div>
-                  </td>
-                  <td className={s.tickets}>{leader.tickets}</td>
-                  <td className={s.prize}>{leader.prize.toFixed(2)}</td>
-                </tr>
-                <tr className={s.empty} />
-              </>
-            );
-          })}
-      </tbody>
-    </table>
+    <>
+      <table className={s.root}>
+        <thead className={s.head}>
+          <tr>
+            <td>Пользователь</td>
+            <td>Выигрыш</td>
+            <td>Приз</td>
+          </tr>
+        </thead>
+        <tbody>
+          {!!leaders &&
+            leaders.length > 0 &&
+            leaders.map(leader => {
+              return <Leader key={leader.position} leader={leader} />;
+            })}
+        </tbody>
+      </table>
+
+      {renderCurrent()}
+    </>
   );
 }

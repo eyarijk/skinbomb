@@ -124,6 +124,7 @@ WeaponCard.propTypes = {
   small: PropTypes.bool,
   selectCard: PropTypes.func,
   selectedCards: PropTypes.object,
+  percent: PropTypes.number,
 };
 
 export default WeaponCard;

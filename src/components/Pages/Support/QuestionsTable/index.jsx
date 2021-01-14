@@ -10,21 +10,18 @@ function Table({ items }) {
         <thead>
           <tr className="head">
             <td className="head-element empty" />
-            {['Название', 'Категория', 'Статус', 'Последнее обновление'].map(headItem => (
-              <th className="head-element" key={headItem}>
-                {headItem}
-              </th>
-            ))}
+            {['Название', 'Категория', 'Статус', 'Последнее обновление'].map(
+              headItem => (
+                <th className="head-element" key={headItem}>
+                  {headItem}
+                </th>
+              ),
+            )}
           </tr>
         </thead>
         <tbody>
           {items.map(item => {
-            return (
-              <Row
-                key={item.id}
-                {...item}
-              />
-            );
+            return <Row key={item.id} {...item} />;
           })}
         </tbody>
       </table>

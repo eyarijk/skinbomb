@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import fetch from '../fetch';
 
 import { useAuth } from './auth';
-import swal from "sweetalert2";
+import swal from 'sweetalert2';
 
 const SupportContext = createContext({});
 
@@ -18,16 +18,16 @@ function SupportProvider({ children }) {
   const [isSupportLoaded, setIsSupportLoaded] = useState(false);
 
   useEffect(() => {
-    if(token){
-      getFaq()
+    if (token) {
+      getFaq();
     }
-  },[activeCategory])
+  }, [activeCategory]);
 
   const getFaq = async () => {
-    if(!!activeCategory){
+    if (activeCategory) {
       const payload = await fetch(`/faq/getAll/${activeCategory.id}`);
       setQuestions(payload.data);
-    }else{
+    } else {
       const payload = await fetch(`/faq/getAll`);
       setQuestions(payload.data);
     }
@@ -47,38 +47,51 @@ function SupportProvider({ children }) {
       setIsSupportLoaded(true);
     } catch (err) {
       console.error('>>> API Error: ', err);
-      return;
     }
   };
 
   const storeFaq = async (name, message) => {
-    try{
+    try {
       setLoading(true);
       const formData = new FormData();
       formData.append('name', name);
       formData.append('question', message);
-      const response = await fetch(`/faq/store`, {method: "POST", data: formData});
+
+      if (activeCategory) {
+        formData.append('category_id', activeCategory.id);
+      }
+      const response = await fetch(`/faq/store`, {
+        method: 'POST',
+        data: formData,
+      });
       getFaq();
       await swal.fire('Done', response.message, 'success');
       setLoading(false);
-    }catch(error){
-      const message = error.response.data.message ? error.response.data.message : Object.values(error.response.data)[0][0]
+    } catch (error) {
+      const message = error.response.data.message
+        ? error.response.data.message
+        : Object.values(error.response.data)[0][0];
       await swal.fire('Failed', message, 'error');
       setLoading(false);
     }
   };
 
   const storeFaqToFaq = async (questionId, message) => {
-    try{
+    try {
       setLoading(true);
       const formData = new FormData();
       formData.append('answer', message);
-      const response = await fetch(`/faq/${questionId}/answer`, {method: "POST", data: formData});
+      const response = await fetch(`/faq/${questionId}/answer`, {
+        method: 'POST',
+        data: formData,
+      });
       getFaq();
       await swal.fire('Done', response.message, 'success');
       setLoading(false);
-    }catch(error){
-      const message = error.response.data.message ? error.response.data.message : Object.values(error.response.data)[0][0]
+    } catch (error) {
+      const message = error.response.data.message
+        ? error.response.data.message
+        : Object.values(error.response.data)[0][0];
       await swal.fire('Failed', message, 'error');
       setLoading(false);
     }

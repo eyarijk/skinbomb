@@ -82,7 +82,7 @@ function Leaders() {
         height={188}
         flexDirection={isMobileOrTablet && 'column'}
         justifyContent="space-between"
-        alignItems={isMobileOrTablet ? "center" : "none"}
+        alignItems={isMobileOrTablet ? 'center' : 'none'}
         width={(isMobileOrTablet && '100vw') || (isDesk && '100%') || '100%'}
         mb={10}
         pr={!isMobileOrTablet && 11}

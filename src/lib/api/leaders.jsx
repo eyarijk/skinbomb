@@ -10,6 +10,7 @@ const LeadersContext = createContext({});
 function LeadersProvider({ children }) {
   const { token } = useAuth();
   const [leaders, setLeaders] = useState(null);
+  const [currentUser, setCurrentUser] = useState(null);
   const [date, setDate] = useState(null);
   const [isLeadersLoaded, setIsLeadersLoaded] = useState(false);
 
@@ -19,23 +20,22 @@ function LeadersProvider({ children }) {
 
       setLeaders(payload.data);
       setDate(payload.date);
+      setCurrentUser(payload.current);
       setIsLeadersLoaded(true);
     } catch (err) {
       console.error('>>> API Error: ', err);
-      return;
     }
   };
 
   useEffect(() => {
-    // if (token) {
-      getLeaders();
-    // }
+    getLeaders();
   }, [token]);
 
   return (
     <LeadersContext.Provider
       value={{
         leaders,
+        currentUser,
         date,
         getLeaders,
         isLeadersLoaded,

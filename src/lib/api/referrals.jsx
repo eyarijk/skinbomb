@@ -12,6 +12,7 @@ function ReferralsProvider({ children }) {
   const { token, fetchUser } = useAuth();
   const [referrals, setReferrals] = useState(null);
   const [isReferralsLoaded, setIsReferralsLoaded] = useState(false);
+  const [isErrorCode, setIsErrorCode] = useState(false);
 
   const getReferrals = async () => {
     try {
@@ -53,7 +54,7 @@ function ReferralsProvider({ children }) {
 
       setReferrals(payload.data);
     } catch (err) {
-      await swal.fire('Failed', err.response.data.message, 'error');
+      setIsErrorCode(true);
     }
   };
 
@@ -85,6 +86,7 @@ function ReferralsProvider({ children }) {
         createCode,
         activateCode,
         toBalance,
+        isErrorCode,
       }}
     >
       {children}
