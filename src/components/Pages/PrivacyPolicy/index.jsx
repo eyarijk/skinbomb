@@ -5,6 +5,7 @@ import { useTheme } from '@material-ui/core/styles';
 
 import s from './styles.module.scss';
 import useMediaQuery from "@material-ui/core/useMediaQuery";
+import Link from "next/link";
 
 const privacy = [
   {
@@ -59,8 +60,19 @@ function PrivacyPolicy() {
         display="flex"
         flexDirection="column"
       >
-        <Box fontSize={isMobileOrTablet ? 16 : 24} fontWeight={700} color="#fff" mb={isMobileOrTablet ? 3 : 6}>
-          Пользовательское соглашение
+        <Box display="flex" justifyContent="space-between">
+          <Box ml={0} fontSize={isMobileOrTablet ? 16 : 24} fontWeight={700} color="#fff" mb={isMobileOrTablet ? 3 : 6}>
+            Пользовательское соглашение
+          </Box>
+          <Box className={s.cancelIcon} >
+            <Link href="/support" cursor="pointer">
+              <img
+                  className="icon"
+                  src={'/cancel.svg'}
+                  alt="icon"
+              />
+            </Link>
+          </Box>
         </Box>
         <Box className={!isMobileOrTablet && s.wrapper} height={2} flexGrow={1} >
           {privacy.map((item, index) => {
