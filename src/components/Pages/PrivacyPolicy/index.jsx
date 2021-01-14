@@ -91,12 +91,12 @@ function PrivacyPolicy() {
           })}
           {
             isMobileOrTablet && <Box color="#7D20FF" mt={2} mb={6}>
-              Последнее изминение: 10.08.20
+              Последнее изменение: 10.08.20
             </Box>
           }
         </Box>
         {!isMobileOrTablet && <Box color="#7D20FF" mt={2}>
-          Последнее изминение: 10.08.20
+          Последнее изменение: 10.08.20
         </Box>}
       </Box>
     </Box>

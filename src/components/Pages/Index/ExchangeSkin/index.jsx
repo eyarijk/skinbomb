@@ -12,10 +12,12 @@ import {
   removeCurrentExchange,
 } from '../../../../utils/LocalStorage';
 import { useAuth } from '../../../../lib/api/auth';
+import {useRound} from "../../../../lib/api/rounds";
 
 function ExchangeSkin({ handleChangeRate }) {
   const theme = useTheme();
   const auth = useAuth();
+  const { isCountDown, participateInRound} = useRound();
   const isMobileOrTablet = useMediaQuery('(max-width: 959px)');
   const isXsDesktop = useMediaQuery('(max-width: 1129px)');
   const {
@@ -45,6 +47,8 @@ function ExchangeSkin({ handleChangeRate }) {
   const renderSkin = () => {
     if (!auth.user || Object.keys(skins).length === 0) {
       return '';
+    } else if (!isCountDown && (participateInRound === true)) {
+     cancelSkin();
     }
 
     if (!exchangeSkin) {
