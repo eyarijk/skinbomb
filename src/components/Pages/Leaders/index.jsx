@@ -79,6 +79,7 @@ function Leaders() {
       </Box>
       <Box
         display="flex"
+        height={188}
         flexDirection={isMobileOrTablet && 'column'}
         justifyContent="space-between"
         alignItems={isMobileOrTablet ? "center" : "none"}
@@ -88,6 +89,7 @@ function Leaders() {
       >
         <Box
           width={(isMobileOrTablet && '100vw') || 430}
+          height={188}
           bgcolor={theme.background.primary}
           p={2.5}
           borderRadius={10}
@@ -98,7 +100,7 @@ function Leaders() {
             fontWeight={700}
             lineHeight="36px"
             color="#fff"
-            mb={5}
+            mb={2.1}
           >
             Список лидеров
           </Box>
@@ -109,6 +111,8 @@ function Leaders() {
         </Box>
         <Box
           width={(isMobileOrTablet && '94vw') || 430}
+          height={188}
+          justifyContent="center"
           py={5}
           display="flex"
           flexDirection="column"
@@ -123,7 +127,7 @@ function Leaders() {
             fontSize={20}
             fontWeight={400}
             lineHeight="36px"
-            mb={4.5}
+            mb={2.1}
           >
             Заканчиваеться через
           </Box>

@@ -53,7 +53,7 @@ function Referral() {
         width={1}
         pl={{ xs: 0, sm: 0.5 }}
         pr={{ xs: 0, sm: 4 }}
-        mb={3}
+        mb={1.3}
         justifyContent={{ xs: 'space-between', sm: 'unset' }}
         // flexDirection={{ xs: 'column', sm: 'row' }}
         flexWrap={{ xs: 'wrap', sm: 'unset' }}
@@ -193,7 +193,7 @@ function Referral() {
           height={171}
           borderRadius={10}
           px={2}
-          mr={2}
+
           bgcolor={theme.background.primary}
           alignItems="center"
           flexDirection="column"
@@ -430,7 +430,6 @@ function Referral() {
         </Box>
         <Box
           borderRadius={10}
-          mr={2}
           py={2}
           px={2}
           bgcolor={theme.background.primary}

@@ -85,8 +85,8 @@ function Cases() {
           width={
             (isMobileOrTablet && '98vw') ||
             (isSmDesktop && 300) ||
-            (isMdDesktop && 350) ||
-            430
+            (isMdDesktop && 432) ||
+            432
           }
           mr={!isMobileOrTablet && 1.5}
           display="flex"
@@ -215,7 +215,7 @@ function Cases() {
           borderRadius={10}
           p={2}
           mt={isMobileOrTablet && 2}
-          width={isMobileOrTablet ? '100vw' : 1}
+          width={isMobileOrTablet ? '100vw' : 527}
         >
           <Box
             fontSize={16}
