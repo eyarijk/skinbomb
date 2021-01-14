@@ -94,29 +94,40 @@ const Header = props => {
         <Box display="flex" alignItems="center" mr={2.5}>
           <Box
             color="#fff"
+            display="flex"
             mx={isDesk ? 1 : 9}
             fontSize={(isXsDes && user && 10) || 14}
           >
-            <img src="/refferal.svg" alt="ref" />
-            <Link href="/referral" className={s.navLink}>
-              <span className={s.navLink}>Рефералы</span>
-            </Link>
-            <img src="/provably-fairness.svg" alt="ref" />
-            <Link href="/provably-fairness" className={s.navLink}>
-              <span className={s.navLink}>Честность</span>
-            </Link>
-            <img src="/support.svg" alt="ref" />
-            <Link href="/support" className={s.navLink}>
-              <span className={s.navLink}>Поддержка</span>
-            </Link>
-            <img src="/leaders.svg" alt="ref" />
-            <Link href="/leaders" className={s.navLink}>
-              <span className={s.navLink}>Лидеры</span>
-            </Link>
-            <img src="/cases.svg" alt="ref" />
-            <Link href="/cases" className={s.navLink}>
-              <span className={s.navLink}>Кейсы</span>
-            </Link>
+            <Box className={s.navLinkBlock}>
+              <img src="/refferal.svg" alt="ref" />
+              <Link href="/referral" className={s.navLink}>
+                <span className={s.navLink}>Рефералы</span>
+              </Link>
+            </Box>
+            <Box className={s.navLinkBlock}>
+              <img src="/provably-fairness.svg" alt="ref" />
+              <Link href="/provably-fairness" className={s.navLink}>
+                <span className={s.navLink}>Честность</span>
+              </Link>
+            </Box>
+            <Box className={s.navLinkBlock}>
+              <img src="/support.svg" alt="ref" />
+              <Link href="/support" className={s.navLink}>
+                <span className={s.navLink}>Поддержка</span>
+              </Link>
+            </Box>
+            <Box className={s.navLinkBlock}>
+              <img src="/leaders.svg" alt="ref" />
+              <Link href="/leaders" className={s.navLink}>
+                <span className={s.navLink}>Лидеры</span>
+              </Link>
+            </Box>
+            <Box className={s.navLinkBlock}>
+              <img src="/cases.svg" alt="ref" />
+              <Link href="/cases" className={s.navLink}>
+                <span className={s.navLink}>Кейсы</span>
+              </Link>
+            </Box>
           </Box>
           {user ? (
             <Box display="flex" flexDirection="column" position="relative">

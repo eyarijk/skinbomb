@@ -24,6 +24,11 @@
       width: 0;
     }
   }
+  .checkImg {
+    &:hover img {
+      filter: brightness(0) invert(1);
+    }
+  }
 }
 .btn:hover {
   color: #fff;

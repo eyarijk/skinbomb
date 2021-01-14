@@ -175,6 +175,7 @@ function Referral() {
             />
             <Button
               borderSize="0px"
+              variant={s.checkImg}
               value={<img src="/check.svg" alt="check" style={{ width: 20 }} />}
               bgcolor="#FB9414"
               color="#141415"
@@ -193,7 +194,6 @@ function Referral() {
           height={171}
           borderRadius={10}
           px={2}
-
           bgcolor={theme.background.primary}
           alignItems="center"
           flexDirection="column"
@@ -315,6 +315,7 @@ function Referral() {
             />
             <Button
               borderSize="0px"
+              variant={s.checkImg}
               value={<img src="/check.svg" alt="check" style={{ width: 20 }} />}
               bgcolor="#FB9414"
               color="#141415"
@@ -390,6 +391,7 @@ function Referral() {
                   value={
                     <img src="/check.svg" alt="save" style={{ width: 20 }} />
                   }
+                  variant={s.checkImg}
                   borderSize="0px"
                   bgcolor="#FB9414"
                   color="#141415"

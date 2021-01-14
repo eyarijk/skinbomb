@@ -1,6 +1,7 @@
 import Button from '../UiKit/Button';
 import React from 'react';
 import PropTypes from 'prop-types';
+import s from "../Pages/Referral/styles.module.scss";
 
 function Copy({ text }) {
   const copyToClipboard = () => {
@@ -14,6 +15,7 @@ function Copy({ text }) {
 
   return (
     <Button
+      variant={s.checkImg}
       value={<img src="/copy.svg" alt="copy" style={{ width: 20 }} />}
       borderSize="0px"
       bgcolor="#FB9414"
