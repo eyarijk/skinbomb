@@ -118,9 +118,12 @@ function Store() {
   }
 
   const handleSort = () => {
-    setSort(prev => (prev === 'asc' ? 'desc' : 'asc'));
-    fetchItems();
+    setSort(sort === 'asc' ? 'desc' : 'asc');
   };
+
+  useEffect(() => {
+    fetchItems();
+  }, [sort]);
 
   const renderFilterButton = () => {
     if (Object.keys(buyingSkins).length === 0) {
