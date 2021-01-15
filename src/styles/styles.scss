@@ -1,0 +1,42 @@
+@media (max-width: 959px) {
+  .coefficients-main__block {
+    justify-content: space-around;
+    align-items: center;
+    background-color: #141415;
+    margin-top: 0!important;
+  }
+
+  .coefficients-block {
+    padding-top: 24px;
+    border-radius: 0;
+    margin-bottom: 0;
+  }
+
+  .rate-upper__block {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .exchange-skin__block {
+    border-radius: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .top-up__inputBlock {
+    margin-right: 24px;
+  }
+}
+
+.coefficients-block {
+  border-radius: 10px;
+  margin-bottom: 8px;
+}
+
+.exchange-skin__block {
+  border-radius: 10px;
+}
+
+.coefficients-main__block {
+  margin-top: 8px;
+}

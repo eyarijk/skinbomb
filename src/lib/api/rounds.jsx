@@ -22,7 +22,6 @@ function RoundsProvider({ children }) {
   const { selectedSkins, getSkins, setExchangeSkin } = useSkins();
   const [lastBets, setLastBets] = useState([]);
   const [statistics, setStatistics] = useState([]);
-  const [participateInRound, setParticipateInRound] = useState(false);
   const [globalStatistics, setGlobalStatistics] = useState({
     amount: 0,
     rounds_count_current_day: 0,
@@ -35,6 +34,10 @@ function RoundsProvider({ children }) {
   const [betProcess, setBetProcess] = useState(false);
   const [lastBet, setLastBet] = useState(0);
   const [timestamp, setTimestamp] = useState(10);
+
+  useEffect(() => {
+    getRounds();
+  }, [token]);
 
   const getRounds = async () => {
     try {
@@ -58,6 +61,10 @@ function RoundsProvider({ children }) {
   };
 
   const handleBet = async bet => {
+    if (Object.keys(selectedSkins).length === 0) {
+      return;
+    }
+
     if (!betRequest) {
       setBetProcess(true);
       setBetRequest(true);
@@ -76,18 +83,18 @@ function RoundsProvider({ children }) {
             formData.append('skins_history_id[]', skinId);
           });
 
-          setParticipateInRound(true);
-
           await fetch('/rounds/store', {
             method: 'POST',
             data: formData,
           });
+
           getSkins();
           setBetRequest(false);
         }
       } catch (error) {
         await swal.fire('Failed', error.response.data.message, 'error');
         setBetRequest(false);
+        setBetProcess(false);
       }
     }
   };
@@ -110,7 +117,6 @@ function RoundsProvider({ children }) {
       const payload = event[0];
       if (payload.status === 1) {
         setIsCountDown(false);
-        setParticipateInRound(false);
         setCurrentRate(payload.coefficient);
         if (betProcess === true) {
           if (lastBet > payload.coefficient) {
@@ -118,7 +124,6 @@ function RoundsProvider({ children }) {
             removeCurrentExchange();
           }
 
-          getSkins();
           setBetProcess(false);
         }
       } else if (payload.status === 0) {
@@ -137,6 +142,18 @@ function RoundsProvider({ children }) {
         if (event.user_online >= 0) {
           setOnline(event.user_online);
         }
+
+        const user = window.user;
+
+        if (user) {
+          const stat = event.statistics.find(
+            statistic => statistic.user.id === user.id,
+          );
+
+          if (stat && stat.in_round === false) {
+            getSkins();
+          }
+        }
       });
   }, []);
 
@@ -154,7 +171,6 @@ function RoundsProvider({ children }) {
         currentRate,
         isCountDown,
         timestamp,
-        participateInRound,
       }}
     >
       {children}

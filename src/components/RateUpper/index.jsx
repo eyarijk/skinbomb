@@ -33,7 +33,7 @@ function RateUpper({ currentRate }) {
       fontWeight="700"
       fontSize={isMobile ? 14 : 24}
       color="white"
-      px={isMobileOrTablet && 1}
+      className="rate-upper__block"
       align="center"
     >
       {`${rateToFinish.toFixed(2)} X`}

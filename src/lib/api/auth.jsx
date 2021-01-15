@@ -19,6 +19,10 @@ function AuthProvider({ children }) {
     }
   }, []);
 
+  useEffect(() => {
+    window.user = user;
+  }, [user]);
+
   const steamAuth = async () => {
     window.open('http://api.skinbomb.gg/api/auth/steam/handle');
   };

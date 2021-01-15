@@ -78,19 +78,14 @@ function Index() {
           }
           width={isMobileOrTablet ? '100%' : 'min-content'}
           mr={1}
-          my={!isMobileOrTablet && 1}
-          bgcolor={isMobileOrTablet && theme.background.primary}
-          justifyContent={isMobileOrTablet && 'space-around'}
-          alignItems={isMobileOrTablet && 'center'}
+          className="coefficients-main__block"
         >
           <Box
             display="flex"
             flexDirection="column"
             width={(isMobileOrTablet && 0.5) || (isXsDesktop && 250) || 300}
             bgcolor={theme.background.primary}
-            borderRadius={!isMobileOrTablet && 10}
-            mb={!isMobileOrTablet && 1}
-            pt={isMobileOrTablet && 3}
+            className="coefficients-block"
           >
             <Box
               width={(isMobileOrTablet && 0.5) || (isXsDesktop && 1) || 1}
@@ -175,7 +170,7 @@ function Index() {
                     h="40px"
                     borderColor="#F89D00"
                     fontSize="20px"
-                    fontWeight="400"
+                    fontWeight={400}
                   />
                 </Box>
               )}
@@ -198,7 +193,7 @@ function Index() {
                   h="40px"
                   borderColor="#F89D00"
                   fontSize="20px"
-                  fontWeight="400"
+                  fontWeight={400}
                 />
               </Box>
               <Box width={630}>
@@ -207,7 +202,7 @@ function Index() {
                   h="40px"
                   p={(isXsDesktop && '0 10px') || '0 26px'}
                   bgcolor={betRequest ? '#212121' : '#F89D00'}
-                  borderSize={0}
+                  borderSize="0"
                   disabled={betRequest}
                   onClick={() => handleBet(rate)}
                   value={
@@ -243,7 +238,7 @@ function Index() {
                 h="40px"
                 p="0 26px"
                 bgcolor="#F89D00"
-                borderSize={0}
+                borderSize="0"
                 onClick={() => handleBet(rate)}
                 value={
                   <Box width={1} display="flex" justifyContent="space-between">
@@ -278,7 +273,6 @@ function Index() {
           display="flex"
           width={1}
           px={2.5}
-          mb={!isMobileOrTablet && 1.5}
           alignItems="center"
         >
           <BetHistory
@@ -306,8 +300,8 @@ function Index() {
               type="number"
               h="40px"
               borderColor="#F89D00"
-              fontSize={isMobileOrTablet ? 18 : '20px'}
-              fontWeight="400"
+              fontSize={isMobileOrTablet ? '18px' : '20px'}
+              fontWeight={400}
             />
           </Box>
           <Box width={isMobileOrTablet ? 1 : 'calc(100% - 130px)'}>
@@ -317,7 +311,7 @@ function Index() {
               p={isMobileOrTablet ? '0 5px' : '0 26px'}
               bgcolor="#F89D00"
               onClick={() => handleBet(rate)}
-              borderSize={0}
+              borderSize="0"
               value={
                 <Box width={1} display="flex" justifyContent="space-between">
                   <Box

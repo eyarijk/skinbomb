@@ -73,7 +73,7 @@ function Cases() {
         width={1}
         p={1}
         display="flex"
-        flexDirection={isMobileOrTablet && 'column'}
+        flexDirection={isMobileOrTablet ? 'column' : 'row'}
         justifyContent="space-between"
         my={1}
       >
@@ -212,7 +212,7 @@ function Cases() {
           bgcolor={theme.background.primary}
           borderRadius={10}
           p={2}
-          mt={isMobileOrTablet && 2}
+          mt={isMobileOrTablet ? '16px' : '0'}
           width={isMobileOrTablet ? '100vw' : 527}
         >
           <Box
