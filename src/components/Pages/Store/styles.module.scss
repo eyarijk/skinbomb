@@ -31,7 +31,28 @@
 .searchBox {
   display: flex;
   align-items: center;
+  @media screen and (max-width: 959px) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  @media screen and (min-width: 960px) {
+   // padding-right: 20px;
+  }
 }
+
+.store_main__block {
+  @media screen and (min-width: 960px) {
+    padding-right: 16px;
+  }
+}
+
+.skins-gallery__block {
+  @media screen and (min-width: 960px) {
+    margin-right: 16px;
+  }
+}
+
 .grid {
   display: grid;
   justify-items: center;

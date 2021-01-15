@@ -185,7 +185,7 @@ function ExchangeSkin({ handleChangeRate }) {
 }
 
 ExchangeSkin.propTypes = {
-  handleChangeRate: PropTypes.func,
+  handleChangeRate: PropTypes.function,
 };
 
 export default ExchangeSkin;

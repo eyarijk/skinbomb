@@ -204,19 +204,18 @@ function Store() {
       height={1}
       pt={isMobileOrTablet ? 2 : 6}
       pl={1}
-      pr={!isMobileOrTablet && 2}
+      //pr={!isMobileOrTablet && 2}
+      className="store_main__block"
     >
       <Box
         display="flex"
         flexDirection="column"
         width={1}
-        mr={!isMobileOrTablet && 2}
+        className="skins-gallery__block"
       >
         <Box
-          pr={!isMobileOrTablet && 2.5}
-          display={isMobileOrTablet && 'flex'}
+          display={isMobileOrTablet ? 'flex' : ''}
           alignItems="center"
-          px={isMobileOrTablet && 2.5}
           className={s.searchBox}
         >
           {isMobileOrTablet && (
@@ -230,7 +229,7 @@ function Store() {
             bgcolor="#141415"
             borderRadius={10}
             width={1}
-            className={isBigDesk && s.search}
+            className={isBigDesk ? s.search : ''}
           >
             {isBigDesk && (
               <Box className={s.icon}>
