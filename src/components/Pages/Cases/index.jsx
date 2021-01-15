@@ -295,7 +295,7 @@ function Cases() {
             width={1}
             height={1}
           >
-            <Box display="flex" flexDirection="column" width={185} mr={6}>
+            <Box display="flex" flexDirection="column" width={220} mr={6}>
               <img src="/case.png" alt="box" className={s.caseImg} />
               <Box
                 fontSize={16}

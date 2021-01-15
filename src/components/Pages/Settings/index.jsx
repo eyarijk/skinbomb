@@ -6,6 +6,7 @@ import { useTheme } from '@material-ui/core/styles';
 import Button from '../../UiKit/Button';
 import Input from '../../UiKit/Input';
 import {useAuth} from "../../../lib/api/auth";
+import s from './styles.module.scss';
 
 function Settings() {
   const theme = useTheme();
@@ -151,6 +152,7 @@ function Settings() {
             </Box>
             <Button
               borderSize="0px"
+              variant={s.button}
               value={
                 <img
                   src="/change-black.svg"

@@ -129,7 +129,7 @@ const Header = props => {
             </Link>
           </Box>
           {user ? (
-            <Box display="flex" flexDirection="column" position="relative">
+            <Box display="flex" flexDirection="column" position="relative" zIndex="20">
               <Box
                 onClick={() => setShowUserMenu(prevVal => !prevVal)}
                 display="flex"
@@ -172,15 +172,15 @@ const Header = props => {
                 bgcolor={theme.background.primary}
                 zIndex={2}
               >
-                <div className={s.option} onClick={() => push('/games')}>
-                  Игры
-                </div>
-                <div className={s.option} onClick={() => push('/transactions')}>
-                  Транзакции
-                </div>
-                <div className={s.option} onClick={() => push('/settings')}>
-                  Настройки
-                </div>
+                <Link  href="/games">
+                 <span className={s.option}>Игры</span>
+                </Link>
+                <Link href="/transactions">
+                  <span className={s.option}>Транзакции</span>
+                </Link>
+                <Link href="/settings">
+                  <span className={s.option}>Настройки</span>
+                </Link>
                 <div className={s.option} onClick={removeToken}>
                   Выйти
                 </div>
