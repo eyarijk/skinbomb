@@ -316,15 +316,14 @@ function TopUp() {
           <Box
             width={1}
             display="flex"
-            justifyContent={!mobile && 'space-between'}
           >
-            <Box width={240} mr={mobile && 3}>
+            <Box width={240} className="top-up__inputBlock">
               <Input
                 value={refCode}
                 onChange={val => setRefCode(val)}
                 h="40px"
                 borderColor="#4A4A4A"
-              />
+                name="refCode"/>
             </Box>
             <Button
               variant={s.checkImg}

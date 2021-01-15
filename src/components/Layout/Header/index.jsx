@@ -62,7 +62,7 @@ const Header = props => {
                 <Box
                   ml={1.3}
                   mr={(isLgDes && user && 1) || 4.5}
-                  fontSize={isLgDes && user && 16}
+                  fontSize={isLgDes && user ? '16px' : ''}
                 >
                   {(user?.amount).toFixed(2)} $
                 </Box>
@@ -142,16 +142,18 @@ const Header = props => {
                 style={{ cursor: 'pointer' }}
               >
                 <Avatar src={avatar} alt="avatar" />
-                <Box
-                  color="#fff"
-                  mr={isDesk && user && 1}
-                  ml={(isXsDes && 0.5) || 1.5}
-                  fontSize={16}
-                  fontWeight={700}
-                  width={(isXsDes && 80) || (isLgDes && 100)}
-                >
-                  {user.nickname}
-                </Box>
+                {user &&
+                  <Box
+                    color="#fff"
+                    ml={(isXsDes && 0.5) || 1.5}
+                    fontSize={16}
+                    fontWeight={700}
+                    w={isLgDes ? '100px' : '80px'}
+                    className="user-name__block"
+                  >
+                    {user.nickname}
+                  </Box>
+                }
                 {showUserMenu && (
                   <img
                     style={{ transform: 'rotate(180deg)' }}

@@ -135,7 +135,6 @@ function ExchangeSkin({ handleChangeRate }) {
       height={(isMobileOrTablet && 185) || '100%'}
       width={(isMobileOrTablet && 299) || (isXsDesktop && 250) || 299}
       bgcolor={theme.background.primary}
-      borderRadius={!isMobileOrTablet && 10}
       padding={isMobileOrTablet ? 0 : '41px'}
       pl={isMobileOrTablet ? '36px' : '41px'}
       display="flex"
@@ -143,6 +142,7 @@ function ExchangeSkin({ handleChangeRate }) {
       flexDirection="column"
       alignItems="center"
       position={isMobileOrTablet ? 'inherit' : 'relative'}
+      className='exchange-skin__block'
     >
       {!!exchangeSkin && (
         <button onClick={cancelSkin} className={s.cancelEgg}>
@@ -181,7 +181,7 @@ function ExchangeSkin({ handleChangeRate }) {
 }
 
 ExchangeSkin.propTypes = {
-  handleChangeRate: PropTypes.func,
+  handleChangeRate: PropTypes.function,
 };
 
 export default ExchangeSkin;

@@ -407,7 +407,7 @@ function Referral() {
                   onChange={val => setNewCode(val)}
                   bgcolor="#070707"
                   borderColor="#4A4A4A"
-                  fontSize={14}
+                  fontSize="14px"
                   borderSize="1px"
                   h="40px"
                   align="left"

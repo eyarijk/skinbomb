@@ -51,7 +51,7 @@ function Support() {
   return (
     <Box
       display="flex"
-      flexDirection={isMobileOrTablet && 'column'}
+      flexDirection={isMobileOrTablet ? 'column' : 'row'}
       height={1}
       pt={isMobileOrTablet ? 3 : 6}
       pl={1}
