@@ -98,6 +98,10 @@ function Store() {
     setTypeExchange(typeQuery);
   }, []);
 
+  useEffect(() => {
+    fetchItems();
+  }, [sort]);
+
   async function fetchItems(scrolling = false) {
     const options = {
       q: search,
@@ -120,10 +124,6 @@ function Store() {
   const handleSort = () => {
     setSort(sort === 'asc' ? 'desc' : 'asc');
   };
-
-  useEffect(() => {
-    fetchItems();
-  }, [sort]);
 
   const renderFilterButton = () => {
     if (Object.keys(buyingSkins).length === 0) {
