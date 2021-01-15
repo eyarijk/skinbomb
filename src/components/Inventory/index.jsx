@@ -154,7 +154,7 @@ export default function Inventory() {
         }`}
         borderSize="2px"
         borderColor="#9104F9"
-        w={50}
+        w="50px"
         p="5.5px 0"
       />
     );
@@ -210,14 +210,16 @@ export default function Inventory() {
         {!isStorePage && (
           <Box mb={3} display="flex" justifyContent="center">
             <Link href="/store">
-              <UiButton
-                value="Магазин"
-                onClick={() => {}}
-                w="135px"
-                h="40px"
-                bgcolor="linear-gradient(139.23deg, #7D20FF 13.34%, #6101E9 86.08%)"
-                border="none"
-              />
+              <>
+                <UiButton
+                    value="Магазин"
+                    onClick={() => {}}
+                    w="135px"
+                    h="40px"
+                    bgcolor="linear-gradient(139.23deg, #7D20FF 13.34%, #6101E9 86.08%)"
+                    border="none"
+                />
+              </>
             </Link>
           </Box>
         )}
@@ -237,14 +239,16 @@ export default function Inventory() {
         {!isStorePage && (
           <Box mb={3} display="flex" justifyContent="center">
             <Link href="/store">
-              <UiButton
-                value="Магазин скинов"
-                onClick={() => {}}
-                w="150px"
-                h="40px"
-                bgcolor="#F89D00"
-                borderColor="#F89D00"
-              />
+              <>
+                <UiButton
+                    value="Магазин скинов"
+                    onClick={() => {}}
+                    w="150px"
+                    h="40px"
+                    bgcolor="#F89D00"
+                    borderColor="#F89D00"
+                />
+              </>
             </Link>
           </Box>
         )}

@@ -63,7 +63,7 @@ const Header = props => {
                 <Box
                   ml={1.3}
                   mr={(isLgDes && user && 1) || 4.5}
-                  fontSize={isLgDes && user && 16}
+                  fontSize={isLgDes && user && '16px'}
                 >
                   {(user?.amount).toFixed(2)} $
                 </Box>
