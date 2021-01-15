@@ -214,6 +214,7 @@ export default function Inventory() {
                 value="Магазин"
                 onClick={() => {}}
                 w="135px"
+                fontWeight="bold"
                 h="40px"
                 bgcolor="linear-gradient(139.23deg, #7D20FF 13.34%, #6101E9 86.08%)"
                 border="none"

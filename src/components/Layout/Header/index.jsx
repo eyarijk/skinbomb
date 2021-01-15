@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import cn from 'classnames';
-import Link from 'next/link';
+import Link from './../../Link/Link';
 import { useRouter } from 'next/router';
-
 import { Box, Avatar, Button, ClickAwayListener } from '@material-ui/core';
 import { useTheme } from '@material-ui/core/styles';
 
@@ -46,7 +45,7 @@ const Header = props => {
         flexGrow={1}
       >
         <Box display="flex" alignItems="center">
-          <Link href="/">
+          <Link href="/" activeClassName="active">
             <img className={s.logo} src="/Logo.svg" alt="logo" />
           </Link>
           <Box
@@ -98,36 +97,36 @@ const Header = props => {
             mx={isDesk ? 1 : 9}
             fontSize={(isXsDes && user && 10) || 14}
           >
-            <Box className={s.navLinkBlock}>
-              <img src="/refferal.svg" alt="ref" />
-              <Link href="/referral" className={s.navLink}>
+            <Link href="/referral" activeClassName={s.activeClassName}>
+              <Box className={s.navLink}>
+                <img src="/refferal.svg" alt="ref" />
                 <span className={s.navLink}>Рефералы</span>
-              </Link>
-            </Box>
-            <Box className={s.navLinkBlock}>
-              <img src="/provably-fairness.svg" alt="ref" />
-              <Link href="/provably-fairness" className={s.navLink}>
+              </Box>
+            </Link>
+            <Link href="/provably-fairness" activeClassName={s.activeClassName}>
+              <Box className={s.navLink}>
+                <img src="/provably-fairness.svg" alt="ref" />
                 <span className={s.navLink}>Честность</span>
-              </Link>
-            </Box>
-            <Box className={s.navLinkBlock}>
-              <img src="/support.svg" alt="ref" />
-              <Link href="/support" className={s.navLink}>
+              </Box>
+            </Link>
+            <Link href="/support" activeClassName={s.activeClassName}>
+              <Box className={s.navLink}>
+                <img src="/support.svg" alt="ref" />
                 <span className={s.navLink}>Поддержка</span>
-              </Link>
-            </Box>
-            <Box className={s.navLinkBlock}>
-              <img src="/leaders.svg" alt="ref" />
-              <Link href="/leaders" className={s.navLink}>
+              </Box>
+            </Link>
+            <Link href="/leaders" activeClassName={s.activeClassName}>
+              <Box className={s.navLink}>
+                <img src="/leaders.svg" alt="ref" />
                 <span className={s.navLink}>Лидеры</span>
-              </Link>
-            </Box>
-            <Box className={s.navLinkBlock}>
-              <img src="/cases.svg" alt="ref" />
-              <Link href="/cases" className={s.navLink}>
-                <span className={s.navLink}>Кейсы</span>
-              </Link>
-            </Box>
+              </Box>
+            </Link>
+            <Link href="/cases" activeClassName={s.activeClassName}>
+              <Box className={s.navLink}>
+                <img src="/cases.svg" alt="ref" />
+                  <span className={s.navLink}>Кейсы</span>
+              </Box>
+            </Link>
           </Box>
           {user ? (
             <Box display="flex" flexDirection="column" position="relative">
