@@ -16,7 +16,7 @@ function Leader({ leader }) {
           </div>
         </td>
         <td>{leader.tickets}</td>
-        <td className={s.prize}>{leader.prize.toFixed(2)}</td>
+        <td className={s.prize}>{leader.prize ? leader.prize.toFixed(2) : ''}</td>
       </tr>
       <tr className={s.empty} />
     </>

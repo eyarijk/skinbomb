@@ -11,7 +11,6 @@ import s from './styles.module.scss';
 import { useRouter } from 'next/router';
 import NeedAuth from '../NeedAuth';
 import { useStore } from '../../lib/api/store';
-import {useRound} from "../../lib/api/rounds";
 
 export default function Inventory() {
   const auth = useAuth();
@@ -35,16 +34,10 @@ export default function Inventory() {
 
   const [cards, setCards] = useState(skins);
   const [activeCase, setActiveCase] = useState(null);
-  const { isCountDown, participateInRound} = useRound();
 
   useEffect(() => {
     setCards(skins);
   }, [skins]);
-
-  useEffect(() => {
-    setCards(skins);
-    getSkins();
-  }, [isCountDown, participateInRound]);
 
   const openCase = () => {
     const [skinCase] = Object.values(selectedSkinCases);
