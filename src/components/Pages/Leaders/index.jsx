@@ -80,7 +80,7 @@ function Leaders() {
       <Box
         display="flex"
         height={188}
-        flexDirection={isMobileOrTablet && 'column'}
+        flexDirection={isMobileOrTablet ? 'column' : 'row'}
         justifyContent="space-between"
         alignItems={isMobileOrTablet ? 'center' : 'none'}
         width={(isMobileOrTablet && '100vw') || (isDesk && '100%') || '100%'}
@@ -194,8 +194,8 @@ function Leaders() {
       <Box
         className={!isMobileOrTablet && s.overflow}
         width={(isMobileOrTablet && '98vw') || (isDesk && '100%') || '100%'}
-        mb={isMobileOrTablet && 5}
-        mx={isMobileOrTablet && 1}
+        mb={isMobileOrTablet ? '40px' : '0'}
+        mx={isMobileOrTablet ? '64px' : '0'}
         pr={!isMobileOrTablet && 11}
       >
         <LeaderBoard />

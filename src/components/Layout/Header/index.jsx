@@ -146,7 +146,6 @@ const Header = props => {
                 {user &&
                   <Box
                     color="#fff"
-                    // mr={isDesk && user && 1}
                     ml={(isXsDes && 0.5) || 1.5}
                     fontSize={16}
                     fontWeight={700}
