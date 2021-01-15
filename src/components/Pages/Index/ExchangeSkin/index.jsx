@@ -6,7 +6,7 @@ import React, { useEffect } from 'react';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
 import { useSkins } from '../../../../lib/api/skins';
-import PropTypes from 'react';
+import PropTypes from 'prop-types';
 import {
   getCurrentExchange,
   removeCurrentExchange,
@@ -142,7 +142,7 @@ function ExchangeSkin({ handleChangeRate }) {
       flexDirection="column"
       alignItems="center"
       position={isMobileOrTablet ? 'inherit' : 'relative'}
-      className='exchange-skin__block'
+      className="exchange-skin__block"
     >
       {!!exchangeSkin && (
         <button onClick={cancelSkin} className={s.cancelEgg}>
@@ -181,7 +181,7 @@ function ExchangeSkin({ handleChangeRate }) {
 }
 
 ExchangeSkin.propTypes = {
-  handleChangeRate: PropTypes.function,
+  handleChangeRate: PropTypes.func,
 };
 
 export default ExchangeSkin;
