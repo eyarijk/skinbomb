@@ -17,7 +17,7 @@ import { useChat } from './chat';
 const RoundsContext = createContext({});
 
 function RoundsProvider({ children }) {
-  const { token, user } = useAuth();
+  const { token } = useAuth();
   const { setOnline } = useChat();
   const { selectedSkins, getSkins, setExchangeSkin } = useSkins();
   const [lastBets, setLastBets] = useState([]);
@@ -34,6 +34,10 @@ function RoundsProvider({ children }) {
   const [betProcess, setBetProcess] = useState(false);
   const [lastBet, setLastBet] = useState(0);
   const [timestamp, setTimestamp] = useState(10);
+
+  useEffect(() => {
+    getRounds();
+  }, [token]);
 
   const getRounds = async () => {
     try {
@@ -138,6 +142,8 @@ function RoundsProvider({ children }) {
         if (event.user_online >= 0) {
           setOnline(event.user_online);
         }
+
+        const user = window.user;
 
         if (user) {
           const stat = event.statistics.find(
