@@ -21,7 +21,7 @@
     width: 100px;
     height: 30px;
     color: #fff;
-    background: linear-gradient(139.23deg, #02C880 13.34%, #01AB6E 86.08%);
+    background: #02C880;
     border-radius: 10px;
     cursor: pointer;
     font-family: Open Sans, sans-serif;
@@ -31,7 +31,7 @@
     line-height: 24px;
 
     &.shop {
-      background: #6361C8;
+      background: linear-gradient(139.23deg, #7D20FF 13.34%, #6101E9 86.08%);
       margin-left: 10px;
     }
 

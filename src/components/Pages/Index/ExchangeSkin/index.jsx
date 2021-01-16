@@ -132,7 +132,7 @@ function ExchangeSkin({ handleChangeRate }) {
 
   return (
     <Box
-      height={(isMobileOrTablet && 185) || '100%'}
+      height={(isMobileOrTablet && 185) || '70%'}
       width={(isMobileOrTablet && 299) || (isXsDesktop && 250) || 299}
       bgcolor={theme.background.primary}
       padding={isMobileOrTablet ? 0 : '41px'}
