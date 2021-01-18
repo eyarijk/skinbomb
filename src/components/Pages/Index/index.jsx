@@ -125,7 +125,8 @@ function Index() {
           justifyContent="space-between"
           flexDirection="column"
           position="relative"
-          pb={isMobileOrTablet ? 0 : 2}
+          pb={isMobileOrTablet ? 0 : 3}
+          mb={!isMobileOrTablet && -1}
         >
           <Bomb />
           {!isMobileOrTablet && (

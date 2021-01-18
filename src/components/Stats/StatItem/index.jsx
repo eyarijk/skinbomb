@@ -1,11 +1,15 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 
 import { Box, Avatar } from '@material-ui/core';
 
 import s from './styles.module.scss';
+import {useRound} from "../../../lib/api/rounds";
 
 function StatItem({ item }) {
+  const { isCountDown, participateInRound} = useRound();
+  const [countMoney, setCountMoney] = useState(null);
+
   function getItemColor() {
     switch (item.win) {
       case 'win':
@@ -44,6 +48,12 @@ function StatItem({ item }) {
         return;
     }
   }
+
+  useEffect(() => {
+    if (item.win === 'win') {
+      setCountMoney(item.skins_after_win.toFixed(2));
+    }
+  }, [isCountDown, participateInRound]);
 
   const showSkins = [...item.skins]
     .sort((a, b) => parseFloat(b.amount) - parseFloat(a.amount))
@@ -135,8 +145,8 @@ function StatItem({ item }) {
           >
             {getStatusText()}
           </Box>
-          {item.win === 'win' &&
-            (item.wanted_item ? (
+          {item.win === 'win' && item.wanted_item ? (
+              <>
               <div key={item.wanted_item.id} className={s.winGunWrapper}>
                 <img
                   src={`https://api.skinbomb.gg/${item.wanted_item.icon}`}
@@ -144,22 +154,37 @@ function StatItem({ item }) {
                   style={{ width: '90px' }}
                 />
               </div>
-            ) : (
-              <>
                 <Box
-                  fontWeight={600}
-                  fontSize={14}
-                  lineHeight="20px"
-                  color="#fff"
-                  ml={5}
+                    fontWeight={600}
+                    fontSize={14}
+                    lineHeight="20px"
+                    color="#fff"
+                    ml={5}
                 >
                   {`${item.skins_after_win.toFixed(2)} $`}
                 </Box>
                 <Box ml={2}>
-                  <img src="/up.svg" alt="up" />
+                  {item.win === 'lose' && (<img src="/down.svg" alt="down"/>)}
+                  {item.win === 'win' && (<img src="/up.svg" alt="down"/>)}
                 </Box>
               </>
-            ))}
+            ) : (
+              <>
+                <Box
+                    fontWeight={600}
+                    fontSize={14}
+                    lineHeight="20px"
+                    color="#fff"
+                    ml={5}
+                >
+                  {countMoney}
+                </Box>
+                <Box ml={2}>
+                  {item.win === 'lose' && (<img src="/down.svg" alt="down"/>)}
+                  {item.win === 'win' && (<img src="/up.svg" alt="down"/>)}
+                </Box>
+              </>
+          )}
         </Box>
         {getStatusCircle()}
       </Box>
