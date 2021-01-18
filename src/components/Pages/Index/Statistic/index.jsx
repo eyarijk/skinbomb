@@ -26,6 +26,7 @@ function Statistic() {
       height="1px"
       display="flex"
       flexDirection="column"
+      mt={!mobileOrTablet && '8px'}
     >
       <Box
         width={1}

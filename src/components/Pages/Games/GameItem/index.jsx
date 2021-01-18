@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Box } from '@material-ui/core';
 
 import s from './styles.module.scss';
+import Link from "next/link";
 
 function GameItem({ item }) {
   function getItemColor() {
@@ -77,8 +78,12 @@ function GameItem({ item }) {
           fontWeight={400}
           fontFamily="Open Sans, sans-serif"
           fontSize={14}
+          cursor="pointer"
         >
-          <span>{item.id_and_date}</span>
+          <Link href={`/round?id=${item.id}`} component="a">
+            <a style={{cursor: 'pointer'}}>{item.id_and_date}</a>
+          </Link>
+          {/*<span style={{cursor: 'pointer'}}>{item.id_and_date}</span>*/}
         </Box>
 
         {showSkins.map(gun => (
@@ -126,13 +131,28 @@ function GameItem({ item }) {
           </Box>
           {item.win === 'win' &&
             (item.wanted_item ? (
-              <div key={item.wanted_item.id} className={s.winGunWrapper}>
-                <img
-                  src={`https://api.skinbomb.gg/${item.wanted_item.icon}`}
-                  alt="gun"
-                  style={{ width: '90px' }}
-                />
-              </div>
+                <>
+                  <div key={item.wanted_item.id} className={s.winGunWrapper}>
+                    <img
+                      src={`https://api.skinbomb.gg/${item.wanted_item.icon}`}
+                      alt="gun"
+                      style={{ width: '90px' }}
+                    />
+                  </div>
+                  <Box
+                      fontWeight={600}
+                      fontSize={14}
+                      lineHeight="20px"
+                      color="#fff"
+                      ml={5}
+                  >
+                    {`${item.skins_after_win.toFixed(2)} $`}
+                  </Box>
+                  <Box ml={2}>
+                    {item.win === 'lose' && (<img src="/down.svg" alt="down"/>)}
+                    {item.win === 'win' && (<img src="/up.svg" alt="down"/>)}
+                  </Box>
+                </>
             ) : (
               <>
                 <Box
@@ -145,10 +165,27 @@ function GameItem({ item }) {
                   {`${item.skins_after_win.toFixed(2)} $`}
                 </Box>
                 <Box ml={2}>
-                  <img src="/up.svg" alt="up" />
+                  {item.win === 'lose' && (<img src="/down.svg" alt="down"/>)}
+                  {item.win === 'win' && (<img src="/up.svg" alt="down"/>)}
                 </Box>
               </>
             ))}
+          {item.win === 'lose' && (
+              <>
+                <Box
+                    fontWeight={600}
+                    fontSize={14}
+                    lineHeight="20px"
+                    color="#fff"
+                    ml={5}
+                >
+                </Box>
+                <Box ml={2}>
+                  {item.win === 'lose' && (<img src="/down.svg" alt="down"/>)}
+                  {item.win === 'win' && (<img src="/up.svg" alt="down"/>)}
+                </Box>
+              </>
+          )}
         </Box>
         {getStatusCircle()}
       </Box>
