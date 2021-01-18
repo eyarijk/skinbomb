@@ -108,6 +108,12 @@
     background: #f24a4a;
   }
 }
+@media (max-width: 959px) {
+  .cancelEgg {
+    margin-top: 235px;
+    margin-right: 10px;
+  }
+}
 @media screen and (max-width: 991px) {
   .line {
     display: none;

@@ -136,7 +136,9 @@ function ExchangeSkin({ handleChangeRate }) {
       width={(isMobileOrTablet && 299) || (isXsDesktop && 250) || 299}
       bgcolor={theme.background.primary}
       padding={isMobileOrTablet ? 0 : '41px'}
-      pl={isMobileOrTablet ? '36px' : '41px'}
+      pl={isMobileOrTablet ? '30px' : '41px'}
+      pr={isMobileOrTablet && '10px'}
+      //pr={isMobileOrTablet && '10px'}
       display="flex"
       justifyContent="center"
       flexDirection="column"
