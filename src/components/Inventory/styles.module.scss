@@ -13,6 +13,10 @@
 
 .overflow {
   overflow: hidden auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 116px);
+  justify-content: center;
+  row-gap: 5px;
 
   &::-webkit-scrollbar-thumb {
     background: linear-gradient(139.23deg, #58AD3A 13.34%, #0FD53A 86.08%);

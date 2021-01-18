@@ -101,6 +101,7 @@ export default function Inventory() {
                 }}
                 w="140px"
                 h="40px"
+                fontWeight="700"
                 bgcolor="linear-gradient(139.23deg, #7D20FF 13.34%, #6101E9 86.08%)"
                 border="none"
                 borderColor="linear-gradient(139.23deg, #6361C8 13.34%, #713AEB 86.08%)"
@@ -112,6 +113,7 @@ export default function Inventory() {
               w="140px"
               h="40px"
               border="none"
+              fontWeight="700"
               bgcolor="linear-gradient(139.23deg, #7D20FF 13.34%, #6101E9 86.08%)"
               borderColor="linear-gradient(139.23deg, #6361C8 13.34%, #713AEB 86.08%)"
             />
@@ -139,6 +141,7 @@ export default function Inventory() {
     return (
       <UiButton
         value="Все"
+        bgcolor="#9104F9"
         onClick={chooseAll}
         variant={`${
           Object.keys(selectedSkins).length === cards.length
@@ -147,6 +150,7 @@ export default function Inventory() {
         }`}
         borderSize="2px"
         borderColor="#9104F9"
+        borderStyle="solid"
         w="50px"
         p="5.5px 0"
       />
@@ -233,16 +237,15 @@ export default function Inventory() {
         {!isStorePage && (
           <Box mb={3} display="flex" justifyContent="center">
             <Link href="/store">
-              <>
                 <UiButton
                   value="Магазин скинов"
                   onClick={() => {}}
                   w="150px"
                   h="40px"
                   bgcolor="#F89D00"
+                  fontWeight="bold"
                   borderColor="#F89D00"
                 />
-              </>
             </Link>
           </Box>
         )}
@@ -255,9 +258,6 @@ export default function Inventory() {
           justifyContent="space-between"
         >
           <Box
-            display="flex"
-            flexWrap="wrap"
-            justifyContent="space-between"
             maxHeight={1}
             overflow="hidden auto"
             mb={2}

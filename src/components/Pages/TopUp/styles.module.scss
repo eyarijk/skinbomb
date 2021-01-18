@@ -34,6 +34,7 @@
   align-items: center;
 }
 .methodCard {
+  background: none !important;
   display: flex;
   position: relative;
   justify-content: center;
@@ -46,9 +47,6 @@
 
   &.active {
     border: 0.5px solid #FFFFFF;
-  }
-  &.active img {
-    filter: brightness(0) invert(1);
   }
   &:hover {
     border: 0.5px solid #FFFFFF;

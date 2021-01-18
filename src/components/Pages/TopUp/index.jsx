@@ -16,6 +16,8 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 const buttons = ['1', '5', '10', '25', '50', '100'];
 
+const images = ['/mastercard-active.svg', '/visa-active.svg']
+
 function round(num) {
   return Math.round((num + Number.EPSILON) * 100) / 100;
 }
@@ -149,8 +151,9 @@ function TopUp() {
               ))}
           </Box>
           <Box display="flex" maxWidth={1} flexWrap="wrap">
-            {paymentMethods.map(method => (
+            {paymentMethods.map((method, index) => (
               <Box
+                style={{background: `url(${images[index]}) no-repeat 50%`, backgroundSize: '68%'}}
                 key={method.name}
                 m={{ xs: 0.6, sm: 1 }}
                 onClick={async () => {
