@@ -20,11 +20,25 @@
   .exchange-skin__block {
     border-radius: 0;
   }
+
+  .coefficients-block__first-item {
+    margin-left: 60px;
+  }
 }
 
 @media (max-width: 767px) {
   .top-up__inputBlock {
     margin-right: 24px;
+  }
+
+  .coefficients-block__first-item {
+    margin-left: 20px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .coefficients-block__first-item {
+    margin-left: 0;
   }
 }
 

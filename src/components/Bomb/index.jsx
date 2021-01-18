@@ -138,7 +138,7 @@ function Bomb() {
       <img
         style={{
           height: isMobileOrTablet ? 185 : 350,
-          width: isMobileOrTablet ? '100%' : 'auto',
+          width: 'auto',
         }}
         src={`/bomb_${bombStep}.png`}
         alt="timer"

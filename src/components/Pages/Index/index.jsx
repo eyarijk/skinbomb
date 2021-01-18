@@ -79,6 +79,7 @@ function Index() {
           width={isMobileOrTablet ? '100%' : 'min-content'}
           mr={1}
           className="coefficients-main__block"
+          pl={isMobileOrTablet && '5px'}
         >
           <Box
             display="flex"
@@ -101,11 +102,12 @@ function Index() {
                 (isXsDesktop && 'column') ||
                 'row'
               }
+              className="coefficients-block__first-item"
             >
               <RateUpper currentRate={currentRate} />
               <Chart startAnimation={isCountDown} currentRate={currentRate} />
             </Box>
-            <Box mt={2.5} mb={1.5}>
+            <Box mt={2.5} mb={1.5} pl={isMobileOrTablet && '20px'}>
               <BetHistory
                 history={lastBets}
                 onClick={bet => router.push(`/round?id=${bet.round_id}`)}

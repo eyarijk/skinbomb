@@ -130,20 +130,23 @@
     padding-bottom: 0;
     .countdownWrapper {
       position: absolute;
-      width: 85px;
-      height: 39px;
+      width: 100px;
+      height: 45px;
       border-radius: 10px;
-      top: 95px;
+      top: 124px;
       margin-left: 18px;
       .countdown {
         font-size: 32px;
-        line-height: 46px;
-        margin-top: -7px;
+        line-height: 45px;
+        margin-top: 0;
         margin-left: 2px;
+      }
+      .countdownReal {
+        margin-left: -42px;
       }
       .indicators {
         flex-direction: row;
-        margin-left: 47px;
+        margin-left: 30px;
         .indicator {
           font-size: 9px;
           margin-top: 8px;
@@ -151,20 +154,38 @@
         }
       }
     }
+    &.bombWings2 {
+      .bombLeft {
+        margin-left: -230px;
+        transition: margin-left 1500ms ease;
+      }
+      .bombRight {
+        margin-right: -264px;
+        transition: margin-right 1725ms ease;
+      }
+    }
+    .bombRoot {
+      height: 230px !important;
+      width: 100%;
+    }
     .glass {
       width: 106px;
-      top: 74px;
+      top: 104px;
       margin-right: -15px;
     }
     .bombLeft {
       width: 55px;
-      top: 76px;
+      top: 110px;
       margin-left: -85px;
     }
     .bombRight {
-      width: 60px;
-      top: 94px;
-      margin-right: -29px;
+      width: 55px;
+      top: 127px;
+      margin-right: -85px;
+
+      //width: 60px;
+      //top: 94px;
+      //margin-right: -29px;
     }
   }
 }
@@ -176,9 +197,22 @@
       border-radius: 10px;
       top: 124px;
       margin-left: 22px;
+      .countdown {
+        //margin-left: -42px;
+        line-height: 50px;
+        margin-top: 0;
+      }
+      .countdownReal {
+        margin-left: -42px;
+      }
+      .indicators {
+        margin-left: 30px;
+        margin-top: -23px;
+      }
     }
     .bombRoot {
       height: 230px !important;
+      width: 100%;
     }
     .glass {
       width: 118px;
@@ -198,6 +232,7 @@
     }
     .bombRoot {
       height: 185px !important;
+      width: 100%;
     }
     .glass {
       width: 113px;
