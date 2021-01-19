@@ -61,6 +61,7 @@ function Leaders() {
       height={1}
       pl={!isMobileOrTablet && 5.5}
       pr={16}
+      className={s.leaders}
     >
       <Box
         pt={2}
@@ -78,6 +79,7 @@ function Leaders() {
         Лидеры
       </Box>
       <Box
+          className={s.timer}
         display="flex"
         height={188}
         flexDirection={isMobileOrTablet ? 'column' : 'row'}
@@ -192,7 +194,7 @@ function Leaders() {
         </Box>
       </Box>
       <Box
-        className={!isMobileOrTablet && s.overflow}
+        className={!isMobileOrTablet && s.overflow || s.stats}
         width={(isMobileOrTablet && '98vw') || (isDesk && '100%') || '100%'}
         mb={isMobileOrTablet ? '40px' : '0'}
         mx={isMobileOrTablet ? '64px' : '0'}
