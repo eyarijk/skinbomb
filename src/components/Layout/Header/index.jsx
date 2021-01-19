@@ -64,7 +64,7 @@ const Header = props => {
                   mr={(isLgDes && user && 1) || 4.5}
                   fontSize={isLgDes && user ? '16px' : ''}
                 >
-                  {(user?.amount).toFixed(2)} $
+                  {(user?.amount).toFixed(3)} $
                 </Box>
                 <Link href="/top-up">
                   <Box

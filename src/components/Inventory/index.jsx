@@ -302,7 +302,7 @@ export default function Inventory() {
                   color="#fff"
                   lineHeight="20px"
                 >
-                  {selectedSkinsPrice.toFixed(2)} $
+                  {selectedSkinsPrice.toFixed(3)} $
                 </Box>
               </Box>
               {renderAllBtn()}

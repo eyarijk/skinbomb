@@ -5,8 +5,10 @@ import cn from 'classnames';
 import { Box } from '@material-ui/core';
 
 import s from './styles.module.scss';
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 function WeaponCard({ card, small, selectCard, selectedCards, percent = 0 }) {
+  const isMobileOrTablet = useMediaQuery('(max-width: 959px)');
   return (
     <Box
       className={cn(s.root, { [s.small]: small })}
@@ -19,7 +21,8 @@ function WeaponCard({ card, small, selectCard, selectedCards, percent = 0 }) {
       }`}
       height="min-content"
       mt={small ? 1 : 3}
-      width={118}
+      ml={isMobileOrTablet ? 1 : '2px'}
+      width={125}
       style={{ cursor: 'pointer' }}
       position="relative"
       onClick={() => selectCard(card.id, card)}
