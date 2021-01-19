@@ -32,7 +32,7 @@ function StatItem({ item }) {
       default:
         return (
           <Box fontSize={14} lineHeight="24px" fontWeight={600}>
-            {`${item.amount.toFixed(2)} $`}
+            {`${item.amount.toFixed(3)} $`}
           </Box>
         );
     }
@@ -51,7 +51,7 @@ function StatItem({ item }) {
 
   useEffect(() => {
     if (item.win === 'win') {
-      setCountMoney(item.skins_after_win.toFixed(2));
+      setCountMoney(item.skins_after_win.toFixed(3));
     }
   }, [isCountDown, participateInRound]);
 
@@ -100,7 +100,7 @@ function StatItem({ item }) {
             color="#c4c4c4"
             fontWeight={600}
             fontFamily="Open Sans, sans-serif"
-          >{`${item.current_user_amount.toFixed(2)} $`}</Box>
+          >{`${item.current_user_amount.toFixed(3)} $`}</Box>
         </Box>
         {showSkins.map(gun => (
           <img
@@ -161,7 +161,7 @@ function StatItem({ item }) {
                     color="#fff"
                     ml={5}
                 >
-                  {`${item.skins_after_win.toFixed(2)} $`}
+                  {`${item.skins_after_win.toFixed(3)} $`}
                 </Box>
                 <Box ml={2}>
                   {item.win === 'lose' && (<img src="/down.svg" alt="down"/>)}

@@ -60,7 +60,7 @@ function Statistic() {
         >
           <Box component="span" display="flex" alignItems="center">
             <img src="/atm.svg" alt="atm" style={{ marginRight: 4 }} />
-            {`${globalStatistics.amount.toFixed(2)} $`}
+            {`${globalStatistics.amount.toFixed(3)} $`}
           </Box>
           <Box component="span" display="flex" alignItems="center" mx={2}>
             <img src="/people.svg" alt="people" style={{ marginRight: 4 }} />

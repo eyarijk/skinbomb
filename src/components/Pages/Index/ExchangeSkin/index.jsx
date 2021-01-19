@@ -29,7 +29,7 @@ function ExchangeSkin({ handleChangeRate }) {
 
   useEffect(() => {
     if (exchangeSkin && selectedSkinsPrice > 0) {
-      handleChangeRate((exchangeSkin.price / selectedSkinsPrice).toFixed(2));
+      handleChangeRate((exchangeSkin.price / selectedSkinsPrice).toFixed(3));
     } else {
       handleChangeRate(1.5);
     }
@@ -117,7 +117,7 @@ function ExchangeSkin({ handleChangeRate }) {
             </Box>
           )}
           <Box color="#fff" fontSize={13} fontWeight={500} ml="auto">
-            {exchangeSkin.price.toFixed(2)} $
+            {exchangeSkin.price.toFixed(3)} $
           </Box>
         </Box>
         <Box

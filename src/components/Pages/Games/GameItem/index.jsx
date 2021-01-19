@@ -29,7 +29,7 @@ function GameItem({ item }) {
       default:
         return (
           <Box fontSize={14} lineHeight="24px" fontWeight={600}>
-            {`${item.amount.toFixed(2)} $`}
+            {`${item.amount.toFixed(3)} $`}
           </Box>
         );
     }
@@ -145,7 +145,7 @@ function GameItem({ item }) {
                       color="#fff"
                       ml={5}
                   >
-                    {`${item.skins_after_win.toFixed(2)} $`}
+                    {`${item.skins_after_win.toFixed(3)} $`}
                   </Box>
                   <Box ml={2}>
                     {item.win === 'lose' && (<img src="/down.svg" alt="down"/>)}
@@ -161,7 +161,7 @@ function GameItem({ item }) {
                   color="#fff"
                   ml={5}
                 >
-                  {`${item.skins_after_win.toFixed(2)} $`}
+                  {`${item.skins_after_win.toFixed(3)} $`}
                 </Box>
                 <Box ml={2}>
                   {item.win === 'lose' && (<img src="/down.svg" alt="down"/>)}

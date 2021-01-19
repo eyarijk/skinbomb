@@ -95,7 +95,7 @@ function WeaponCard({ card, small, selectCard, selectedCards, percent = 0 }) {
           alignItems="center"
         >
           <Box color="#fff" fontSize={11} fontWeight={600}>
-            {card.price.toFixed(2)} $
+            {card.price.toFixed(3)} $
           </Box>
           {percent ? (
             <Box fontSize={10} color="#fff">

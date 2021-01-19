@@ -129,7 +129,7 @@ function Referral() {
               </Box>
             </Box>
             <Box fontSize={14} fontWeight={400} color="#ABABAB">
-              <b>{`${referrals.remainder.toFixed(2)} $`}</b> пополнений
+              <b>{`${referrals.remainder.toFixed(3)} $`}</b> пополнений
               требуется к следующему рангу
             </Box>
           </Box>
