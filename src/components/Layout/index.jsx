@@ -64,7 +64,7 @@ function Layout({ children, background }) {
         {!isOpen && <Box className={s.content} >
           {children.type.name !== 'ProvablyFairness' &&
           (!mobileOrTablet ? <LeftContent/> :
-              <Box className={s.chatIcon}>
+              <Box className={s.chatIcon} mb={3}>
                 <img src="/mainIcon.svg" onClick={openChat}/>
               </Box>)}
           <RightContent>{children}</RightContent>

@@ -21,8 +21,8 @@ function WeaponCard({ card, small, selectCard, selectedCards, percent = 0 }) {
       }`}
       height="min-content"
       mt={small ? 1 : 3}
-      ml={isMobileOrTablet ? 1 : '2px'}
-      width={125}
+      ml={isMobileOrTablet ? 1 : '3px'}
+      width={118}
       style={{ cursor: 'pointer' }}
       position="relative"
       onClick={() => selectCard(card.id, card)}
