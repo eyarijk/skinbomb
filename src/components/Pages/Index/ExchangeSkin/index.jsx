@@ -145,7 +145,7 @@ function ExchangeSkin({ handleChangeRate }) {
       display="flex"
       justifyContent="center"
       flexDirection="column"
-      alignItems="center"
+      alignItems="start"
       position={isMobileOrTablet ? 'inherit' : 'relative'}
       className="exchange-skin__block"
     >
