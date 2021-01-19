@@ -39,6 +39,21 @@ function Index() {
   } = useRound();
   const { token } = router.query;
   const [rate, setRate] = useState(1.25);
+  const [upgradeBtnLabel, setUpgradeBtnLabel] = useState('Начать апгрейд');
+  const [upgradeBtnColor, setUpgradeBtnColor] = useState('Начать апгрейд');
+
+  useEffect(() => {
+    if(isCountDown === false && betRequest === true) {
+      setUpgradeBtnLabel('Отменить ставку');
+      setUpgradeBtnColor('#E83F48')
+    } else if (isCountDown) {
+      setUpgradeBtnLabel('Начать апгрейд');
+      setUpgradeBtnColor('#F89D00')
+    } else {
+      setUpgradeBtnLabel('Начать апгрейд');
+      setUpgradeBtnColor('#F89D00')
+    }
+  }, [isCountDown, betRequest]);
 
   useEffect(() => {
     if (token) {
@@ -204,7 +219,7 @@ function Index() {
                   w="100%"
                   h="40px"
                   p={(isXsDesktop && '0 10px') || '0 26px'}
-                  bgcolor={betRequest ? '#212121' : '#F89D00'}
+                  bgcolor={upgradeBtnColor}
                   borderSize="0"
                   disabled={betRequest}
                   onClick={() => handleBet(rate)}
@@ -219,7 +234,7 @@ function Index() {
                         fontSize={(isXsDesktop && 16) || 18}
                         color="#fff"
                       >
-                        Начать апгрейд
+                        {upgradeBtnLabel}
                       </Box>
                       <Box
                         fontWeight={600}
@@ -240,14 +255,14 @@ function Index() {
                 w="100%"
                 h="40px"
                 p="0 26px"
-                bgcolor="#F89D00"
+                bgcolor={upgradeBtnColor}
                 borderSize="0"
                 onClick={() => handleBet(rate)}
                 ml={1}
                 value={
                   <Box width={1} display="flex" justifyContent="space-between">
                     <Box fontWeight={600} fontSize={18} color="#fff">
-                      Начать апгрейд
+                      {upgradeBtnLabel}
                     </Box>
                     <Box fontWeight={600} fontSize={18} color="#fff">
                       {selectedSkinsPrice.toFixed(3)} $
@@ -313,7 +328,7 @@ function Index() {
               w="100%"
               h="40px"
               p={isMobileOrTablet ? '0 5px' : '0 26px'}
-              bgcolor="#F89D00"
+              bgcolor={upgradeBtnColor}
               onClick={() => handleBet(rate)}
               borderSize="0"
               value={
@@ -324,7 +339,7 @@ function Index() {
                     color="#070707"
                     mr={3}
                   >
-                    Начать апгрейд
+                    {upgradeBtnLabel}
                   </Box>
                   <Box
                     fontWeight={600}

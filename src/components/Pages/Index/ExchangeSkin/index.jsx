@@ -31,7 +31,7 @@ function ExchangeSkin({ handleChangeRate }) {
     if (exchangeSkin && selectedSkinsPrice > 0) {
       handleChangeRate((exchangeSkin.price / selectedSkinsPrice).toFixed(3));
     } else {
-      handleChangeRate(1.5);
+      handleChangeRate(1.01);
     }
   }, [exchangeSkin, selectedSkinsPrice]);
 
