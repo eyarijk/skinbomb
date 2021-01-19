@@ -199,7 +199,7 @@ function Index() {
                   fontWeight={400}
                 />
               </Box>
-              <Box width={630}>
+              <Box width={630} ml={isSmDesktop && 1}>
                 <Button
                   w="100%"
                   h="40px"
@@ -243,6 +243,7 @@ function Index() {
                 bgcolor="#F89D00"
                 borderSize="0"
                 onClick={() => handleBet(rate)}
+                ml={1}
                 value={
                   <Box width={1} display="flex" justifyContent="space-between">
                     <Box fontWeight={600} fontSize={18} color="#fff">
@@ -294,7 +295,7 @@ function Index() {
         </Box>
       )}
       {isMobileOrTablet && (
-        <Box display="flex" bgcolor={theme.background.primary} px={2.5}>
+        <Box display="flex" bgcolor={theme.background.primary} px={2.5} pb={isMobileOrTablet && '11px'}>
           <Box width={isMobileOrTablet ? 70 : 130} mr={3}>
             <Input
               value={rate}

@@ -13,20 +13,21 @@ function Statistic() {
   const theme = useTheme();
   const { globalStatistics } = useRound();
   const mobileOrTablet = useMediaQuery('(max-width: 959px)');
+  const isDesktop = useMediaQuery('(min-width: 1130px');
   const link = `/statistic-daily?date=${currentDate}`;
 
   return (
     <Box
       xs={12}
       bgcolor={theme.background.primary}
-      style={{ borderTopLeftRadius: 10 }}
+      style={{ borderTopLeftRadius: !mobileOrTablet && 10 }}
       pl={3}
       pr={4.1}
       flexGrow={1}
       height="1px"
       display="flex"
       flexDirection="column"
-      mt={!mobileOrTablet && '8px'}
+      mt={isDesktop ? '-2px' : mobileOrTablet ? 0 :'8px'}
     >
       <Box
         width={1}

@@ -5,21 +5,27 @@
   justify-content: center;
   background: url('/weapon-card-bg.svg') no-repeat center top / cover;
 
+  @media screen and (min-width: 959px) and (max-width: 1129px) { margin-right: 0;}
+  @media screen and (min-width: 1130px) {
+    margin-right: 35px;
+    margin-bottom: 14px;
+  }
 
   .sphere {
     width: 284px;
     position: absolute;
-    bottom: -10px;
-    left: -42px;
+    bottom: -17px;
+    left: -23px;
 
     @media screen and (max-width: 959px) {
-      width: 98px;
-      left: -6px;
-      bottom: 0;
+      width: 101px;
+      left: -8px;
+      bottom: -2px;
     }
     @media screen and (min-width: 959px) and (max-width: 1129px) {
-      width: 170px;
-      bottom: 15%;
+      width: 249px;
+      bottom: -13%;
+      left: -37px;
     }
   }
 
@@ -34,6 +40,19 @@
       width: 110px;
     }
      margin-top: 25px;
+  }
+}
+
+.chooseSkinBtn {
+  margin-top: 45px!important;
+
+  @media screen and (max-width: 600px) {
+    margin-top: 24px;
+    width: 100px!important;
+  }
+
+  @media screen and (max-width: 959px) {
+    margin-top: 20px!important;
   }
 }
 
@@ -56,7 +75,12 @@
 .line {
   position: absolute;
   height: 103%;
-  top: -6px;
+  top: 1px;
+
+  @media screen and (min-width: 959px) and (max-width: 1129px) {
+    height: 108%;
+    top: 2px;
+  }
 }
 .none {
   display: none;
@@ -83,10 +107,6 @@
   @media screen and (max-width: 1279px) {
     width: 190px;
     font-size: 12px;
-  }
-  @media screen and (max-width: 1023px) {
-    width: 80px;
-    margin-top: 10px;
   }
 }
 

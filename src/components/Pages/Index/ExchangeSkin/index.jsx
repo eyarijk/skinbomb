@@ -16,8 +16,10 @@ import { useAuth } from '../../../../lib/api/auth';
 function ExchangeSkin({ handleChangeRate }) {
   const theme = useTheme();
   const auth = useAuth();
+  const isMobile = useMediaQuery('(max-width: 600px)');
   const isMobileOrTablet = useMediaQuery('(max-width: 959px)');
   const isXsDesktop = useMediaQuery('(max-width: 1129px)');
+  const isDesktop = useMediaQuery('(min-width: 1130px');
   const {
     skins,
     selectedSkinsPrice,
@@ -49,9 +51,9 @@ function ExchangeSkin({ handleChangeRate }) {
 
     if (!exchangeSkin) {
       return (
-        <Link href="/store?type=game">
+        <Link href="/store?type=game" w={isMobile ? '100px' : ''}>
           <Box
-            className={cn(s.button, s.shop)}
+            className={cn(s.button, s.shop, s.chooseSkinBtn)}
             display="flex"
             alignItems="center"
             justifyContent="center"
@@ -64,7 +66,7 @@ function ExchangeSkin({ handleChangeRate }) {
     }
 
     return (
-      <Box width="100%">
+      <Box width={isMobile ? '77%' : '100%'} mr={isDesktop && 4} mt={isMobile && '10px' ||isXsDesktop && '27px'}>
         <Box display="flex" alignItems="center">
           {!exchangeSkin?.is_star === 1 && (
             <img className={s.star} src="/star.svg" alt="star" />
@@ -132,13 +134,14 @@ function ExchangeSkin({ handleChangeRate }) {
 
   return (
     <Box
-      height={(isMobileOrTablet && 185) || '70%'}
+      height={(isMobileOrTablet && 185) || '72%'}
       width={(isMobileOrTablet && 299) || (isXsDesktop && 250) || 299}
       bgcolor={theme.background.primary}
-      padding={isMobileOrTablet ? 0 : '41px'}
-      pl={isMobileOrTablet ? '30px' : '41px'}
-      pr={isMobileOrTablet && '10px'}
-      //pr={isMobileOrTablet && '10px'}
+      padding={isMobile && '0' || isMobileOrTablet ? '0' : '41px'}
+      pb={isMobile && '0' || isDesktop && '20px' || isXsDesktop && '15px' || isMobileOrTablet && 0}
+      pl={isMobile ? 0 : isMobileOrTablet ? '30px' : isXsDesktop ? '28px' : '41px'}
+      pr={isMobile && '0' || isMobileOrTablet && '10px' || isXsDesktop && '28px'}
+      mb={isDesktop && '10px'}
       display="flex"
       justifyContent="center"
       flexDirection="column"
@@ -156,7 +159,7 @@ function ExchangeSkin({ handleChangeRate }) {
         justifyContent="center"
         alignItems="center"
         width={isMobileOrTablet ? 85 : 0.9}
-        height={isMobileOrTablet ? 90 : 240}
+        height={isMobileOrTablet ? 90 : isXsDesktop ? 200 : 240}
         className={s.eggWrapper}
       >
         {!!exchangeSkin && (

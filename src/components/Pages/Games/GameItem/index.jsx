@@ -83,7 +83,6 @@ function GameItem({ item }) {
           <Link href={`/round?id=${item.id}`} component="a">
             <a style={{cursor: 'pointer'}}>{item.id_and_date}</a>
           </Link>
-          {/*<span style={{cursor: 'pointer'}}>{item.id_and_date}</span>*/}
         </Box>
 
         {showSkins.map(gun => (
