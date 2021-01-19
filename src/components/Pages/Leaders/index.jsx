@@ -79,9 +79,8 @@ function Leaders() {
         Лидеры
       </Box>
       <Box
-          className={s.timer}
         display="flex"
-        height={188}
+        height={isMobileOrTablet ? 1 : 188}
         flexDirection={isMobileOrTablet ? 'column' : 'row'}
         justifyContent="space-between"
         alignItems={isMobileOrTablet ? 'center' : 'none'}
