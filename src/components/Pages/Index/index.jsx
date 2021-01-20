@@ -166,6 +166,8 @@ function Index() {
               <BetHistory
                 justifyContent="space-between"
                 my={1.5}
+                pr={2.5}
+                pl={!isSmDesktop ? 2.5 : 1.3}
                 width="100%"
                 onClick={bet => setRate(bet.bet)}
                 history={[
@@ -177,7 +179,7 @@ function Index() {
                 ]}
               />
               {!isMobileOrTablet && !isSmDesktop && (
-                <Box width="160px" ml={1}>
+                <Box width="160px" ml={isXsDesktop && 1} mr={!isXsDesktop && 3}>
                   <Input
                     value={rate}
                     onChange={handleChangeRate}
@@ -210,6 +212,7 @@ function Index() {
                   borderColor="#F89D00"
                   fontSize="20px"
                   fontWeight={400}
+                  pr={2}
                 />
               </Box>
               <Box width="100%" ml={isSmDesktop && 1}>
@@ -223,7 +226,7 @@ function Index() {
                   onClick={() => handleBet(rate)}
                   value={
                     <Box
-                      width={1}
+                      width={isSmDesktop ? '95%' : 1}
                       display="flex"
                       justifyContent="space-between"
                     >
@@ -309,7 +312,7 @@ function Index() {
       )}
       {isMobileOrTablet && (
         <Box display="flex" bgcolor={theme.background.primary} px={2.5} pb={isMobileOrTablet && '11px'}>
-          <Box width={isMobileOrTablet ? 70 : 130} mr={3}>
+          <Box width={70} mr={3}>
             <Input
               value={rate}
               onChange={handleChangeRate}
