@@ -40,6 +40,7 @@ function RoundPage() {
           height="1px"
           display="flex"
           flexWrap="wrap"
+          flexDirection="column"
           padding="22px 20px"
           color="#fff"
           alignItems="center"
@@ -60,7 +61,7 @@ function RoundPage() {
         height="1px"
         className={s.root}
         display="flex"
-        flexWrap="wrap"
+        flexDirection="column"
         padding="22px 20px"
       >
         {round.statistics.map(item => {
