@@ -40,7 +40,7 @@ function Index() {
   const { token } = router.query;
   const [rate, setRate] = useState(1.25);
   const [upgradeBtnLabel, setUpgradeBtnLabel] = useState('Начать апгрейд');
-  const [upgradeBtnColor, setUpgradeBtnColor] = useState('Начать апгрейд');
+  const [upgradeBtnColor, setUpgradeBtnColor] = useState('#F89D00');
 
   useEffect(() => {
     if(isCountDown === false && betRequest === true) {
@@ -151,6 +151,7 @@ function Index() {
               color="#979797"
               width={1}
               pl={4.1}
+              pt={isXsDesktop && 2.5}
             >
               Сделать ставку
             </Box>
@@ -159,16 +160,13 @@ function Index() {
             <Box
               display="flex"
               width={1}
-              pl={4.1}
-              pr={4.1}
-              mb={1.5}
+              px={1}
               alignItems="center"
-              justifyContent="space-between"
             >
               <BetHistory
-                my={1.5}
                 justifyContent="space-between"
-                width="430px"
+                my={1.5}
+                width="100%"
                 onClick={bet => setRate(bet.bet)}
                 history={[
                   { id: 1, bet: 1.1 },
@@ -179,7 +177,7 @@ function Index() {
                 ]}
               />
               {!isMobileOrTablet && !isSmDesktop && (
-                <Box width="178px">
+                <Box width="160px" ml={1}>
                   <Input
                     value={rate}
                     onChange={handleChangeRate}
@@ -214,7 +212,7 @@ function Index() {
                   fontWeight={400}
                 />
               </Box>
-              <Box width={630} ml={isSmDesktop && 1}>
+              <Box width="100%" ml={isSmDesktop && 1}>
                 <Button
                   w="100%"
                   h="40px"

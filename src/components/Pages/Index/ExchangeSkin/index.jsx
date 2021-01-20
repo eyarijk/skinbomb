@@ -66,7 +66,7 @@ function ExchangeSkin({ handleChangeRate }) {
     }
 
     return (
-      <Box width={isMobile ? '77%' : '100%'} mr={isDesktop && 4} mt={isMobile && '10px' ||isXsDesktop && '27px'}>
+      <Box width={isMobile ? '77%' : '100%'} mr={isDesktop && 4} mt={isMobile && '10px' || isXsDesktop && '27px'}>
         <Box display="flex" alignItems="center">
           {!exchangeSkin?.is_star === 1 && (
             <img className={s.star} src="/star.svg" alt="star" />

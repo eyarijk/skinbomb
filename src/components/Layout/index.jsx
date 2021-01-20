@@ -12,6 +12,7 @@ import s from './styles.module.scss';
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Chat from "../Chat";
 import Inventory from "../Inventory";
+import UnauthorizedContainer from "../UnauthorizedPage";
 
 function Layout({ children, background }) {
   const theme = useTheme();
@@ -39,7 +40,9 @@ function Layout({ children, background }) {
         <Header
           openInventory={openInventory}
         />
-        {isOpen && <Box px={2} bgcolor={theme.background.primary} pb={50}>
+        {isOpen &&
+        <UnauthorizedContainer>
+        <Box px={2} bgcolor={theme.background.primary} pb={50}>
           <Box
               width={1}
               height={58}
@@ -59,7 +62,9 @@ function Layout({ children, background }) {
             </Box>
           </Box>
           {inv ? <Inventory/> : <Chat/>}
-        </Box>}
+        </Box>
+        </UnauthorizedContainer>
+        }
 
         {!isOpen && <Box className={s.content} >
           {children.type.name !== 'ProvablyFairness' &&

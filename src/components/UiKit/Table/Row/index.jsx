@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import Link from "next/link";
 
 function Row({ row, collapsable, hidden }) {
   const [open, setOpen] = useState(false);
@@ -20,8 +21,19 @@ function Row({ row, collapsable, hidden }) {
           </td>
         )}
         {row.map(item => {
+          if (item === row[3]) {
+            return (
+              <Link href={`/statistic-daily?date=${row[0]}`} component="b">
+                <a style={{cursor: 'pointer'}}>
+                <td className="item" style={{color: 'orange'}} key={item}>
+                  {item}
+                </td>
+                </a>
+              </Link>
+            );
+          }
           return (
-            <td className="item" style={item === row[3] ? {color: 'orange'} : {color: 'white'}} key={item}>
+            <td className="item" style={{color: 'white'}} key={item}>
               {item}
             </td>
           );

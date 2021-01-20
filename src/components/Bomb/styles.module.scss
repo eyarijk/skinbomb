@@ -125,9 +125,82 @@
   }
 }
 
+@media screen and (max-width: 1329px) {
+  .root {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    .countdownWrapper {
+      position: absolute;
+      width: 100px;
+      height: 45px;
+      border-radius: 10px;
+      top: 174px;
+      margin-left: 18px;
+      .countdown {
+        font-size: 32px;
+        line-height: 45px;
+        margin-top: 0;
+        margin-left: 2px;
+      }
+      .countdownReal {
+        margin-left: -42px;
+      }
+      .indicators {
+        flex-direction: row;
+        margin-left: 30px;
+        .indicator {
+          font-size: 9px;
+          margin-top: 8px;
+          padding: 0 3px;
+        }
+      }
+    }
+    &.bombWings0 {
+      .bombLeft {
+        margin-left: -200px!important;
+        transition: margin-left 1500ms ease;
+      }
+      .bombRight {
+        margin-right: -234px!important;
+        transition: margin-right 1725ms ease;
+      }
+    }
+    &.bombWings2 {
+      .bombLeft {
+        margin-left: -210px!important;
+        transition: margin-left 1500ms ease;
+      }
+      .bombRight {
+        margin-right: -244px!important;
+        transition: margin-right 1725ms ease;
+      }
+    }
+    .bombRoot {
+      height: 230px !important;
+      width: 100%;
+    }
+    .glass {
+      width: 106px;
+      top: 154px;
+      margin-right: -15px;
+    }
+    .bombLeft {
+      width: 55px;
+      top: 160px;
+      margin-left: -35px;
+    }
+    .bombRight {
+      width: 55px;
+      top: 177px;
+      margin-right: -35px;
+    }
+  }
+}
+
 @media screen and (max-width: 959px) {
   .root {
-    padding-bottom: 0;
+    padding-bottom: 0!important;
+    padding-top: 0!important;
     .countdownWrapper {
       position: absolute;
       width: 100px;
@@ -182,10 +255,6 @@
       width: 55px;
       top: 127px;
       margin-right: -85px;
-
-      //width: 60px;
-      //top: 94px;
-      //margin-right: -29px;
     }
   }
 }
@@ -198,7 +267,6 @@
       top: 124px;
       margin-left: 22px;
       .countdown {
-        //margin-left: -42px;
         line-height: 50px;
         margin-top: 0;
       }

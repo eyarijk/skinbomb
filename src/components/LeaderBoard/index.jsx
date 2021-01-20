@@ -3,12 +3,14 @@ import React from 'react';
 import s from './styles.module.scss';
 import { useLeaders } from '../../lib/api/leaders';
 import Leader from './Leader';
+import {useAuth} from "../../lib/api/auth";
 
 export default function LeaderBoard() {
   const { leaders, currentUser } = useLeaders();
+  const { user } = useAuth();
 
   const renderCurrent = () => {
-    if (!currentUser) {
+    if (!currentUser || user === null) {
       return '';
     }
 
